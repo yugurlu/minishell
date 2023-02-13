@@ -1,0 +1,30 @@
+
+readline() = shell uygulamalarında kullanıcının komut satırındaki girdilerini okumak,
+işlemek ve kolayca yönetmek için kullanılan bir fonksiyondur.
+
+add_history() = shell uygulamalarında kullanıcı girdilerini shell tarihçesinde saklamak için kullanılır.
+Kabuk tarihçesi, kullanıcının son girdilerini saklar ve kullanıcı,daha önce girdi yapmış olan komutları tekrar kullanmak için
+up arrow veya down arrow tuşlarını kullanabilir.
+
+rl_clear_history() = add_history ile eklenen girdileri temizlemek için kullanılır.Bu fonksiyon, shell tarihçesinin boyutunu kontrol etmek ve
+bellekte fazla yer kaplamamasını sağlamak için de kullanılabilir.
+
+rl_on_new_line() = Tell the update routines that we have moved onto a new (empty) line, usually after ouputting a newline. ?????
+
+rl_replace_line() = kullanıcının komut satırındaki mevcut girdiyi, seçilen girdi ile değiştirmek için kullanılır.
+
+rl_redisplay() = shell üzerinde yapılan değişiklikleri yeniden göstermek için kullanılır.
+
+
+
+access = bir dosya veya dizinin belirli bir amaç için erişilebilir olup olmadığını belirlemek için kullanılır.
+
+fork = bir proccess kopyasını oluşturmak için kullanılır. (child process)
+
+wait = bir proccess tamamlanmasını beklemek için kullanılır. (child process in bitmesini bekler)
+
+wawitpid = 'wait' fonksiyonu ile aynı şekilde çalışır fakat bitirilicek olan proccessi seçebilme imkanı sunar (wait en son oluşturulan child proccessin bitmesini bekler).
+
+wait3 = 'wait' fonksiyonu ile aynı şekilde çalışır fakat bitirilicek olan proccessin ölüm zamanı ve kullanılan kaynakları gösterir.
+
+wait4 = bir proccessin durumunu beklemek için kullanılır. bir child proccessin idsine döndürülen durum kodunu argüman olarak alır.
