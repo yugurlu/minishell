@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		add_history(input); 		//-> history ekleme
 		printf("You entered: %s\n", input);
 		replace_history_entry(i, "degisti", NULL);	//-> history degistirme
-		rl_redisplay();			//-> readline icin gerekli
+		rl_redisplay();
 		//clear_history(); 		//-> history silmek icin
 		//rl_on_new_line();		//-> yeni satira gecmek icin ?????
 		free(input);
@@ -30,4 +30,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
