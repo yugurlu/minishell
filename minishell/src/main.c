@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/18 17:27:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:33:58 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,13 +165,15 @@ int	ft_exit(t_data data, char *input)
 	exit(0);
 }
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	t_data	data;
 	char	*input;
 
 	while (1)
 	{
+		if (ac > 1)
+			break;
 		signal_control();
 		input = readline("prompt> ");
 		add(input);
