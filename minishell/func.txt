@@ -1,12 +1,13 @@
 
+SHELL
+-------------------------
 readline() = shell uygulamalarında kullanıcının komut satırındaki girdilerini okumak,
 işlemek ve kolayca yönetmek için kullanılan bir fonksiyondur.
 
-add_history() = shell uygulamalarında kullanıcı girdilerini shell tarihçesinde saklamak için kullanılır.
-Kabuk tarihçesi, kullanıcının son girdilerini saklar ve kullanıcı,daha önce girdi yapmış olan komutları tekrar kullanmak için
-up arrow veya down arrow tuşlarını kullanabilir.
+add_history() = shell uygulamalarında kullanıcı girdilerini shell geçmişi oluşturmak için kullanılır. shell geçmişi,
+kullanıcının son girdilerini saklar, kullanmak için up arrow veya down arrow tuşlarını kullanabilir.
 
-rl_clear_history() = add_history ile eklenen girdileri temizlemek için kullanılır.Bu fonksiyon, shell tarihçesinin boyutunu kontrol etmek ve
+rl_clear_history() = add_history ile eklenen girdileri temizlemek için kullanılır.Bu fonksiyon, shell geçmişi boyutunu kontrol etmek ve
 bellekte fazla yer kaplamamasını sağlamak için de kullanılabilir.
 
 rl_on_new_line() = Tell the update routines that we have moved onto a new (empty) line, usually after ouputting a newline. ?????
@@ -17,8 +18,8 @@ rl_redisplay() = shell üzerinde yapılan değişiklikleri yeniden göstermek i�
 
 
 
-access = bir dosya veya dizinin belirli bir amaç için erişilebilir olup olmadığını belirlemek için kullanılır.
-
+PROCCESS FUNCTIONS
+-------------------------
 fork = bir proccess kopyasını oluşturmak için kullanılır. (child process)
 
 wait = bir proccess tamamlanmasını beklemek için kullanılır. (child process in bitmesini bekler)
@@ -28,3 +29,57 @@ wawitpid = 'wait' fonksiyonu ile aynı şekilde çalışır fakat bitirilicek ol
 wait3 = 'wait' fonksiyonu ile aynı şekilde çalışır fakat bitirilicek olan proccessin ölüm zamanı ve kullanılan kaynakları gösterir.
 
 wait4 = bir proccessin durumunu beklemek için kullanılır. bir child proccessin idsine döndürülen durum kodunu argüman olarak alır.
+
+
+SIGNALS
+-------------------------
+signal = bir sinyal tanımlak için kullanılır.
+
+sigemptyset = bir sinyal setini boşaltmak / oluşturmak için kullanılır.
+
+sigaddset = bir sinyal setine sinyal eklemek için kullanılır.
+
+
+FILE FUNCTIONS
+-------------------------
+access = bir dosya veya dizinin belirli bir amaç için erişilebilir olup olmadığını belirlemek için kullanılır.
+
+getcwd =  çalışan programın bulunduğu mevcut dizin yolunu döndürür.
+
+chdir = çalışan programın bulunduğu mevcut dizini değiştirmek için kullanılır.
+
+stat = belirtilen dosyaya ait bilgileri döndürür.
+
+lstat = (link dosyaları için)
+
+fstat = (file descriptor için)
+
+unlink = bir dosyayı silmek için kullanılır.
+
+dup = bir dosya tanımlayıcısını kopyalamak için kullanılır.
+
+dup2 = (farklı bir dosya tanımlayıcısı ile)
+
+opendir = bir dizin açmak için kullanılır.
+
+readdir = bir dizindeki dosyaları okumak için kullanılır.
+
+closedir = bir dizini kapatmak için kullanılır.
+
+issatty = bir dosya tanımlayıcısının bir terminal olup olmadığını kontrol etmek için kullanılır.
+
+ttyname = bir dosya tanımlayıcısının terminal adını döndürür.
+
+ttyslot = bir terminalin slot numarasını döndürür.
+
+
+strerror = bir hata kodunu açıklamak için kullanılır. (oluşan hatanının daha iyi anlaşılması için kullanılır.)
+
+perro = açıklanan hata koduna ekleme yapmak için kullanılır.
+
+
+
+
+pipe = Unix benzeri sistemlerde farklı işlemler arasında kanal oluşturmak için kullanılır. Bir işlem çıktısını diğer işlemin girdisine yönlendirmek için kullanılabilir.
+
+*** execve = belirtilen dizindeki programı, ikinci argümandaki özelliklerle beraber çalıştırmak için kullanılır. ***
