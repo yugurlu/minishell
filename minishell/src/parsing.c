@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/02/22 13:11:18 by yugurlu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+void	print_string_list(string_list *list)
+{
+	while (list != NULL)
+	{
+		printf("[@%p][%s]\n", list, list->string);
+		list = list->next;
+	}
+}
+
+t_parsed_cmd_managed_list	*parsing(char *input)
+{
+	string_list					*tokens;
+	t_parsed_cmd_list			*parsed_cmd_list;
+	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
+
+	tokens = extract_tokens(input);
+	if (tokens == NULL)
+		return (NULL);
+	print_string_list(tokens);
+	printf("\n");
+}
