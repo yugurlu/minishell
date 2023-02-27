@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/22 13:04:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/27 16:05:17 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,12 @@ int word_count(char *input)
 	return (count);
 }
 
-
-
-int	main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **env)
 {
 	char	*input;
 	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
 
+	init_env(env);
 	while (1)
 	{
 		if (ac > 1)

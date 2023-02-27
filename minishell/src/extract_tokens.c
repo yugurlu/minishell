@@ -6,18 +6,18 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/22 15:29:13 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/27 18:46:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-string_list	*create_token(char *input, int token_l)
+t_string_list	*create_token(char *input, int token_l)
 {
 	char			*dest;
-	string_list	*new_token;
+	t_string_list	*new_token;
 
-	new_token = (string_list *)malloc(sizeof(string_list));
+	new_token = (t_string_list *)malloc(sizeof(t_string_list));
 	if (input[0] == '\'' || input[0] == '\"')
 	{
 		dest = malloc(sizeof(char) * (token_l - 2));
@@ -55,10 +55,10 @@ int	token_len(char *input)
 	return (token_l);
 }
 
-string_list	*extract_tokens(char *input)
+t_string_list	*extract_tokens(char *input)
 {
 	int			token_l;
-	string_list	*token;
+	t_string_list	*token;
 
 	input += escape_space(input);
 	if (!*input)
@@ -66,5 +66,6 @@ string_list	*extract_tokens(char *input)
 	token_l = token_len(input);
 	token = create_token(input, token_l);
 	token->next = extract_tokens(input + token_l);
+	//token->next = NULL;
 	return (token);
 }
