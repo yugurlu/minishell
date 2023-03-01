@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/20 13:16:05 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/01 12:31:23 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	numeric(char *input, char **split)
 {
+	(void)input;
 	printf("bash: exit: %s: numeric argument required\n", split[0]);
 	//free
 	exit(255); // exit status out of range

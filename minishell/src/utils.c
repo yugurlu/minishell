@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:39:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/21 12:17:58 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/01 12:32:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	free_split(char **split)
 
 int	spaceparse(char *input, char *command)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
