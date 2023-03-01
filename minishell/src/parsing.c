@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/27 18:52:03 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/28 16:52:29 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	print_string_list(t_string_list *list)
 {
-	int i = 0;
-	while (i < 2)
+	while (list)
 	{
 		printf("[@%p][%s]\n", list, list->string);
 		list = list->next;
@@ -32,7 +31,7 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 	tokens = extract_tokens(input);
 	if (tokens == NULL)
 		return (NULL);
-	clear_token = dollar_and_env(tokens);
-	print_string_list(clear_token);
+	dollar_and_env(tokens);
+	print_string_list(tokens);
 	printf("\n");
 }

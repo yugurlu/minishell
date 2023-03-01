@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/27 18:46:33 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:30:25 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ t_string_list	*extract_tokens(char *input)
 	token_l = token_len(input);
 	token = create_token(input, token_l);
 	token->next = extract_tokens(input + token_l);
-	//token->next = NULL;
 	return (token);
 }

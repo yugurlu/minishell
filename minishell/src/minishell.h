@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/27 14:59:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/28 17:01:35 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_parsed_cmd
 {
 	//char *name;
 	int									is_piped;
-	t_string_list							*arguments;
+	t_string_list						*arguments;
 	redirect_list						*redirections;
 }										t_parsed_cmd;
 
@@ -91,18 +91,17 @@ typedef struct s_parsed_cmd_managed_list
 	struct s_parsed_cmd_managed_list	*previous;
 }										t_parsed_cmd_managed_list;
 
-
 //parsing
 void									init_env(char **env);
 t_parsed_cmd_managed_list				*parsing(char *input);
 int										escape_space(char *input);
 char									*get_env_value(char *env);
-t_string_list								*extract_tokens(char *input);
+t_string_list							*extract_tokens(char *input);
 int										redirect_token_type(char *c);
 char									*rm_extern_quotes(char *input);
 int										ft_strchr_i(const char *s, int c);
 char									*search_env(char *value, char **env);
-t_string_list								*dollar_and_env(t_string_list *tokens);
+t_string_list							*dollar_and_env(t_string_list *tokens);
 int										spaceparse(char *input, char *command);
 int	only_token_len(int flag,
 					t_io_direction type);
@@ -121,6 +120,7 @@ int										ispace(char *s);
 int										strisdigit(char *s);
 void									free_split(char **split);
 int										ft_strcmp(char *s1, char *s2);
+char									*ft_strcpy(char *dest, char *src);
 char									*strncopy(char *dest, char *src, int n);
 
 #endif

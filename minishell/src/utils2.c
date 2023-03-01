@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/21 15:31:47 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/28 17:01:13 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,16 @@ char *strncopy(char *dest, char *src, int n)
 	return (dest);
 }
 
+char *ft_strcpy(char *dest, char *src)
+{
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

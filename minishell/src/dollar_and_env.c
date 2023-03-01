@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/27 19:00:58 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/02/28 22:01:07 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,41 +49,55 @@ char	*search_env(char *value, char **env)
 			i++;
 		free_split(split);
 	}
-	if(env[i])
-	{
-		valuee = ft_strchr(env[i], '=');
-		if(valuee + 1)
-			return (valuee + 1);
-		else
-			return (NULL);
+
+		if(env[i])
+		{
+			valuee = ft_strchr(env[i], '=');
+			if(valuee + 1)
+				return (valuee + 1);
+			else
+				return (NULL);
 	}
 	return (NULL);
 }
 
 char	*get_env_value(char *env)
 {
-	int i;
+	int len;
 	char	*value;
 
-	i = 0;
+	len = 0;
+	value = NULL;
 	if (ft_strlen(env) == 1)
 		return (env);
 	if (env[0] == '$')
-		value = search_env(env + 1, g_myenv.env);
+	{
+		if(search_env(env + 1, g_myenv.env))
+		{
+			value = malloc(ft_strlen(search_env(env + 1, g_myenv.env)));
+			printf("   %zu   ", ft_strlen(search_env(env + 1, g_myenv.env)));
+			value = search_env(env + 1, g_myenv.env);
+		}
+			getchar();
+	}
 	else
 	{
-		while (env[i] != '$')
+		while (env[len] != '$')
+			len++;
+		len += ft_strlen(search_env(env + len + 1, g_myenv.env));
+		value = malloc(sizeof(char) * (len + 1));
+		len = 0;
+		while (env[len] != '$')
 		{
-			value[i] = env[i];
-			i++;
+			value[len] = env[len];
+			len++;
 		}
-		value[i] = 0;
-		value = ft_strjoin(value, search_env(env + i + 1, g_myenv.env));
+		ft_strcpy(value + len, search_env(env + len + 1, g_myenv.env));
 	}
 	return (value);
 }
 
-t_string_list	*dollar_and_env(t_string_list *tokens)
+/*t_string_list	*dollar_and_env(t_string_list *tokens)
 {
 	int i;
 	t_string_list	*start;
@@ -114,5 +128,30 @@ t_string_list	*dollar_and_env(t_string_list *tokens)
 		i++;
 	}
 	free(tokens);
+	return (start);
+}*/
+
+
+
+t_string_list	*dollar_and_env(t_string_list *tokens)
+{
+	char *temp;
+	t_string_list *start;
+
+	start = tokens;
+	while (tokens)
+	{
+		if (ft_strchr(tokens->string, '$'))
+		{
+			temp = ft_strdup(get_env_value(tokens->string));
+			free(tokens->string);
+			tokens->string = ft_strdup(temp);
+			free(temp);
+		}
+		if(tokens->next)
+			tokens = tokens->next;
+		else
+			break;
+	}
 	return (start);
 }
