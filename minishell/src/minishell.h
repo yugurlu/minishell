@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/28 17:01:35 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/02 15:19:56 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_string_list							*dollar_and_env(t_string_list *tokens);
 int										spaceparse(char *input, char *command);
 int	only_token_len(int flag,
 					t_io_direction type);
+t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
 //exit
 int										ft_exit(char *input);
