@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/02 15:26:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/03 13:50:08 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_parsing_struct(t_parsed_cmd_list *command_line)
 {
 	t_parsed_cmd	*cmd;
-	redirect_list	*ptr_redir;
+	t_redirect_list	*ptr_redir;
 	t_string_list		*arglist;
 
 	while (command_line != NULL)
@@ -25,10 +25,10 @@ void	print_parsing_struct(t_parsed_cmd_list *command_line)
 		{
 			arglist = cmd->arguments;
 			if (arglist != NULL)
-				printf("execution de la commande: %s\n", arglist->string);
+				printf("executable command : %s\n", arglist->string);
 			else
-				printf("execution de la commande: NULL\n");
-			printf("avec les arguments: ");
+				printf(": NULL\n");
+			printf("arguments: ");
 			arglist = arglist->next;
 			while (arglist != NULL)
 			{
@@ -43,22 +43,22 @@ void	print_parsing_struct(t_parsed_cmd_list *command_line)
 			while (ptr_redir != NULL)
 			{
 				if (ptr_redir->direction == INPUT_FILE)
-					printf("Redirection d'entree < depuis %s\n",
+					printf("Redirection is < source = %s\n",
 						ptr_redir->source);
 				if (ptr_redir->direction == INPUT_NEXT_LINE)
-					printf("Redirection d'entree << depuis %s\n",
+					printf("Redirection is << source = %s\n",
 						ptr_redir->source);
 				if (ptr_redir->direction == OUTPUT_FILE_CREATE)
-					printf("Redirection de sortie > vers %s\n",
+					printf("Redirection is > source =  %s\n",
 						ptr_redir->source);
 				if (ptr_redir->direction == OUTPUT_FILE_APPEND)
-					printf("Redirection de sortie >> vers %s\n",
+					printf("Redirection is >> source = %s\n",
 						ptr_redir->source);
 				ptr_redir = ptr_redir->next;
 			}
 		}
 		if (cmd->is_piped)
-			printf("Redirection de sortie de type PIPE |\n");
+			printf("Redirection type is PIPE\n");
 		command_line = command_line->next;
 	}
 }

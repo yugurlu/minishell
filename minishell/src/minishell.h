@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/02 15:19:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/03 12:24:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ typedef struct s_redirect_list
 	t_io_direction						direction;
 	char								*source;
 	struct s_redirect_list				*next;
-}										redirect_list;
+}										t_redirect_list;
 
 typedef struct s_parsed_cmd
 {
 	//char *name;
 	int									is_piped;
 	t_string_list						*arguments;
-	redirect_list						*redirections;
+	t_redirect_list						*redirections;
 }										t_parsed_cmd;
 
 typedef struct s_parsed_cmd_managed
