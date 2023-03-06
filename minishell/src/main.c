@@ -86,6 +86,7 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			parsed_cmd_managed_list = parsing(input);
+			(void)parsed_cmd_managed_list;
 			free(input);
 		}
 	}
