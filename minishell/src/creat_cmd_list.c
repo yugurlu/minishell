@@ -6,16 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/03 15:21:58 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/08 13:19:06 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_pipe(t_string_list *tokens)
-{
-	return (tokens->string[0] == '|');
-}
 
 t_parsed_cmd	*create_init_parsed_cmd(void)
 {
@@ -108,10 +103,6 @@ t_parsed_cmd_list	*create_parsed_cmd_list(t_string_list *tokens)
 	t_string_list		*start_token;
 	t_parsed_cmd_list	*parsed_cmd_list;
 
-	if (!tokens)
-		return (NULL);
-	/*if (!correct_syntax(tokens))
-		return (NULL);*/
 	parsed_cmd_list = NULL;
 	start_token = tokens;
 	parsed_cmd = create_init_parsed_cmd();
@@ -125,7 +116,7 @@ t_parsed_cmd_list	*create_parsed_cmd_list(t_string_list *tokens)
 				parse_fill_cmd(parsed_cmd, start_token, tokens);
 				new_pcl(&parsed_cmd_list, parsed_cmd);
 				tokens = tokens->next;
-				if (tokens->next == NULL)
+				if (tokens->next != NULL)
 				{
 					parsed_cmd = create_init_parsed_cmd();
 					start_token = tokens->next;

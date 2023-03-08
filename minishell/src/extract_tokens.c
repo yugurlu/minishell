@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/28 14:30:25 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:22:50 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,24 @@ t_string_list	*create_token(char *input, int token_l)
 	t_string_list	*new_token;
 
 	new_token = (t_string_list *)malloc(sizeof(t_string_list));
-	if (input[0] == '\'' || input[0] == '\"')
+	if (is_there_quotes(input))
 	{
-		dest = malloc(sizeof(char) * (token_l - 2));
-		new_token->string = ft_strdup(strncopy(dest, input + 1, token_l - 2));
+		dest = malloc(no_quote_len(input));
+		new_token->string = ft_strdup(remove_quotes(input, dest));
 		free(dest);
+		return (new_token);
 	}
-	else
-	{
-		dest = malloc(sizeof(char) * token_l);
-		new_token->string = ft_strdup(strncopy(dest, input, token_l));
-		free(dest);
-	}
+	dest = malloc(token_l);
+	new_token->string = ft_strdup(strncopy(dest, input, token_l));
+	free(dest);
 	return (new_token);
 }
 
 int	token_len(char *input)
 {
-	int				flag;
-	int				token_l;
-	t_io_direction	type;
+	int			flag;
+	int			token_l;
+	t_direction	type;
 
 	flag = -1;
 	token_l = 0;
@@ -57,7 +55,7 @@ int	token_len(char *input)
 
 t_string_list	*extract_tokens(char *input)
 {
-	int			token_l;
+	int				token_l;
 	t_string_list	*token;
 
 	input += escape_space(input);

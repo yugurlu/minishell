@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/01 12:32:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/06 15:51:30 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	add(char *input)
 		add_history(input);
 }
 
-int word_count(char *input)
+int	word_count(char *input)
 {
-	int i;
-	int count;
-	char temp;
+	int		i;
+	int		count;
+	char	temp;
 
 	i = 0;
 	count = 0;
@@ -58,7 +58,8 @@ int word_count(char *input)
 				i++;
 			count++;
 		}
-		else if ((input[i] != ' ' && (input[i + 1] == ' ' || input[i + 1] == 0)))
+		else if ((input[i] != ' ' && (input[i + 1] == ' ' || input[i
+						+ 1] == 0)))
 			count++;
 		i++;
 	}
@@ -67,7 +68,7 @@ int word_count(char *input)
 
 int	main(int ac, char **av, char **env)
 {
-	char	*input;
+	char						*input;
 	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
 
 	(void)av;
@@ -75,7 +76,7 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		if (ac > 1)
-			break;
+			break ;
 		signal_control();
 		input = readline("prompt> ");
 		add(input);

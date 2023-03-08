@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:08 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/02/22 13:29:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/07 12:45:54 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_strchr_i(const char *s, int c)
 	return (-1);
 }
 
-int only_token_len(int flag, t_io_direction type)
+int only_token_len(int flag, t_direction type)
 {
 	int	token_l;
 	int	redir_len;
@@ -60,11 +60,9 @@ int	redirect_token_type(char *c)
 	if (*c && !*(c + 1))
 	{
 		if(*c == '<')
-			return (INPUT_NEXT_LINE);
+			return (INPUT_FILE);
 		if (*c == '>')
 			return (OUTPUT_FILE_CREATE);
-		if (*c == '|')
-			return (PIPE);
 	}
 	if (*c && *(c + 1))
 	{
@@ -72,10 +70,6 @@ int	redirect_token_type(char *c)
 			return (INPUT_NEXT_LINE);
 		if ((*c == '>') && *(c + 1) == '>')
 			return (OUTPUT_FILE_APPEND);
-		if (*c == '<')
-			return (INPUT_FILE);
-		if (*c == '>')
-			return (OUTPUT_FILE_CREATE);
 	}
 	return (NO_REDIR);
 }

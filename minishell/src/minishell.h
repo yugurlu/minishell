@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/03 12:24:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:25:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ typedef struct s_string_list
 
 typedef enum
 {
-	PIPE,               // |
 	INPUT_FILE,         // <
 	INPUT_NEXT_LINE,    // <<
 	OUTPUT_FILE_CREATE, // >
 	OUTPUT_FILE_APPEND, // >>
 	NO_REDIR            // no redirection
-}										t_io_direction;
+}										t_direction;
 
 typedef struct s_myenv
 {
@@ -50,7 +49,7 @@ t_myenv									g_myenv;
 
 typedef struct s_redirect_list
 {
-	t_io_direction						direction;
+	t_direction							direction;
 	char								*source;
 	struct s_redirect_list				*next;
 }										t_redirect_list;
@@ -92,19 +91,21 @@ typedef struct s_parsed_cmd_managed_list
 }										t_parsed_cmd_managed_list;
 
 //parsing
+int	only_token_len(int flag,
+					t_direction type);
 void									init_env(char **env);
 t_parsed_cmd_managed_list				*parsing(char *input);
 int										escape_space(char *input);
 char									*get_env_value(char *env);
 t_string_list							*extract_tokens(char *input);
 int										redirect_token_type(char *c);
+int										is_pipe(t_string_list *tokens);
 char									*rm_extern_quotes(char *input);
 int										ft_strchr_i(const char *s, int c);
 char									*search_env(char *value, char **env);
+int										correct_syntax(t_string_list *tokens);
 t_string_list							*dollar_and_env(t_string_list *tokens);
 int										spaceparse(char *input, char *command);
-int	only_token_len(int flag,
-					t_io_direction type);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
 //exit
@@ -118,10 +119,16 @@ int										empty(char *input);
 
 //utils
 int										ispace(char *s);
+int										is_quote(char *c);
 int										strisdigit(char *s);
+int										no_quote_len(char *c);
+int										dollar_counter(char *c);
+int										is_there_quotes(char *c);
 void									free_split(char **split);
 int										ft_strcmp(char *s1, char *s2);
 char									*ft_strcpy(char *dest, char *src);
 char									*strncopy(char *dest, char *src, int n);
+char	*remove_quotes(char *source,
+					char *dest);
 
 #endif

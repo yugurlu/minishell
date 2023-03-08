@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/03 13:50:08 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:01:28 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_parsing_struct(t_parsed_cmd_list *command_line)
 {
 	t_parsed_cmd	*cmd;
 	t_redirect_list	*ptr_redir;
-	t_string_list		*arglist;
+	t_string_list	*arglist;
 
 	while (command_line != NULL)
 	{
@@ -44,16 +44,16 @@ void	print_parsing_struct(t_parsed_cmd_list *command_line)
 			{
 				if (ptr_redir->direction == INPUT_FILE)
 					printf("Redirection is < source = %s\n",
-						ptr_redir->source);
+							ptr_redir->source);
 				if (ptr_redir->direction == INPUT_NEXT_LINE)
 					printf("Redirection is << source = %s\n",
-						ptr_redir->source);
+							ptr_redir->source);
 				if (ptr_redir->direction == OUTPUT_FILE_CREATE)
 					printf("Redirection is > source =  %s\n",
-						ptr_redir->source);
+							ptr_redir->source);
 				if (ptr_redir->direction == OUTPUT_FILE_APPEND)
 					printf("Redirection is >> source = %s\n",
-						ptr_redir->source);
+							ptr_redir->source);
 				ptr_redir = ptr_redir->next;
 			}
 		}
@@ -72,19 +72,41 @@ void	print_string_list(t_string_list *list)
 	}
 }
 
+int	free_string_list(t_string_list *tokens)
+{
+	t_string_list	*tmp;
+
+	while (tokens)
+	{
+		tmp = tokens;
+		tokens = tokens->next;
+		free(tmp->string);
+		free(tmp);
+	}
+	return (1);
+}
+
 t_parsed_cmd_managed_list	*parsing(char *input)
 {
 	t_string_list				*tokens;
 	t_parsed_cmd_list			*parsed_cmd_list;
-	//t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
+	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
 
+	parsed_cmd_managed_list = NULL;
 	tokens = extract_tokens(input);
 	if (tokens == NULL)
 		return (NULL);
-	dollar_and_env(tokens);
 	print_string_list(tokens);
+	dollar_and_env(tokens);
+	printf("\n");
+	if (!correct_syntax(tokens) && free_string_list(tokens))
+		return (NULL);
 	parsed_cmd_list = create_parsed_cmd_list(tokens);
+	free_string_list(tokens);
+	if (parsed_cmd_list == NULL)
+		return (NULL);
 	printf("\n");
 	print_parsing_struct(parsed_cmd_list);
-	return (NULL);
+	//parsed_cmd_managed_list = preprocess(parsed_cmd_list);
+	return (parsed_cmd_managed_list);
 }
