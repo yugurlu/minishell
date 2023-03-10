@@ -6,15 +6,15 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/08 15:23:01 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:50:36 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *strncopy(char *dest, char *src, int n)
+char	*strncopy(char *dest, char *src, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i] && i < n)
@@ -26,9 +26,9 @@ char *strncopy(char *dest, char *src, int n)
 	return (dest);
 }
 
-char *ft_strcpy(char *dest, char *src)
+char	*ft_strcpy(char *dest, char *src)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (src[i])
@@ -40,9 +40,9 @@ char *ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-int is_there_quotes(char *c)
+int	is_there_quotes(char *c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (c[i])
@@ -54,10 +54,10 @@ int is_there_quotes(char *c)
 	return (0);
 }
 
-int no_quote_len(char *c)
+int	no_quote_len(char *c)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = 0;
@@ -76,14 +76,15 @@ int no_quote_len(char *c)
 
 char	*remove_quotes(char *source, char *dest)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
 	while (source[i])
 	{
-		if (source[i] == '\'' || source[i] == '\"');
+		if (source[i] == '\'' || source[i] == '\"')
+			;
 		else
 		{
 			dest[j] = source[i];

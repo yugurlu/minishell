@@ -60,6 +60,7 @@ SRCS        :=            libft/ft_strnstr.c \
                           src/dollar_and_env.c \
                           src/creat_cmd_list.c \
                           src/correct_syntax.c \
+                          src/utils_env.c \
 
 OBJS        := $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/08 15:25:33 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:20:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_myenv
 {
 	char								**env;
 	int									ret_exit;
+	int									*is_exit;
 }										t_myenv;
 
 t_myenv									g_myenv;
@@ -56,7 +57,6 @@ typedef struct s_redirect_list
 
 typedef struct s_parsed_cmd
 {
-	//char *name;
 	int									is_piped;
 	t_string_list						*arguments;
 	t_redirect_list						*redirections;
@@ -120,14 +120,19 @@ int										empty(char *input);
 //utils
 int										ispace(char *s);
 int										is_quote(char *c);
+int										my_free(char *str);
 int										strisdigit(char *s);
 int										no_quote_len(char *c);
 int										dollar_counter(char *c);
 int										is_there_quotes(char *c);
 void									free_split(char **split);
 int										ft_strcmp(char *s1, char *s2);
+void									skip_dollar(char *str, int *i);
 char									*ft_strcpy(char *dest, char *src);
+void									help_getenv(int *i, int *k, char *temp);
 char									*strncopy(char *dest, char *src, int n);
+void									help_func(char **new, char *str, int *i,
+											int *len, int *is_env);
 char	*remove_quotes(char *source,
 					char *dest);
 

@@ -6,32 +6,36 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 20:47:58 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/08 22:51:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:05:09 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *lft_str, char *buff)
 {
-	unsigned int	i;
-	unsigned int	j;
-	char			*str;
+	int		i;
+	int		j;
+	char	*str;
 
-	i = 0;
-	j = 0;
-	if (!s1)
-		return (ft_strdup((char *)s2));
-	if (!s2)
-		return (ft_strdup((char *)s1));
-	str = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	if (!lft_str)
+	{
+		lft_str = malloc(1);
+		lft_str[0] = '\0';
+	}
+	if (!buff)
+		return (0);
+	str = malloc(ft_strlen(lft_str) + ft_strlen(buff) + 1);
 	if (!str)
-		return (NULL);
-	while (s1[i])
-		str[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		str[j++] = s2[i++];
-	str[j] = 0;
+		return (0);
+	i = -1;
+	while (lft_str[++i] != '\0')
+		str[i] = lft_str[i];
+	j = 0;
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[i] = '\0';
+	if (lft_str)
+		free(lft_str);
 	return (str);
 }

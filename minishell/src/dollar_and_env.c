@@ -6,11 +6,30 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/08 23:52:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/10 18:23:37 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*back_dollar(char *str)
+{
+	int		i;
+	char	*back;
+
+	i = 0;
+	while (str[i] != '$')
+		i++;
+	back = malloc(i + 1);
+	i = 0;
+	while (str[i] != '$')
+	{
+		back[i] = str[i];
+		i++;
+	}
+	back[i] = '\0';
+	return (back);
+}
 
 void	init_env(char **env)
 {
@@ -27,6 +46,7 @@ void	init_env(char **env)
 		i++;
 	}
 	g_myenv.env[i] = NULL;
+	g_myenv.ret_exit = 0;
 	return ;
 }
 
@@ -40,22 +60,16 @@ char	*ft_getenv(char *str)
 	i = 0;
 	j = 0;
 	k = 0;
+	if (str[0] == '$' && !str[1])
+		return ("$");
 	while (g_myenv.env[i])
 	{
 		while (g_myenv.env[i][j] && g_myenv.env[i][j] != '=')
 			j++;
-		temp = malloc(sizeof(char) * (j + 1));
-		while (g_myenv.env[i][k] && g_myenv.env[i][k] != '=')
-		{
-			temp[k] = g_myenv.env[i][k];
-			k++;
-		}
-		temp[k] = '\0';
-		if (!ft_strcmp(temp, str))
-		{
-			free(temp);
+		temp = malloc(j + 1);
+		help_getenv(&i, &k, temp);
+		if (!ft_strcmp(temp, str) && my_free(temp))
 			return (g_myenv.env[i] + j + 1);
-		}
 		free(temp);
 		j = 0;
 		k = 0;
@@ -64,118 +78,56 @@ char	*ft_getenv(char *str)
 	return (NULL);
 }
 
-char *$value(char *str)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	*temp;
-	char	*temp2;
-	char	*result;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (str[i] != '$')
-		i++;
-	temp2 = malloc(i + 1);
-	i = 0;
-	while (str[i] != '$')
-	{
-		temp2[i] = str[i];
-		i++;
-	}
-	temp2[i] = '\0';
-	i++;
-	while (str[i] && str[i] != ' ' && str[i] != '$')
-		i++;
-	temp = malloc(sizeof(char) * (i + 1));
-	while (str[j] != '$')
-		j++;
-	j++;
-	while (str[j] && str[j] != ' ' && str[j] != '$')
-	{
-		temp[k] = str[j];
-		j++;
-		k++;
-	}
-	temp[k] = '\0';
-	result = ft_strjoin(temp2, ft_getenv(temp));
-	printf("%s\n", result);
-	free(temp);
-	free(temp2);
-	return (result);
-}
-
 char	*get_env_value(char *str)
 {
 	int		i;
-	int 	j;
-	int 	k;
-	char	*back;
-	char	*result;
-	char	*front;
+	int		len;
+	int		is_env;
+	char	*join;
+	char	*new_str;
 
-	i = 0;
-	j = 0;
-	(void)result;
-	if (str[i] != '$')
+	join = NULL;
+	skip_dollar(str, &i);
+	while (str[i])
 	{
-		while (str[i] != '$')
-			i++;
-		back = malloc(i + 1);
-		i = 0;
-		while (str[i] != '$')
+		help_func(&new_str, str, &i, &len, &is_env);
+		if (is_env == 1)
 		{
-			back[i] = str[i];
-			i++;
+			if (ft_isdigit(new_str[0]))
+				join = ft_strjoin(join, new_str);
+			if (!ft_getenv(new_str))
+				;
+			else
+				join = ft_strjoin(join, ft_getenv(new_str));
+			free(new_str);
 		}
-		back[i] = '\0';
+		else
+			join = ft_strjoin(join, new_str);
 	}
-	k = i;
-	while (dollar_counter(str + k) > 0)
-	{
-		i++;
-		k++;
-		while (str[i] && str[i] != '$')
-			i++;
-		front = malloc(i);
-		i = k;
-		while (str[i] != '$')
-		{
-			front[j++] = str[i++];
-			k++;
-		}
-		front[j] = '\0';
-		j = 0;
-		printf("front: %s\n", front);
-		printf("%d\n", k);
-		getchar();
-	}
-	return (NULL);
+	return (join);
 }
 
 t_string_list	*dollar_and_env(t_string_list *tokens)
 {
-	char			*temp;
+	char			*env;
+	char			*back;
 	t_string_list	*start;
 
+	back = NULL;
 	start = tokens;
 	while (tokens)
 	{
 		if (ft_strchr(tokens->string, '$') && ft_strlen(tokens->string) > 1)
 		{
-			temp = get_env_value(tokens->string);
-			if (!temp)
-			{
-				temp = malloc(1);
-				temp[0] = '\0';
-			}
-			else
-				temp = ft_strdup(temp);
+			if (tokens->string[0] != '$')
+				back = back_dollar(tokens->string);
+			env = get_env_value(tokens->string);
 			free(tokens->string);
-			tokens->string = ft_strdup(temp);
-			free(temp);
+			if (!env)
+				tokens->string = ft_strdup("");
+			else
+				tokens->string = ft_strjoin(back, env);
+			free(env);
 		}
 		tokens = tokens->next;
 	}

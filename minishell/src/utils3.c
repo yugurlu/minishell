@@ -6,16 +6,28 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/08 15:25:12 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/10 12:53:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int dollar_counter(char *c)
+int	my_free(char *str)
 {
-	int i;
-	int counter;
+	free(str);
+	return (1);
+}
+
+void	skip_dollar(char *str, int *i)
+{
+	while (str[*i] != '$')
+		*i += 1;
+}
+
+int	dollar_counter(char *c)
+{
+	int	i;
+	int	counter;
 
 	i = 0;
 	counter = 0;
