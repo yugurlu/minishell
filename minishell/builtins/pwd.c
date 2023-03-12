@@ -1,51 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/12 16:00:57 by yugurlu          ###   ########.fr       */
+/*   Created: 2023/03/12 13:20:06 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/03/12 13:49:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../src/minishell.h"
 
-int split_len(char **arr)
+void	pwd(void)
 {
-	int i;
+	char	*cwd;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
-int	my_free(char *str)
-{
-	free(str);
-	return (1);
-}
-
-void	skip_dollar(char *str, int *i)
-{
-	while (str[*i] != '$')
-		*i += 1;
-}
-
-int	dollar_counter(char *c)
-{
-	int	i;
-	int	counter;
-
-	i = 0;
-	counter = 0;
-	while (c[i])
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		if (c[i] == '$')
-			counter++;
-		i++;
+		perror("minishell : pwd :");
+		g_myenv.ret_exit = 1;
+		return ;
 	}
-	return (counter);
+	printf("%s\n", cwd);
+	g_myenv.ret_exit = 0;
+	free(cwd);
 }

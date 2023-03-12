@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/10 17:20:46 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/12 16:03:51 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,19 @@ void									numeric(char *input, char **split);
 int										quotes(char *s);
 int										empty(char *input);
 
+//builtins
+void									env(void);
+void									pwd(void);
+void									unset(char *args);
+void									export(char *arr);
+
 //utils
 int										ispace(char *s);
 int										is_quote(char *c);
 int										my_free(char *str);
 int										strisdigit(char *s);
 int										no_quote_len(char *c);
+int										split_len(char **arr);
 int										dollar_counter(char *c);
 int										is_there_quotes(char *c);
 void									free_split(char **split);

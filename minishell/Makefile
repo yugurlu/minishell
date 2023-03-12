@@ -61,6 +61,10 @@ SRCS        :=            libft/ft_strnstr.c \
                           src/creat_cmd_list.c \
                           src/correct_syntax.c \
                           src/utils_env.c \
+                          builtins/env.c \
+                          builtins/unset.c \
+                          builtins/pwd.c \
+                          builtins/export.c \
 
 OBJS        := $(SRCS:.c=.o)
 
@@ -71,8 +75,6 @@ ${NAME}:	${OBJS}
 			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -lreadline
 
 all:		${NAME}
-
-bonus:		all
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
