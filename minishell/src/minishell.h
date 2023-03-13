@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/12 16:03:51 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/13 18:00:12 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,11 @@ int										empty(char *input);
 //builtins
 void									env(void);
 void									pwd(void);
+int										cd(char *args);
 void									unset(char *args);
 void									export(char *arr);
+int										find_line(char *str);
+char									**set_env(char *env_name, char *value);
 
 //utils
 int										ispace(char *s);

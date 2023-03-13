@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 17:04:05 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/09 15:25:49 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:58:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_strjoin(char *s1, char *s2);
+char				*join_but_no_free(char *lft_str, char *buff);
 char				*ft_strdup(const char *s1);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strchr(const char *s, int c);

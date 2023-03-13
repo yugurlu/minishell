@@ -65,6 +65,7 @@ SRCS        :=            libft/ft_strnstr.c \
                           builtins/unset.c \
                           builtins/pwd.c \
                           builtins/export.c \
+                          builtins/cd.c \
 
 OBJS        := $(SRCS:.c=.o)
 

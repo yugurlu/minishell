@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 20:47:58 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/09 18:05:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/13 15:58:32 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,31 @@ char	*ft_strjoin(char *lft_str, char *buff)
 	str[i] = '\0';
 	if (lft_str)
 		free(lft_str);
+	return (str);
+}
+
+char	*join_but_no_free(char *lft_str, char *buff)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	if (!lft_str)
+	{
+		lft_str = malloc(1);
+		lft_str[0] = '\0';
+	}
+	if (!buff)
+		return (0);
+	str = malloc(ft_strlen(lft_str) + ft_strlen(buff) + 1);
+	if (!str)
+		return (0);
+	i = -1;
+	while (lft_str[++i] != '\0')
+		str[i] = lft_str[i];
+	j = 0;
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[i] = '\0';
 	return (str);
 }
