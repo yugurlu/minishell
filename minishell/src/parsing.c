@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/13 18:02:46 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:06:13 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 	cd(tokens->string);
 	pwd();
 	env();
+	//system("leaks minishell");
 	printf("\n");
 	if (!correct_syntax(tokens) && free_string_list(tokens))
 		return (NULL);

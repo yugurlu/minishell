@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/12 16:00:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/14 13:09:51 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	my_free(char *str)
 
 void	skip_dollar(char *str, int *i)
 {
+	*i = 0;
 	while (str[*i] != '$')
 		*i += 1;
 }

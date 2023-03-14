@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/10 18:23:37 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/14 14:51:44 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,13 @@ void	init_env(char **env)
 	int	i;
 
 	i = 0;
-	while (env[i])
-		i++;
-	g_myenv.env = malloc(sizeof(char *) * (i + 1));
-	i = 0;
+	g_myenv.env = malloc(sizeof(char *) * (split_len(env) + 1));
 	while (env[i])
 	{
 		g_myenv.env[i] = ft_strdup(env[i]);
 		i++;
 	}
 	g_myenv.env[i] = NULL;
-	g_myenv.ret_exit = 0;
-	return ;
 }
 
 char	*ft_getenv(char *str)
