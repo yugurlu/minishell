@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/14 17:06:13 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/15 14:03:37 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	free_string_list(t_string_list *tokens)
 	return (1);
 }
 
-t_parsed_cmd_managed_list	*parsing(char *input)
+t_parsed_cmd_managed_list	*parsing(char *input, char **test)
 {
 	t_string_list				*tokens;
 	t_parsed_cmd_list			*parsed_cmd_list;
@@ -96,24 +96,24 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 	tokens = extract_tokens(input);
 	if (tokens == NULL)
 		return (NULL);
-	print_string_list(tokens);
+	//print_string_list(tokens);
 	dollar_and_env(tokens);
-	printf("\n");
-	env();
-	printf("\n");
-	cd(tokens->string);
-	pwd();
-	env();
+	//printf("\n");
+	//env();
+	//printf("\n");
+	echo(test);
+	//pwd();
+	//env();
 	//system("leaks minishell");
-	printf("\n");
+	//printf("\n");
 	if (!correct_syntax(tokens) && free_string_list(tokens))
 		return (NULL);
 	parsed_cmd_list = create_parsed_cmd_list(tokens);
 	free_string_list(tokens);
 	if (parsed_cmd_list == NULL)
 		return (NULL);
-	printf("\n");
-	print_parsing_struct(parsed_cmd_list);
+	//printf("\n");
+	//print_parsing_struct(parsed_cmd_list);
 	//parsed_cmd_managed_list = preprocess(parsed_cmd_list);
 	return (parsed_cmd_managed_list);
 }

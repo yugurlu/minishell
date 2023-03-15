@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/15 11:30:19 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/03/15 14:26:00 by yugurlu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../src/minishell.h"
+
+void	echo(char **arg)
+{
+	int	i;
+	int	option;
+
+	i = 0;
+	option = 0;
+	if (arg)
+	{
+		if (ft_strcmp(arg[0], "-n") == 0 && arg[1] == NULL)
+			return ;
+		if (ft_strcmp(arg[0], "-n") == 0)
+		{
+			option = 1;
+			i++;
+		}
+		while (arg[i])
+		{
+			ft_putstr_fd(arg[i], 1);
+			if (arg[i + 1] != NULL)
+				ft_putchar_fd(' ', 1);
+			i++;
+		}
+		if (!option)
+			ft_putchar_fd('\n', 1);
+	}
+	g_myenv.ret_exit = 0;
+}

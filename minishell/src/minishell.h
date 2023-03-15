@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/14 13:31:27 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/15 14:53:27 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_parsed_cmd_managed_list
 int	only_token_len(int flag,
 					t_direction type);
 void									init_env(char **env);
-t_parsed_cmd_managed_list				*parsing(char *input);
+t_parsed_cmd_managed_list				*parsing(char *input, char **av);
 int										escape_space(char *input);
 char									*get_env_value(char *env);
 t_string_list							*extract_tokens(char *input);
@@ -124,7 +124,12 @@ int										cd(char *args);
 void									unset(char *args);
 void									export(char *arr);
 int										find_line(char *str);
+void									echo(char **args);
 char									**set_env(char *env_name, char *value);
+
+//error
+void									error_exit(char *str);
+void									error_cd(char *file, int err_type);
 
 //utils
 int										ispace(char *s);

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:06:35 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/14 18:18:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/15 13:04:10 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*check_dir(char *arg)
 	return (dir);
 }
 
-void	set_pwd_and_olpwd(char *oldpwd, char *dir)
+void	set_pwd_and_oldpwd(char *oldpwd, char *dir)
 {
 	char	**new_env;
 
@@ -47,33 +47,6 @@ void	set_pwd_and_olpwd(char *oldpwd, char *dir)
 	free(dir);
 }
 
-int	check(char *dir, char **oldpwd)
-{
-	if (access(dir, F_OK) == -1) //file exists
-	{
-		printf("minishell: cd: %s: No such file or directory\n", dir);
-		free(dir);
-		return (1);
-	}
-	if (access(dir, R_OK) == -1) // read permission
-	{
-		printf("minishell: cd: %s: Permission denied\n", dir);
-		g_myenv.ret_exit = 1;
-		free(dir);
-		return (1);
-	}
-	*oldpwd = getcwd(NULL, 0);
-	if (chdir(dir) == -1) //is a directory?
-	{
-		printf("minishell: cd: %s: Not a directory\n", dir);
-		g_myenv.ret_exit = 1;
-		free(oldpwd);
-		free(dir);
-		return (1);
-	}
-	return (0);
-}
-
 int	cd(char *arg)
 {
 	char	*dir;
@@ -81,8 +54,23 @@ int	cd(char *arg)
 
 	oldpwd = NULL;
 	dir = check_dir(arg);
-	if (check(dir, &oldpwd))
+	if (access(dir, F_OK) == -1) //file exists
+	{
+		error_cd(dir, 1);
 		return (1);
-	set_pwd_and_olpwd(oldpwd, dir);
+	}
+	if (access(dir, R_OK) == -1) // read permission
+	{
+		error_cd(dir, 2);
+		return (1);
+	}
+	oldpwd = getcwd(NULL, 0);
+	if (chdir(dir) == -1) //is a directory?
+	{
+		error_cd(dir, 3);
+		free(oldpwd);
+		return (1);
+	}
+	set_pwd_and_oldpwd(oldpwd, dir);
 	return (0);
 }

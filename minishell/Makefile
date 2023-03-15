@@ -52,7 +52,6 @@ SRCS        :=            libft/ft_strnstr.c \
                           src/utils2.c \
                           src/tokens_utils.c \
                           src/extract_tokens.c \
-                          src/exit.c \
                           src/utils.c \
                           src/utils3.c \
                           src/main.c \
@@ -61,11 +60,14 @@ SRCS        :=            libft/ft_strnstr.c \
                           src/creat_cmd_list.c \
                           src/correct_syntax.c \
                           src/utils_env.c \
+                          src/error.c \
                           builtins/env.c \
                           builtins/unset.c \
                           builtins/pwd.c \
                           builtins/export.c \
                           builtins/cd.c \
+                          builtins/echo.c \
+                          builtins/exit.c \
 
 OBJS        := $(SRCS:.c=.o)
 
