@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/15 14:58:25 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:44:55 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char **av, char **env)
 			ft_exit(input);
 		else
 		{
-			parsed_cmd_managed_list = parsing(input, &(av[1]));
+			parsed_cmd_managed_list = parsing(input);
 			(void)parsed_cmd_managed_list;
 			free(input);
 		}
