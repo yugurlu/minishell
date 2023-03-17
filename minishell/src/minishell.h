@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/16 18:29:27 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/17 13:29:35 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int										spaceparse(char *input, char *command);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
 //exit
-int										ft_exit(char *input);
+void									ft_exit(char *input);
 int										exit_condition(char *input);
 void									numeric(char *input, char **split);
 
@@ -128,7 +128,7 @@ void									echo(char **args);
 char									**set_env(char *env_name, char *value);
 
 //error
-void									error_exit(char *str, int err_type);
+void									error_exit(char **split, int err_type);
 void									error_cd(char *file, int err_type);
 
 //utils
@@ -136,6 +136,7 @@ int										ispace(char *s);
 int										is_quote(char *c);
 int										my_free(char *str);
 int										strisdigit(char *s);
+int										isnumeric(char *str);
 int										no_quote_len(char *c);
 int										split_len(char **arr);
 int										dollar_counter(char *c);

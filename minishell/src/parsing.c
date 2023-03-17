@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/16 16:43:46 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/17 14:10:39 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 	if (parsed_cmd_list == NULL)
 		return (NULL);
 	//printf("\n");
-	//print_parsing_struct(parsed_cmd_list);
+	print_parsing_struct(parsed_cmd_list);
 	//parsed_cmd_managed_list = preprocess(parsed_cmd_list);
 	return (parsed_cmd_managed_list);
 }
