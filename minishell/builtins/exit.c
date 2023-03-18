@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/17 14:07:25 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 13:13:12 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ int	last_exit_before_the_bridge(char **split)
 
 void	ft_exit(char *input)
 {
-	int		i;
 	char	**split;
 
-	i = 0;
 	if (input[0] == '\'' || input[0] == '\"')
 		split = ft_split(input + 6, ' ');
 	else

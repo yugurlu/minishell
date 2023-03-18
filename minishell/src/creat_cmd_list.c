@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/12 12:51:07 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 14:37:56 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	new_arg(t_string_list **put_arg, char *arg)
 	temp->next = neww_arg;
 }
 
-void	new_redirect(t_redirect_list **put_redir, char *source, int type)
+void	new_redirect(t_redirect_list **put_redir, char *file, int type)
 {
 	t_redirect_list	*temp;
 	t_redirect_list	*new_redir;
 
 	new_redir = (t_redirect_list *)malloc(sizeof(t_redirect_list));
-	new_redir->source = ft_strdup(source);
+	new_redir->file = ft_strdup(file);
 	new_redir->direction = type;
 	new_redir->next = NULL;
 	if (!*put_redir)

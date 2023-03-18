@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/17 11:57:24 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 14:37:56 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,15 @@ int	no_quote_len(char *c)
 	return (len);
 }
 
-char	*remove_quotes(char *source, char *dest)
+char	*remove_quotes(char *file, char *dest)
 {
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	while (source[i])
-	{
-		if (source[i] != '\'' && source[i] != '\"')
-		{
-			dest[j] = source[i];
-			j++;
-		}
-		i++;
-	}
+	while (file[i] && file[i] != '\'' && file[i] != '\"')
+		dest[j++] = file[i++];
 	dest[j] = '\0';
 	return (dest);
 }

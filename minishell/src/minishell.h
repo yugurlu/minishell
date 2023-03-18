@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/17 13:29:35 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 15:08:25 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_myenv									g_myenv;
 typedef struct s_redirect_list
 {
 	t_direction							direction;
-	char								*source;
+	char								*file;
 	struct s_redirect_list				*next;
 }										t_redirect_list;
 
@@ -130,6 +130,8 @@ char									**set_env(char *env_name, char *value);
 //error
 void									error_exit(char **split, int err_type);
 void									error_cd(char *file, int err_type);
+void									error_redirections(char *file,
+											int err_type);
 
 //utils
 int										ispace(char *s);
@@ -149,7 +151,7 @@ void									help_getenv(int *i, int *k, char *temp);
 char									*strncopy(char *dest, char *src, int n);
 void									help_func(char **new, char *str, int *i,
 											int *len, int *is_env);
-char	*remove_quotes(char *source,
+char	*remove_quotes(char *file,
 					char *dest);
 
 #endif
