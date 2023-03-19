@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 15:08:25 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/19 13:20:05 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 # include <sys/stat.h>
 # include <unistd.h>
 
-typedef struct s_string_list
-{
-	char								*string;
-	struct s_string_list				*next;
-}										t_string_list;
-
 typedef enum
 {
 	INPUT_FILE,         // <
@@ -38,6 +32,12 @@ typedef enum
 	OUTPUT_FILE_APPEND, // >>
 	NO_REDIR            // no redirection
 }										t_direction;
+
+typedef struct s_string_list
+{
+	char								*string;
+	struct s_string_list				*next;
+}										t_string_list;
 
 typedef struct s_myenv
 {
@@ -62,15 +62,6 @@ typedef struct s_parsed_cmd
 	t_redirect_list						*redirections;
 }										t_parsed_cmd;
 
-typedef struct s_parsed_cmd_managed
-{
-	char								*path;
-	char								**argv;
-	int									argc;
-	int									in_desc;
-	int									out_desc;
-	int									is_piped;
-}										t_parsed_cmd_managed;
 
 typedef struct s_command_line
 {
@@ -78,6 +69,16 @@ typedef struct s_command_line
 	struct s_command_line				*next;
 
 }										t_parsed_cmd_list;
+
+typedef struct s_parsed_cmd_managed
+{
+	char								*path;
+	char								**argv;
+	int									argc;
+	int									in_desc; //input descriptor
+	int									out_desc; //output descriptor
+	int									is_piped;
+}										t_parsed_cmd_managed;
 
 typedef struct s_parsed_cmd_managed_list
 {
@@ -106,6 +107,7 @@ char									*search_env(char *value, char **env);
 int										correct_syntax(t_string_list *tokens);
 t_string_list							*dollar_and_env(t_string_list *tokens);
 int										spaceparse(char *input, char *command);
+t_parsed_cmd_managed_list				*preprocess(t_parsed_cmd_list *command_line);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
 //exit
@@ -130,8 +132,8 @@ char									**set_env(char *env_name, char *value);
 //error
 void									error_exit(char **split, int err_type);
 void									error_cd(char *file, int err_type);
-void									error_redirections(char *file,
-											int err_type);
+void	error_redirections(char *file,
+						int err_type);
 
 //utils
 int										ispace(char *s);

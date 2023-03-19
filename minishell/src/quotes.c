@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 14:37:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 17:14:13 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 
 int	is_there_quotes(char *c)
 {
-	int	i;
-
-	i = 0;
-	while (c[i])
-	{
-		if (c[i] == '\'' || c[i] == '\"')
-			return (1);
-		i++;
-	}
+	if (c[0] == '\'' || c[0] == '\"')
+		return (1);
 	return (0);
 }
 

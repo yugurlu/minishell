@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 13:13:12 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/18 19:05:09 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ void	ft_exit(char *input)
 	else
 	{
 		ft_putstr_fd("exit\n", 1);
-		exit(0);
+		exit(g_myenv.ret_exit);
 	}
 }

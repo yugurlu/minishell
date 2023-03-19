@@ -61,6 +61,7 @@ SRCS        :=            libft/ft_strnstr.c \
                           src/correct_syntax.c \
                           src/utils_env.c \
                           src/error.c \
+                          src/preprocess.c \
                           builtins/env.c \
                           builtins/unset.c \
                           builtins/pwd.c \

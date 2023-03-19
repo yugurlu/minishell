@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 15:59:39 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/19 12:46:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 	fd = malloc(sizeof(int) * 2);
 	fd[0] = 0; // stdin
 	fd[1] = 0; // stdout
-	if (redirections)
+	while (redirections)
 	{
 		if(redirections->direction == OUTPUT_FILE_CREATE)
 		{
 			if (fd[1] != 0)
 				close(fd[1]);
+			//sistem tarafından oluşturulan dosyaların izinleri 0644'dır.
 			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (fd[1] == -1)
 			{
@@ -57,17 +58,43 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 			}
 			return (fd);
 		}
-		if(redirections->direction == INPUT_NEXT_LINE)
+		/*if(redirections->direction == INPUT_NEXT_LINE)
 		{
 			if (fd[0] != 0)
 				close(fd[0]);
-		}
+		}*/
+		redirections = redirections->next;
 	}
-
+	return (fd);
 }
 
+char **create_argv(t_string_list *arguments, int *argc)
+{
+	int i;
+	char **argv;
+	t_string_list *temp;
 
-t_parsed_cmd_managed_list *append_new_cmd(t_parsed_cmd **headle)
+	i = 0;
+	*argc = 0;
+	temp = arguments;
+	while (temp)
+	{
+		*argc += 1;
+		temp = temp->next;
+	}
+	argv = malloc(sizeof(char *) * (*argc + 1));
+	temp = arguments;
+	while (temp)
+	{
+		argv[i] = ft_strdup(temp->string);
+		i++;
+		temp = temp->next;
+	}
+	argv[i] = NULL;
+	return (argv);
+}
+
+t_parsed_cmd_managed_list *append_new_cmd(t_parsed_cmd_managed_list **headle)
 {
 	t_parsed_cmd_managed_list *new;
 	t_parsed_cmd_managed_list *temp;
@@ -82,7 +109,7 @@ t_parsed_cmd_managed_list *append_new_cmd(t_parsed_cmd **headle)
 		return (new);
 	}
 	temp = *headle;
-	while (temp->next != NULL)
+	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
 	return (new);
@@ -90,18 +117,18 @@ t_parsed_cmd_managed_list *append_new_cmd(t_parsed_cmd **headle)
 
 t_parsed_cmd_managed_list	*preprocess(t_parsed_cmd_list *command_line)
 {
-	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
-	t_parsed_cmd_managed_list	*ptr;
-	t_parsed_cmd_managed_list	*prev;
 	int							*fd;
 	t_parsed_cmd				*cmd;
+	t_parsed_cmd_managed_list	*ptr;
+	t_parsed_cmd_managed_list	*prev;
+	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
 
 	ptr = NULL;
 	parsed_cmd_managed_list = NULL;
-	while (command_line != NULL)
+	while (command_line)
 	{
 		cmd = command_line->command;
-		prev = ptr;
+		prev = ptr;  // previous command
 		ptr = append_new_cmd(&parsed_cmd_managed_list);
 		ptr->previous = prev;
 		ptr->command = malloc(sizeof(t_parsed_cmd_managed));
