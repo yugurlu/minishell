@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:19 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 22:50:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_env(char **env)
 		i++;
 	}
 	g_myenv.env[i] = NULL;
+	g_myenv.path = ft_split(g_myenv.env[4], ':');
 }
 
 char	*ft_getenv(char *str)
