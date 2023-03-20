@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 14:37:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:16 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 t_parsed_cmd	*create_init_parsed_cmd(void)
 {

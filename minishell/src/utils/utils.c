@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:39:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/13 17:12:58 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:55:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	ispace(char *s)
 {
@@ -57,9 +57,12 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
+	if(split)
+	{
+		while (split[i])
+			free(split[i++]);
+		free(split);
+	}
 }
 
 int	spaceparse(char *input, char *command)

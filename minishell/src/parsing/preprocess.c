@@ -6,11 +6,12 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/19 12:46:42 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:35 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
+
 
 int *open_input_ouput_files(t_redirect_list *redirections)
 {
@@ -32,7 +33,6 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 				error_redirections(redirections->file, 1);
 				fd[1] = -404;
 			}
-			return (fd);
 		}
 		if (redirections->direction == OUTPUT_FILE_APPEND)
 		{
@@ -44,7 +44,6 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 				error_redirections(redirections->file, 1);
 				fd[1] = -404;
 			}
-			return (fd);
 		}
 		if(redirections->direction == INPUT_FILE)
 		{
@@ -56,7 +55,6 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 				error_redirections(redirections->file, 1);
 				fd[0] = -404;
 			}
-			return (fd);
 		}
 		/*if(redirections->direction == INPUT_NEXT_LINE)
 		{

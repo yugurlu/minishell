@@ -6,11 +6,12 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 17:13:29 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:23 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
+
 
 t_string_list	*create_token(char *input, int token_l)
 {

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/12 14:06:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/12 17:12:28 by yugurlu          ###   ########.fr       */
+/*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/03/20 18:40:06 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src/minishell.h"
+#include "../../minishell.h"
 
-void	env(void)
+void execution(t_parsed_cmd_managed_list *parse)
 {
-	int	i;
-
-	i = 0;
-	while (g_myenv.env[i])
-		printf("%s\n", g_myenv.env[i++]);
-	g_myenv.ret_exit = 0;
+	if (single_command(parse))
+		return ;
 }

@@ -6,14 +6,14 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/19 13:20:05 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 18:18:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 # include <dirent.h>
 # include <fcntl.h>
 # include <readline/history.h>
@@ -62,7 +62,6 @@ typedef struct s_parsed_cmd
 	t_redirect_list						*redirections;
 }										t_parsed_cmd;
 
-
 typedef struct s_command_line
 {
 	t_parsed_cmd						*command;
@@ -75,8 +74,8 @@ typedef struct s_parsed_cmd_managed
 	char								*path;
 	char								**argv;
 	int									argc;
-	int									in_desc; //input descriptor
-	int									out_desc; //output descriptor
+	int in_desc;  //input descriptor
+	int out_desc; //output descriptor
 	int									is_piped;
 }										t_parsed_cmd_managed;
 
@@ -110,6 +109,10 @@ int										spaceparse(char *input, char *command);
 t_parsed_cmd_managed_list				*preprocess(t_parsed_cmd_list *command_line);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
+//execution
+void									execution(t_parsed_cmd_managed_list *cmd);
+int										single_command(t_parsed_cmd_managed_list *cmd);
+
 //exit
 void									ft_exit(char *input);
 int										exit_condition(char *input);
@@ -122,11 +125,13 @@ int										empty(char *input);
 //builtins
 void									env(void);
 void									pwd(void);
+int										cd(char *arg);
+void									echo(char **arg);
 int										cd(char *args);
 void									unset(char *args);
-void									export(char *arr);
-int										find_line(char *str);
 void									echo(char **args);
+void									export(char **arr);
+int										find_line(char *str);
 char									**set_env(char *env_name, char *value);
 
 //error
@@ -134,6 +139,9 @@ void									error_exit(char **split, int err_type);
 void									error_cd(char *file, int err_type);
 void	error_redirections(char *file,
 						int err_type);
+
+//signal
+void									signal_control(void);
 
 //utils
 int										ispace(char *s);

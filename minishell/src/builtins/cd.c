@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:06:35 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/15 13:04:10 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:51:47 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src/minishell.h"
+#include "../../minishell.h"
 
 char	*check_dir(char *arg)
 {
@@ -43,6 +43,8 @@ void	set_pwd_and_oldpwd(char *oldpwd, char *dir)
 		free_split(new_env);
 		free(oldpwd);
 	}
+	printf("%s", g_myenv.env[13]);
+	getchar();
 	g_myenv.ret_exit = 0;
 	free(dir);
 }

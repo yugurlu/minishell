@@ -6,11 +6,12 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 19:05:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:52:03 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src/minishell.h"
+#include "../../minishell.h"
+
 
 int	search_exit(char *input)
 {

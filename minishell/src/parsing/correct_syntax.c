@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/15 14:22:13 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:10 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	is_pipe(t_string_list *tokens)
 {

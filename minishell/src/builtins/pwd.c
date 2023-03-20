@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 11:30:19 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/15 14:26:00 by yugurlu          ###   ########.fr       */
+/*   Created: 2023/03/12 13:20:06 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/03/20 15:52:14 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src/minishell.h"
+#include "../../minishell.h"
 
-void	echo(char **arg)
+void	pwd(void)
 {
-	int	i;
-	int	option;
+	char	*cwd;
 
-	i = 0;
-	option = 0;
-	if (arg)
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
 	{
-		if (ft_strcmp(arg[0], "-n") == 0 && arg[1] == NULL)
-			return ;
-		if (ft_strcmp(arg[0], "-n") == 0)
-		{
-			option = 1;
-			i++;
-		}
-		while (arg[i])
-		{
-			ft_putstr_fd(arg[i], 1);
-			if (arg[i + 1] != NULL)
-				ft_putchar_fd(' ', 1);
-			i++;
-		}
-		if (!option)
-			ft_putchar_fd('\n', 1);
+		perror("minishell : pwd :");
+		g_myenv.ret_exit = 1;
+		return ;
 	}
+	ft_putstr_fd(cwd, 1);
 	g_myenv.ret_exit = 0;
+	free(cwd);
 }

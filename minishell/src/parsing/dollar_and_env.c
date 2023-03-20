@@ -6,11 +6,12 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/14 14:51:44 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:19 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
+
 
 char	*back_dollar(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:08 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/07 12:45:54 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	escape_space(char *input)
 {

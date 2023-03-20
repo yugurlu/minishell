@@ -6,32 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/19 13:27:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 18:38:23 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-void	ctrl_d(int sig) // düzelt
-{
-	(void)sig;
-	printf("exit\n");
-	exit(0);
-}
-
-void	ctrl_c(int sig) // düzelt
-{
-	(void)sig;
-	printf("\n");
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-void	signal_control(void)
-{
-	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, ctrl_d);
-}
+#include "../minishell.h"
 
 void	add(char *input)
 {
@@ -73,11 +52,11 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	(void)ac;
+	if (ac > 1)
+		return (1);
 	init_env(env);
 	while (1)
 	{
-		/*if (ac > 1)
-			break ;*/
 		signal_control();
 		input = readline("prompt> ");
 		add(input);

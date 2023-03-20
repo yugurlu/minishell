@@ -1,52 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/14 13:09:51 by yugurlu          ###   ########.fr       */
+/*   Created: 2023/03/15 11:30:19 by yugurlu           #+#    #+#             */
+/*   Updated: 2023/03/20 15:51:52 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int split_len(char **arr)
-{
-	int i;
 
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
-int	my_free(char *str)
-{
-	free(str);
-	return (1);
-}
-
-void	skip_dollar(char *str, int *i)
-{
-	*i = 0;
-	while (str[*i] != '$')
-		*i += 1;
-}
-
-int	dollar_counter(char *c)
+void	echo(char **arg)
 {
 	int	i;
-	int	counter;
+	int	option;
 
-	i = 0;
-	counter = 0;
-	while (c[i])
+	i = 1;
+	option = 0;
+	if (arg)
 	{
-		if (c[i] == '$')
-			counter++;
-		i++;
+		if (ft_strcmp(arg[1], "-n") == 0 && arg[2] == NULL)
+			return ;
+		if (ft_strcmp(arg[1], "-n") == 0)
+		{
+			option = 1;
+			i++;
+		}
+		while (arg[i])
+		{
+			ft_putstr_fd(arg[i], 1);
+			if (arg[i + 1] != NULL)
+				ft_putchar_fd(' ', 1);
+			i++;
+		}
+		if (!option)
+			ft_putchar_fd('\n', 1);
 	}
-	return (counter);
+	g_myenv.ret_exit = 0;
 }

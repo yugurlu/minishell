@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/17 12:54:23 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:55:48 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 char	*strncopy(char *dest, char *src, int n)
 {

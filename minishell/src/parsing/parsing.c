@@ -6,11 +6,12 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/19 13:22:51 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:28 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
+
 
 void	print_parsing_struct(t_parsed_cmd_list *command_line)
 {
@@ -153,7 +154,7 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 		return (NULL);
 	//print_string_list(tokens);
 	dollar_and_env(tokens);
-	printf("\n");
+	//printf("\n");
 	//env();
 	//printf("\n");
 	//pwd();
@@ -170,6 +171,6 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 	//print_parsing_struct(parsed_cmd_list);
 	parsed_cmd_managed_list = preprocess(parsed_cmd_list);
 	free_parsed_cmd_list(parsed_cmd_list);
-	print_parsed_cmd_managed_list(parsed_cmd_managed_list);
+	//print_parsed_cmd_managed_list(parsed_cmd_managed_list);
 	return (parsed_cmd_managed_list);
 }

@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:16:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/13 17:14:28 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:56:06 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src/minishell.h"
+#include "../../minishell.h"
 
 int	find_line(char *str)
 {

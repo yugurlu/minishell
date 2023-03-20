@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/18 17:14:13 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:50:43 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 int	is_there_quotes(char *c)
 {

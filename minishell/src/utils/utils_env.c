@@ -6,11 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:37:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/10 18:20:26 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:55:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
 void	help_getenv(int *i, int *k, char *temp)
 {
