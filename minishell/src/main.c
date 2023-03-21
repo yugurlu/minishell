@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/21 15:51:19 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/21 17:28:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	(void)ac;
-	(void)env;
-	if (ac > 1)
+	if (ac == 1)
 	{
 		init_env(env);
 		while (1)

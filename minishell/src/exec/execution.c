@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/21 15:45:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/21 17:33:06 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	choose_execution(t_parsed_cmd_managed_list *parse)
 	else
 	{
 		parse->command->argv[0] = path_finder(parse->command->argv[0]);
+		printf("path: %s", parse->command->argv[0]);
+		getchar();
 		execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
 	}
 	while (parse->previous)
@@ -79,22 +81,12 @@ void	pipe_initialize(t_parsed_cmd_managed_list *parse)
 
 void	execution(t_parsed_cmd_managed_list *parse)
 {
+	printf("pipe initialize\n");
 	if (single_command(parse))
 		return ;
 	pipe_initialize(parse);
-	while (parse->next)
+	while (parse)
 	{
-		if (parse->next)
-			dup2(parse->next->fd[1], STDOUT_FILENO);
-		if (parse->previous)
-			dup2(parse->previous->fd[0], STDIN_FILENO);
-		if (managed_redirection(parse))
-		{
-			close(parse->fd[0]);
-			close(parse->fd[1]);
-			//FREE ALL
-			exit(0);
-		}
 		child_execution(parse);
 		parse = parse->next;
 	}
