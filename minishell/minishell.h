@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 18:18:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/21 14:33:24 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_string_list
 typedef struct s_myenv
 {
 	char								**env;
+	char								**path;
 	int									ret_exit;
 	int									*is_exit;
 }										t_myenv;
@@ -110,8 +111,12 @@ t_parsed_cmd_managed_list				*preprocess(t_parsed_cmd_list *command_line);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 
 //execution
+int										is_builtin(char *cmd);
 void									execution(t_parsed_cmd_managed_list *cmd);
-int										single_command(t_parsed_cmd_managed_list *cmd);
+int										single_command(t_parsed_cmd_managed_list *parse);
+int										managed_redirection(t_parsed_cmd_managed_list *parse);
+int	exec_builtin(t_parsed_cmd_managed_list *parse,
+					char *cmd);
 
 //exit
 void									ft_exit(char *input);
