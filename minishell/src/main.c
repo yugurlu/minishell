@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/21 17:28:42 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 17:11:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av, char **env)
 			signal_control();
 			input = readline("prompt> ");
 			add(input);
+			ctrl_d(input);
 			if (input && (quotes(input) || empty(input)))
 				continue ;
 			else if (exit_condition(input))
@@ -69,6 +70,7 @@ int	main(int ac, char **av, char **env)
 				parsed_cmd_managed_list = parsing(input);
 				execution(parsed_cmd_managed_list);
 				free(input);
+				free_parsed_cmd_managed_list(parsed_cmd_managed_list);
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:52:00 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 12:03:23 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,12 @@ void error_redirections(char *file, int err_type)
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
+}
+
+void error_command(char *cmd)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	free(cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:55:48 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 11:00:08 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,21 @@ int	isnumeric(char *str)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int split_len(char **arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	my_free(char *str)
+{
+	free(str);
 	return (1);
 }

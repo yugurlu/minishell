@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:35 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 12:32:02 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 			//sistem tarafından oluşturulan dosyaların izinleri 0644'dır.
 			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (fd[1] == -1)
-			{
 				error_redirections(redirections->file, 1);
-				fd[1] = -404;
-			}
 		}
 		if (redirections->direction == OUTPUT_FILE_APPEND)
 		{
@@ -40,10 +37,7 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 				close(fd[1]);
 			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (fd[1] == -1)
-			{
 				error_redirections(redirections->file, 1);
-				fd[1] = -404;
-			}
 		}
 		if(redirections->direction == INPUT_FILE)
 		{
@@ -51,10 +45,7 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 				close(fd[0]);
 			fd[0] = open(redirections->file, O_RDONLY);
 			if (fd[0] == -1)
-			{
 				error_redirections(redirections->file, 1);
-				fd[0] = -404;
-			}
 		}
 		/*if(redirections->direction == INPUT_NEXT_LINE)
 		{

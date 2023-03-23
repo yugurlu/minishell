@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:39:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:55:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 15:25:38 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	free_split(char **split)
 	int	i;
 
 	i = 0;
-	if(split)
+	if (split)
 	{
 		while (split[i])
 			free(split[i++]);

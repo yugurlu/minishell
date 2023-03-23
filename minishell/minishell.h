@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/21 14:33:24 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 14:15:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_command_line
 
 typedef struct s_parsed_cmd_managed
 {
-	char								*path;
 	char								**argv;
 	int									argc;
 	int in_desc;  //input descriptor
@@ -83,10 +82,8 @@ typedef struct s_parsed_cmd_managed
 typedef struct s_parsed_cmd_managed_list
 {
 	t_parsed_cmd_managed				*command;
-	int									fd[2];
-	char								**cmd;
-	char								*env_path;
 	pid_t								pid;
+	int									fd[2];
 	struct s_parsed_cmd_managed_list	*next;
 	struct s_parsed_cmd_managed_list	*previous;
 }										t_parsed_cmd_managed_list;
@@ -140,18 +137,21 @@ int										find_line(char *str);
 char									**set_env(char *env_name, char *value);
 
 //error
+void									error_redirections(char *file,
+											int err_type);
+void									error_command(char *cmd);
 void									error_exit(char **split, int err_type);
 void									error_cd(char *file, int err_type);
-void	error_redirections(char *file,
-						int err_type);
 
 //signal
 void									signal_control(void);
+void									ctrl_d(char *line);
 
 //utils
 int										ispace(char *s);
 int										is_quote(char *c);
 int										my_free(char *str);
+void									free_env_list(void);
 int										strisdigit(char *s);
 int										isnumeric(char *str);
 int										no_quote_len(char *c);
@@ -164,8 +164,12 @@ void									skip_dollar(char *str, int *i);
 char									*ft_strcpy(char *dest, char *src);
 void									help_getenv(int *i, int *k, char *temp);
 char									*strncopy(char *dest, char *src, int n);
+int										free_string_list(t_string_list *tokens);
 void									help_func(char **new, char *str, int *i,
 											int *len, int *is_env);
+void									free_redirect_list(t_redirect_list *redirections);
+void									free_parsed_cmd_list(t_parsed_cmd_list *parsed_cmd_list);
+void									free_parsed_cmd_managed_list(t_parsed_cmd_managed_list *parse);
 char	*remove_quotes(char *file,
 					char *dest);
 

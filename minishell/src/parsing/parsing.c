@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:28 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/23 11:00:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,48 +97,6 @@ void	print_string_list(t_string_list *list)
 	{
 		printf("[@%p][%s]\n", list, list->string);
 		list = list->next;
-	}
-}
-
-int	free_string_list(t_string_list *tokens)
-{
-	t_string_list	*tmp;
-
-	while (tokens)
-	{
-		tmp = tokens;
-		tokens = tokens->next;
-		free(tmp->string);
-		free(tmp);
-	}
-	return (1);
-}
-
-void free_redirect_list(t_redirect_list *redirections)
-{
-	t_redirect_list	*tmp;
-
-	while (redirections)
-	{
-		tmp = redirections;
-		redirections = redirections->next;
-		free(tmp->file);
-		free(tmp);
-	}
-}
-
-void free_parsed_cmd_list(t_parsed_cmd_list *parsed_cmd_list)
-{
-	t_parsed_cmd_list	*tmp;
-
-	while (parsed_cmd_list)
-	{
-		tmp = parsed_cmd_list;
-		parsed_cmd_list = parsed_cmd_list->next;
-		free_string_list(tmp->command->arguments);
-		free_redirect_list(tmp->command->redirections);
-		free(tmp->command);
-		free(tmp);
 	}
 }
 
