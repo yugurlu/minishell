@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 14:15:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:47:12 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_parsed_cmd_managed_list	*append_new_cmd(t_parsed_cmd_managed_list **headle)
 
 t_parsed_cmd_managed_list	*preprocess(t_parsed_cmd_list *command_line)
 {
-	int							*fd;
+	//int							*fd;
 	t_parsed_cmd				*cmd;
 	t_parsed_cmd_managed_list	*ptr;
 	t_parsed_cmd_managed_list	*prev;
@@ -121,11 +121,8 @@ t_parsed_cmd_managed_list	*preprocess(t_parsed_cmd_list *command_line)
 		prev = ptr;
 		ptr = append_new_cmd(&parsed_cmd_managed_list);
 		ptr->previous = prev;
+		ptr->for_redirection = command_line->command;
 		ptr->command = malloc(sizeof(t_parsed_cmd_managed));
-		fd = open_input_ouput_files(cmd->redirections);
-		ptr->command->in_desc = fd[0];
-		ptr->command->out_desc = fd[1];
-		free(fd);
 		ptr->command->argv = create_argv(cmd->arguments, &ptr->command->argc);
 		ptr->command->is_piped = cmd->is_piped;
 		command_line = command_line->next;

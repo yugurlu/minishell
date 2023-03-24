@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 14:23:32 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:49:52 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,37 @@ void	child_execution(t_parsed_cmd_managed_list *parse)
 
 void	execution(t_parsed_cmd_managed_list *parse)
 {
-	//int							status;
+	int *fd;
+	int							status;
 	t_parsed_cmd_managed_list	*previous;
+	t_parsed_cmd_managed_list	*pipe_parse;
 
 	previous = parse;
+	pipe_parse = parse;
 	if (single_command(parse))
 		return ;
 	pipe_initialize(parse);
+	while (pipe_parse)
+	{
+		fd = open_input_ouput_files(pipe_parse->for_redirection->redirections);
+		if (fd[0] == -1 || fd[1] == -1)
+			return ;
+		pipe_parse->command->in_desc = fd[0];
+		pipe_parse->command->out_desc = fd[1];
+		pipe_parse = pipe_parse->next;
+
+	}
 	while (parse)
 	{
 		child_execution(parse);
-		//waitpid(parse->pid, &status, 0);
-		//g_myenv.ret_exit = WEXITSTATUS(status);
 		parse = parse->next;
+		if (parse)
+			previous = parse->previous;
+	}
+	while (previous)
+	{
+		waitpid(previous->pid, &status, 0);
+		g_myenv.ret_exit = WEXITSTATUS(status);
+		previous = previous->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 12:40:13 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:50:23 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_parsed_cmd_managed_list
 	t_parsed_cmd_managed				*command;
 	pid_t								pid;
 	int									fd[2];
+	t_parsed_cmd					*for_redirection;
 	struct s_parsed_cmd_managed_list	*next;
 	struct s_parsed_cmd_managed_list	*previous;
 }										t_parsed_cmd_managed_list;
@@ -112,6 +113,7 @@ int										is_builtin(char *cmd);
 void									execution(t_parsed_cmd_managed_list *cmd);
 int										single_command(t_parsed_cmd_managed_list *parse);
 int										managed_redirection(t_parsed_cmd_managed_list *parse);
+int										*open_input_ouput_files(t_redirect_list *redirections);
 int	exec_builtin(t_parsed_cmd_managed_list *parse,
 					char *cmd);
 
@@ -137,8 +139,8 @@ int										find_line(char *str);
 char									**set_env(char *env_name, char *value);
 
 //error
-void									error_redirections(char *file,
-											int err_type);
+void	error_redirections(char *file,
+						int err_type);
 void									error_command(char *cmd);
 void									error_exit(char *string, int err_type);
 void									error_cd(char *file, int err_type);
