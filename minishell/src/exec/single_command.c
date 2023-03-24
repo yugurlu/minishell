@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:59 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 12:40:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 14:21:48 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int control(t_parsed_cmd_managed_list *parse)
 {
 	if(!is_builtin(parse->command->argv[0]))
 		return (0);
-	if(managed_redirection(parse))
+	if(!managed_redirection(parse))
 		return (0);
 	return (1);
 }

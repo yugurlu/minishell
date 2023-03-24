@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 11:00:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 13:18:25 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,15 +112,15 @@ t_parsed_cmd_managed_list	*parsing(char *input)
 		return (NULL);
 	//print_string_list(tokens);
 	dollar_and_env(tokens);
-	//printf("\n");
-	//env();
-	//printf("\n");
-	//pwd();
-	//env();
-	//system("leaks minishell");
-	//printf("\n");
 	if (!correct_syntax(tokens) && free_string_list(tokens))
 		return (NULL);
+	if(exit_condition(tokens->string))
+	{
+		getchar	();
+		ft_exit(tokens->next);
+		free_string_list(tokens);
+		return (NULL);
+	}
 	parsed_cmd_list = create_parsed_cmd_list(tokens);
 	free_string_list(tokens);
 	if (parsed_cmd_list == NULL)

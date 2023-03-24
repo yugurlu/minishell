@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 17:12:38 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 10:35:43 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void free_parsed_cmd_managed_list(t_parsed_cmd_managed_list *parse)
 	{
 		free_split(tmp->command->argv);
 		free(tmp->command);
+		free(tmp);
 		tmp = parse->next;
+		parse = parse->next;
 	}
 }
 

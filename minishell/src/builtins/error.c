@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 12:03:23 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 12:50:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,20 @@ void	error_cd(char *file, int err_type)
 	free(file);
 }
 
-void	error_exit(char **split, int err_type)
+void	error_exit(char *string, int err_type)
 {
 	if (err_type == 1)
 	{
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-		free_split(split);
 		g_myenv.ret_exit = 1;
 	}
 	else if (err_type == 2)
 	{
-		char *temp;
-
-		temp = malloc(no_quote_len(split[0]));
-		remove_quotes(split[0], temp);
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(temp, 2);
+		ft_putstr_fd(string, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
-		free_split(split);
-		free(temp);
-		//FREE ALL
 		exit(255);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 15:18:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 14:23:32 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,13 @@ void	choose_execution(t_parsed_cmd_managed_list *parse)
 		exec_builtin(parse, parse->command->argv[0]);
 	else
 	{
-		parse->command->argv[0] = path_finder(parse->command->argv[0]);
-		if (!parse->command->argv[0])
+		if (access(parse->command->argv[0], F_OK) == 0)
+			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
+		else
 		{
-			free_env_list();
-			free_parsed_cmd_managed_list(parse);
-			exit(127);
+			parse->command->argv[0] = path_finder(parse->command->argv[0]);
+			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
 		}
-		execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
 	}
 	while (parse->previous)
 		parse = parse->previous;
@@ -71,9 +70,9 @@ void	child_execution(t_parsed_cmd_managed_list *parse)
 	parse->pid = fork();
 	if (parse->pid == 0)
 	{
-		if (parse->next)
+		if (parse->next && parse->command->out_desc == 0)
 			dup2(parse->fd[1], STDOUT_FILENO);
-		if (parse->previous)
+		if (parse->previous && parse->command->in_desc == 0)
 			dup2(parse->previous->fd[0], STDIN_FILENO);
 		if (!managed_redirection(parse))
 		{
@@ -88,7 +87,7 @@ void	child_execution(t_parsed_cmd_managed_list *parse)
 		if (parse->command->argv[0])
 			choose_execution(parse);
 	}
-	if(parse->next)
+	if (parse->next)
 		close(parse->fd[1]);
 	if (parse->previous)
 		close(parse->previous->fd[0]);
@@ -96,7 +95,7 @@ void	child_execution(t_parsed_cmd_managed_list *parse)
 
 void	execution(t_parsed_cmd_managed_list *parse)
 {
-	int							status;
+	//int							status;
 	t_parsed_cmd_managed_list	*previous;
 
 	previous = parse;
@@ -106,14 +105,8 @@ void	execution(t_parsed_cmd_managed_list *parse)
 	while (parse)
 	{
 		child_execution(parse);
+		//waitpid(parse->pid, &status, 0);
+		//g_myenv.ret_exit = WEXITSTATUS(status);
 		parse = parse->next;
-		if (parse)
-			previous = parse->previous;
-	}
-	while (previous)
-	{
-		waitpid(previous->pid, &status, 0);
-		g_myenv.ret_exit = WEXITSTATUS(status);
-		previous = previous->next;
 	}
 }

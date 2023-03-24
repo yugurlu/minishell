@@ -6,28 +6,28 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 12:32:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 14:15:22 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-
-int *open_input_ouput_files(t_redirect_list *redirections)
+int	*open_input_ouput_files(t_redirect_list *redirections)
 {
-	int *fd;
+	int	*fd;
 
 	fd = malloc(sizeof(int) * 2);
 	fd[0] = 0; // stdin
 	fd[1] = 0; // stdout
 	while (redirections)
 	{
-		if(redirections->direction == OUTPUT_FILE_CREATE)
+		if (redirections->direction == OUTPUT_FILE_CREATE)
 		{
 			if (fd[1] != 0)
 				close(fd[1]);
 			//sistem tarafından oluşturulan dosyaların izinleri 0644'dır.
-			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_TRUNC,
+					0644);
 			if (fd[1] == -1)
 				error_redirections(redirections->file, 1);
 		}
@@ -35,11 +35,12 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 		{
 			if (fd[1] != 0)
 				close(fd[1]);
-			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+			fd[1] = open(redirections->file, O_WRONLY | O_CREAT | O_APPEND,
+					0644);
 			if (fd[1] == -1)
 				error_redirections(redirections->file, 1);
 		}
-		if(redirections->direction == INPUT_FILE)
+		if (redirections->direction == INPUT_FILE)
 		{
 			if (fd[0] != 0)
 				close(fd[0]);
@@ -47,21 +48,21 @@ int *open_input_ouput_files(t_redirect_list *redirections)
 			if (fd[0] == -1)
 				error_redirections(redirections->file, 1);
 		}
-		/*if(redirections->direction == INPUT_NEXT_LINE)
+		if (redirections->direction == INPUT_NEXT_LINE)
 		{
 			if (fd[0] != 0)
 				close(fd[0]);
-		}*/
+		}
 		redirections = redirections->next;
 	}
 	return (fd);
 }
 
-char **create_argv(t_string_list *arguments, int *argc)
+char	**create_argv(t_string_list *arguments, int *argc)
 {
-	int i;
-	char **argv;
-	t_string_list *temp;
+	int				i;
+	char			**argv;
+	t_string_list	*temp;
 
 	i = 0;
 	*argc = 0;
@@ -83,10 +84,10 @@ char **create_argv(t_string_list *arguments, int *argc)
 	return (argv);
 }
 
-t_parsed_cmd_managed_list *append_new_cmd(t_parsed_cmd_managed_list **headle)
+t_parsed_cmd_managed_list	*append_new_cmd(t_parsed_cmd_managed_list **headle)
 {
-	t_parsed_cmd_managed_list *new;
-	t_parsed_cmd_managed_list *temp;
+	t_parsed_cmd_managed_list	*new;
+	t_parsed_cmd_managed_list	*temp;
 
 	new = malloc(sizeof(t_parsed_cmd_managed_list));
 	new->next = NULL;
@@ -117,7 +118,7 @@ t_parsed_cmd_managed_list	*preprocess(t_parsed_cmd_list *command_line)
 	while (command_line)
 	{
 		cmd = command_line->command;
-		prev = ptr;  // previous command
+		prev = ptr;
 		ptr = append_new_cmd(&parsed_cmd_managed_list);
 		ptr->previous = prev;
 		ptr->command = malloc(sizeof(t_parsed_cmd_managed));

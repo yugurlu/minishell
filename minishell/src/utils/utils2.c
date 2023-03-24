@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/23 11:00:08 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/24 12:51:20 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,24 @@ char	*ft_strcpy(char *dest, char *src)
 
 int	isnumeric(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (str[0] == '\'' || str[0] == '\"')
-		i++;
-	if (str[1] == '\'' || str[1] == '\"')
-		return (0);
-	while (str[i] && (str[i] != '\'' && str[i] != '\"'))
+	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
-			return (0);
+		if (str[i] != ' ')
+		{
+			if (!ft_isdigit(str[i]))
+				return (0);
+		}
 		i++;
 	}
 	return (1);
 }
 
-int split_len(char **arr)
+int	split_len(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arr[i])
