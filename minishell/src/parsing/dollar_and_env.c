@@ -6,12 +6,18 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/21 12:11:15 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 15:17:32 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+void	skip_dollar(char *str, int *i)
+{
+	*i = 0;
+	while (str[*i] != '$')
+		*i += 1;
+}
 
 char	*back_dollar(char *str)
 {
@@ -44,7 +50,6 @@ void	init_env(char **env)
 		i++;
 	}
 	g_myenv.env[i] = NULL;
-	g_myenv.path = ft_split(g_myenv.env[find_line("PATH")], ':');
 }
 
 char	*ft_getenv(char *str)

@@ -6,12 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:30:19 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:51:52 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:37:55 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 void	echo(char **arg)
 {

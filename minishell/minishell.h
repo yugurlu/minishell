@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 16:50:23 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 17:26:47 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_myenv
 	char								**path;
 	int									ret_exit;
 	int									*is_exit;
+	struct stat							*stat;
 }										t_myenv;
 
 t_myenv									g_myenv;
@@ -74,8 +75,8 @@ typedef struct s_parsed_cmd_managed
 {
 	char								**argv;
 	int									argc;
-	int in_desc;  //input descriptor
-	int out_desc; //output descriptor
+	int									in_desc;
+	int									out_desc;
 	int									is_piped;
 }										t_parsed_cmd_managed;
 
@@ -84,7 +85,6 @@ typedef struct s_parsed_cmd_managed_list
 	t_parsed_cmd_managed				*command;
 	pid_t								pid;
 	int									fd[2];
-	t_parsed_cmd					*for_redirection;
 	struct s_parsed_cmd_managed_list	*next;
 	struct s_parsed_cmd_managed_list	*previous;
 }										t_parsed_cmd_managed_list;
@@ -107,6 +107,7 @@ t_string_list							*dollar_and_env(t_string_list *tokens);
 int										spaceparse(char *input, char *command);
 t_parsed_cmd_managed_list				*preprocess(t_parsed_cmd_list *command_line);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
+int										*open_input_ouput_files(t_redirect_list *redirections);
 
 //execution
 int										is_builtin(char *cmd);
@@ -141,7 +142,7 @@ char									**set_env(char *env_name, char *value);
 //error
 void	error_redirections(char *file,
 						int err_type);
-void									error_command(char *cmd);
+void	error_command(char *cmd, int err_type);
 void									error_exit(char *string, int err_type);
 void									error_cd(char *file, int err_type);
 

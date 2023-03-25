@@ -6,16 +6,16 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:52:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:30:03 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void print_env_with_export(char **env)
+void	print_env_with_export(char **env)
 {
-	int i;
-	char **split;
+	int		i;
+	char	**split;
 
 	i = -1;
 	while (env[++i])
@@ -79,7 +79,7 @@ void	export(char **arr)
 			return ;
 		}
 	}
-	else if(ft_strcmp(arr[0], "export") == 0)
+	else if (ft_strcmp(arr[0], "export") == 0)
 		print_env_with_export(g_myenv.env);
 	free_split(split);
 	g_myenv.ret_exit = 0;

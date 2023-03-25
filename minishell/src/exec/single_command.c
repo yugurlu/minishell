@@ -6,11 +6,20 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:59 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 14:21:48 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:26:28 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	control(t_parsed_cmd_managed_list *parse)
+{
+	if (!is_builtin(parse->command->argv[0]))
+		return (0);
+	if (!managed_redirection(parse))
+		return (0);
+	return (1);
+}
 
 int	is_builtin(char *cmd)
 {
@@ -29,30 +38,8 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
-int managed_redirection(t_parsed_cmd_managed_list *parse)
+int	exec_builtin(t_parsed_cmd_managed_list *parse, char *cmd)
 {
-	if(parse->command->in_desc == -1 || parse->command->out_desc == -1)
-		return (0);
-	if(parse->command->in_desc != 0)
-		dup2(parse->command->in_desc, STDIN_FILENO);
-	if(parse->command->out_desc != 0)
-		dup2(parse->command->out_desc, STDOUT_FILENO);
-	return (1);
-}
-
-int control(t_parsed_cmd_managed_list *parse)
-{
-	if(!is_builtin(parse->command->argv[0]))
-		return (0);
-	if(!managed_redirection(parse))
-		return (0);
-	return (1);
-}
-
-
-int exec_builtin(t_parsed_cmd_managed_list *parse, char *cmd)
-{
-
 	if (ft_strcmp(cmd, "echo") == 0)
 		echo(parse->command->argv);
 	else if (ft_strcmp(cmd, "cd") == 0)
@@ -68,6 +55,17 @@ int exec_builtin(t_parsed_cmd_managed_list *parse, char *cmd)
 	return (0);
 }
 
+int	managed_redirection(t_parsed_cmd_managed_list *parse)
+{
+	if (parse->command->in_desc == -1 || parse->command->out_desc == -1)
+		return (0);
+	if (parse->command->in_desc != 0)
+		dup2(parse->command->in_desc, STDIN_FILENO);
+	if (parse->command->out_desc != 0)
+		dup2(parse->command->out_desc, STDOUT_FILENO);
+	return (1);
+}
+
 int	single_command(t_parsed_cmd_managed_list *parse)
 {
 	int	in;
@@ -77,7 +75,7 @@ int	single_command(t_parsed_cmd_managed_list *parse)
 	out = dup(1);
 	if (parse && !parse->next)
 	{
-		if(control(parse))
+		if (control(parse))
 		{
 			exec_builtin(parse, parse->command->argv[0]);
 			dup2(in, 0);

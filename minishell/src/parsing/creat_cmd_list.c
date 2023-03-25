@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:16 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:38:37 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	parse_fill_cmd(t_parsed_cmd *parsed_cmd, t_string_list *start_token,
 		else
 		{
 			new_redirect(&parsed_cmd->redirections, start_token->next->string,
-					redirect_token_type(start_token->string));
+				redirect_token_type(start_token->string));
 			start_token = start_token->next;
 		}
 		if (start_token == check_token)

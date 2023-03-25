@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 12:51:20 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 13:02:07 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	isnumeric(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != ' ')
+		if (str[i] != ' ' && str[i] != '\t' && ((str[i] != '-' && str[i] != '+')
+				&& !ft_isdigit(str[i + 1])))
 		{
 			if (!ft_isdigit(str[i]))
 				return (0);

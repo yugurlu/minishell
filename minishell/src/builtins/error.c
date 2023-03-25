@@ -6,12 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 12:50:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 17:05:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 void	error_cd(char *file, int err_type)
 {
@@ -21,13 +20,13 @@ void	error_cd(char *file, int err_type)
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 	}
-	else if (err_type == 2)
+	if (err_type == 2)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 	}
-	else if (err_type == 3)
+	if (err_type == 3)
 	{
 		ft_putstr_fd("minishell: cd: ", 2);
 		ft_putstr_fd(file, 2);
@@ -45,7 +44,7 @@ void	error_exit(char *string, int err_type)
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
 		g_myenv.ret_exit = 1;
 	}
-	else if (err_type == 2)
+	if (err_type == 2)
 	{
 		ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("minishell: exit: ", 2);
@@ -55,9 +54,9 @@ void	error_exit(char *string, int err_type)
 	}
 }
 
-void error_redirections(char *file, int err_type)
+void	error_redirections(char *file, int err_type)
 {
-	if(err_type == 1)
+	if (err_type == 1)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(file, 2);
@@ -65,10 +64,19 @@ void error_redirections(char *file, int err_type)
 	}
 }
 
-void error_command(char *cmd)
+void	error_command(char *cmd, int err_type)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(": command not found\n", 2);
-	free(cmd);
+	if (err_type == 1)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		free(cmd);
+	}
+	if (err_type == 2)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
+	}
 }

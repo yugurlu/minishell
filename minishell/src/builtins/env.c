@@ -6,12 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:06:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:51:55 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:38:00 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 void	env(void)
 {

@@ -71,6 +71,7 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/parsing/preprocess.c \
                           src/parsing/creat_cmd_list.c \
                           src/parsing/dollar_and_env.c \
+                          src/parsing/file.c \
 
 OBJS        := $(SRCS:.c=.o)
 

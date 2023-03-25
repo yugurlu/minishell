@@ -6,11 +6,27 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:08 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:32:16 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	dollar_counter(char *c)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (c[i])
+	{
+		if (c[i] == '$')
+			counter++;
+		i++;
+	}
+	return (counter);
+}
 
 int	escape_space(char *input)
 {
@@ -40,7 +56,7 @@ int	ft_strchr_i(const char *s, int c)
 	return (-1);
 }
 
-int only_token_len(int flag, t_direction type)
+int	only_token_len(int flag, t_direction type)
 {
 	int	token_l;
 	int	redir_len;
@@ -59,7 +75,7 @@ int	redirect_token_type(char *c)
 {
 	if (*c && !*(c + 1))
 	{
-		if(*c == '<')
+		if (*c == '<')
 			return (INPUT_FILE);
 		if (*c == '>')
 			return (OUTPUT_FILE_CREATE);

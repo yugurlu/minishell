@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 13:19:59 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/25 12:38:17 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	search_exit(char *input)
 	if (input[0] == '\'' || input[0] == '\"')
 		i++;
 	if (input[i] == 'e' && input[i + 1] == 'x' && input[i + 2] == 'i' && input[i
-		+ 3] == 't')
+			+ 3] == 't')
 		return (1);
 	return (0);
 }
