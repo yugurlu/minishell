@@ -2,7 +2,7 @@
 
 NAME        := minishell
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror
+FLAGS    := -Wall -Wextra -Werror #-g -fsanitize=address
 
 SRCS        :=      libft/ft_strnstr.c \
                           libft/ft_isdigit.c \
@@ -64,6 +64,7 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/exec/single_command.c \
                           src/exec/signal.c \
                           src/exec/execution.c \
+                          src/exec/path.c \
                           src/parsing/parsing.c \
                           src/parsing/correct_syntax.c \
                           src/parsing/extract_tokens.c \

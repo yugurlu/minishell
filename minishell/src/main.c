@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 16:43:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 10:12:05 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av, char **env)
 		while (1)
 		{
 			signal_control();
-			input = readline("prompt> ");
+			input = readline("$ ");
 			add(input);
 			if (input && (quotes(input) || empty(input)))
 				continue ;

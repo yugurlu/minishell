@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 17:26:47 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 10:06:33 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 int										*open_input_ouput_files(t_redirect_list *redirections);
 
 //execution
+void									get_path(void);
 int										is_builtin(char *cmd);
+char									*path_finder(char *cmd);
 void									execution(t_parsed_cmd_managed_list *cmd);
 int										single_command(t_parsed_cmd_managed_list *parse);
 int										managed_redirection(t_parsed_cmd_managed_list *parse);
@@ -142,7 +144,7 @@ char									**set_env(char *env_name, char *value);
 //error
 void	error_redirections(char *file,
 						int err_type);
-void	error_command(char *cmd, int err_type);
+void									error_command(char *cmd, int err_type);
 void									error_exit(char *string, int err_type);
 void									error_cd(char *file, int err_type);
 

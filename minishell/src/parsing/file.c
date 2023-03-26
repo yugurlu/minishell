@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:25:20 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 17:18:32 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 08:49:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ void	input_file(t_redirect_list *redirections, int *fd)
 
 void	here_doc(t_redirect_list *redirections, int *fd)
 {
-	int		fd_pipe[2];
 	char	*line;
-	int		i;
+	int		fd_pipe[2];
 
-	i = 0;
 	if (fd[0] != 0)
 		close(fd[0]);
 	pipe(fd_pipe);

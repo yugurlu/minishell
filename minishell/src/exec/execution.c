@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 17:34:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 10:07:02 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,6 @@ void	close_files(t_parsed_cmd_managed_list *parse)
 		close(parse->previous->fd[0]);
 }
 
-char	*path_finder(char *cmd)
-{
-	int		i;
-	char	*path;
-
-	i = 0;
-	path = NULL;
-	while (g_myenv.path[i])
-	{
-		path = join_but_no_free(g_myenv.path[i], "/");
-		path = ft_strjoin(path, cmd);
-		if (access(path, F_OK) == 0)
-		{
-			free(cmd);
-			return (path);
-		}
-		free(path);
-		i++;
-	}
-	error_command(cmd, 1);
-	return (NULL);
-}
-
 void	choose_execution(t_parsed_cmd_managed_list *parse)
 {
 	if (is_builtin(parse->command->argv[0]))
@@ -63,15 +40,7 @@ void	choose_execution(t_parsed_cmd_managed_list *parse)
 	else
 	{
 		if (access(parse->command->argv[0], F_OK) == 0)
-		{
-			if (stat(parse->command->argv[0], &g_myenv.stat) == 0)
-				error_command(parse->command->argv[0], 2);
-			else if(S_ISDIR(stat(parse->command->argv[0], g_myenv.stat.st_mode)))
-				error_command(parse->command->argv[0], 3);
-			else
-				execve(parse->command->argv[0], parse->command->argv,
-					g_myenv.env);
-		}
+			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
 		else
 		{
 			parse->command->argv[0] = path_finder(parse->command->argv[0]);
@@ -122,7 +91,7 @@ void	execution(t_parsed_cmd_managed_list *parse)
 	pipe_initialize(parse);
 	while (parse)
 	{
-		g_myenv.path = ft_split(g_myenv.env[find_line("PATH")], ':');
+		get_path();
 		child_execution(parse);
 		parse = parse->next;
 		if (parse)
