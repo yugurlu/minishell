@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 10:06:33 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 19:05:51 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <sys/stat.h>
 # include <unistd.h>
 
-typedef enum
+typedef enum s_direction
 {
-	INPUT_FILE,         // <
-	INPUT_NEXT_LINE,    // <<
-	OUTPUT_FILE_CREATE, // >
-	OUTPUT_FILE_APPEND, // >>
-	NO_REDIR            // no redirection
+	INPUT_FILE,
+	INPUT_NEXT_LINE,
+	OUTPUT_FILE_CREATE,
+	OUTPUT_FILE_APPEND,
+	NO_REDIR
 }										t_direction;
 
 typedef struct s_string_list
@@ -89,7 +89,6 @@ typedef struct s_parsed_cmd_managed_list
 	struct s_parsed_cmd_managed_list	*previous;
 }										t_parsed_cmd_managed_list;
 
-//parsing
 int	only_token_len(int flag,
 					t_direction type);
 void									init_env(char **env);
@@ -98,7 +97,9 @@ int										escape_space(char *input);
 char									*get_env_value(char *env);
 t_string_list							*extract_tokens(char *input);
 int										redirect_token_type(char *c);
-int										is_pipe(t_string_list *tokens);
+int	is_pipe(t_string_list *tokens,
+			t_parsed_cmd *parsed_cmd);
+t_parsed_cmd							*create_init_parsed_cmd(void);
 char									*rm_extern_quotes(char *input);
 int										ft_strchr_i(const char *s, int c);
 char									*search_env(char *value, char **env);
@@ -108,8 +109,6 @@ int										spaceparse(char *input, char *command);
 t_parsed_cmd_managed_list				*preprocess(t_parsed_cmd_list *command_line);
 t_parsed_cmd_list						*create_parsed_cmd_list(t_string_list *tokens);
 int										*open_input_ouput_files(t_redirect_list *redirections);
-
-//execution
 void									get_path(void);
 int										is_builtin(char *cmd);
 char									*path_finder(char *cmd);
@@ -119,17 +118,11 @@ int										managed_redirection(t_parsed_cmd_managed_list *parse);
 int										*open_input_ouput_files(t_redirect_list *redirections);
 int	exec_builtin(t_parsed_cmd_managed_list *parse,
 					char *cmd);
-
-//exit
 void									ft_exit(t_string_list *tokens);
 int										exit_condition(char *input);
 void									numeric(char *input, char **split);
-
-//quotes
 int										quotes(char *s);
 int										empty(char *input);
-
-//builtins
 void									env(void);
 void									pwd(void);
 int										cd(char *arg);
@@ -140,19 +133,13 @@ void									echo(char **args);
 void									export(char **arr);
 int										find_line(char *str);
 char									**set_env(char *env_name, char *value);
-
-//error
 void	error_redirections(char *file,
 						int err_type);
 void									error_command(char *cmd, int err_type);
 void									error_exit(char *string, int err_type);
 void									error_cd(char *file, int err_type);
-
-//signal
 void									signal_control(void);
 void									ctrl_d(char *line);
-
-//utils
 int										ispace(char *s);
 int										is_quote(char *c);
 int										my_free(char *str);
@@ -177,5 +164,9 @@ void									free_parsed_cmd_list(t_parsed_cmd_list *parsed_cmd_list);
 void									free_parsed_cmd_managed_list(t_parsed_cmd_managed_list *parse);
 char	*remove_quotes(char *file,
 					char *dest);
+void									manage_variable(t_string_list **start_token,
+											t_string_list **tokens,
+											t_parsed_cmd **parsed_cmd,
+											t_parsed_cmd_list **parsed_cmd_list);
 
 #endif

@@ -48,7 +48,8 @@ SRCS        :=      libft/ft_strnstr.c \
                           libft/ft_itoa.c \
                           libft/ft_tolower.c \
                           src/utils/utils2.c \
-                          src/utils/tokens_utils.c \
+                          src/utils/utils_tokens.c \
+                          src/utils/utils_list.c \
                           src/utils/utils_env.c \
                           src/utils/utils.c \
                           src/utils/utils3.c \

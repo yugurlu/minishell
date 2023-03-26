@@ -6,15 +6,21 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 10:23:43 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 19:01:14 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_pipe(t_string_list *tokens)
+int	is_pipe(t_string_list *tokens, t_parsed_cmd *parsed_cmd)
 {
-	return (tokens->string[0] == '|');
+	if (tokens->string[0] == '|')
+	{
+		if (parsed_cmd)
+			parsed_cmd->is_piped = 1;
+		return (1);
+	}
+	return (0);
 }
 
 int	end_pipe(t_string_list *tokens)
@@ -34,7 +40,7 @@ int	more_then_1_pipe(t_string_list *tokens)
 	{
 		if (tokens->next)
 		{
-			if (is_pipe(tokens) && is_pipe(tokens->next))
+			if (is_pipe(tokens, NULL) && is_pipe(tokens->next, NULL))
 				return (1);
 		}
 		else if (!tokens->next && end_pipe(tokens))
@@ -55,7 +61,7 @@ int	redirection_control(t_string_list *tokens)
 
 int	correct_syntax(t_string_list *tokens)
 {
-	if (is_pipe(tokens) || more_then_1_pipe(tokens))
+	if (is_pipe(tokens, NULL) || more_then_1_pipe(tokens))
 	{
 		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
 		return (0);
@@ -67,7 +73,7 @@ int	correct_syntax(t_string_list *tokens)
 			if (!redirection_control(tokens))
 			{
 				ft_putstr_fd("syntax error near unexpected token `newline'\n",
-								2);
+					2);
 				return (0);
 			}
 		}

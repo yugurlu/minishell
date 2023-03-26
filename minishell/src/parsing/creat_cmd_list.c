@@ -6,22 +6,11 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:38:37 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 19:09:58 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-t_parsed_cmd	*create_init_parsed_cmd(void)
-{
-	t_parsed_cmd	*parsed_cmd;
-
-	parsed_cmd = (t_parsed_cmd *)malloc(sizeof(t_parsed_cmd));
-	parsed_cmd->arguments = (t_string_list *)(NULL);
-	parsed_cmd->redirections = (t_redirect_list *)(NULL);
-	parsed_cmd->is_piped = 0;
-	return (parsed_cmd);
-}
 
 void	new_pcl(t_parsed_cmd_list **put_pcl, t_parsed_cmd *parsed_cmd)
 {
@@ -81,8 +70,10 @@ void	new_redirect(t_redirect_list **put_redir, char *file, int type)
 	temp->next = new_redir;
 }
 
-void	parse_fill_cmd(t_parsed_cmd *parsed_cmd, t_string_list *start_token,
-		t_string_list *check_token)
+void	fill_cmd(t_parsed_cmd_list **parsed_cmd_list,
+				t_parsed_cmd *parsed_cmd,
+				t_string_list *start_token,
+				t_string_list *check_token)
 {
 	while (start_token)
 	{
@@ -98,6 +89,7 @@ void	parse_fill_cmd(t_parsed_cmd *parsed_cmd, t_string_list *start_token,
 			break ;
 		start_token = start_token->next;
 	}
+	new_pcl(parsed_cmd_list, parsed_cmd);
 }
 
 t_parsed_cmd_list	*create_parsed_cmd_list(t_string_list *tokens)
@@ -106,30 +98,22 @@ t_parsed_cmd_list	*create_parsed_cmd_list(t_string_list *tokens)
 	t_parsed_cmd		*parsed_cmd;
 	t_parsed_cmd_list	*parsed_cmd_list;
 
-	start_token = tokens;
-	parsed_cmd_list = NULL;
-	parsed_cmd = create_init_parsed_cmd();
+	manage_variable(&start_token, &tokens, &parsed_cmd, &parsed_cmd_list);
 	while (tokens)
 	{
 		if (tokens->next)
 		{
-			if (is_pipe(tokens->next))
+			if (is_pipe(tokens->next, parsed_cmd))
 			{
-				parsed_cmd->is_piped = 1;
-				parse_fill_cmd(parsed_cmd, start_token, tokens);
-				new_pcl(&parsed_cmd_list, parsed_cmd);
+				fill_cmd(&parsed_cmd_list, parsed_cmd, start_token, tokens);
 				tokens = tokens->next;
-				if (tokens->next)
-				{
-					parsed_cmd = create_init_parsed_cmd();
-					start_token = tokens->next;
-				}
+				parsed_cmd = create_init_parsed_cmd();
+				start_token = tokens->next;
 			}
 		}
 		else
 		{
-			parse_fill_cmd(parsed_cmd, start_token, tokens);
-			new_pcl(&parsed_cmd_list, parsed_cmd);
+			fill_cmd(&parsed_cmd_list, parsed_cmd, start_token, tokens);
 			break ;
 		}
 		tokens = tokens->next;

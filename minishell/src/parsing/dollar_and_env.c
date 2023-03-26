@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 15:17:32 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 18:27:20 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ char	*back_dollar(char *str)
 	}
 	back[i] = '\0';
 	return (back);
-}
-
-void	init_env(char **env)
-{
-	int	i;
-
-	i = 0;
-	g_myenv.env = malloc(sizeof(char *) * (split_len(env) + 1));
-	while (env[i])
-	{
-		g_myenv.env[i] = ft_strdup(env[i]);
-		i++;
-	}
-	g_myenv.env[i] = NULL;
 }
 
 char	*ft_getenv(char *str)

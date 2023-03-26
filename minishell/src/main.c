@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 10:12:05 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 18:27:40 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ void	add(char *input)
 {
 	if (ft_strlen(input))
 		add_history(input);
+}
+
+void	init_env(char **env)
+{
+	int	i;
+
+	i = 0;
+	g_myenv.env = malloc(sizeof(char *) * (split_len(env) + 1));
+	while (env[i])
+	{
+		g_myenv.env[i] = ft_strdup(env[i]);
+		i++;
+	}
+	g_myenv.env[i] = NULL;
 }
 
 int	main(int ac, char **av, char **env)

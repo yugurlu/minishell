@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:37:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:55:42 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/26 19:26:32 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,18 @@ void	help_getenv(int *i, int *k, char *temp)
 	temp[*k] = '\0';
 }
 
-void	help(int *is_env, char *str, int *i, int *len)
+void is_envv(char *str, int *is_env, int *i)
+{
+	if(str[*i] == '$')
+	{
+		*i += 1;
+		*is_env = 1;
+	}
+	else
+		*is_env = 0;
+}
+
+void	help2(int *is_env, char *str, int *i, int *len)
 {
 	if (*is_env)
 	{
@@ -49,19 +60,13 @@ void	help_func(char **new, char *str, int *i, int *len, int *is_env)
 
 	j = 0;
 	*len = 0;
-	if (str[*i] == '$')
-	{
-		*is_env = 1;
-		*i += 1;
-	}
-	else
-		*is_env = 0;
+	is_envv(str, is_env, i);
 	if (!str[*i] && (*new = ft_strdup("$")))
 		return ;
 	if (str[*i] == '?' && str[*i - 1] == '$'
 		&& ((*new) = ft_itoa(g_myenv.ret_exit)) && (*i += 1))
 		return ;
-	help(is_env, str, i, len);
+	help2(is_env, str, i, len);
 	*new = malloc(*len + 1);
 	while (j < *len)
 	{
