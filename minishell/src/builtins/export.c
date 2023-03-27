@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:30:03 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 17:11:16 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,26 @@ char	**set_env(char *env_name, char *value)
 
 void	export(char **arr)
 {
+	int 	i;
 	char	**split;
 	char	**new_env;
 
-	split = NULL;
+	i = 1;
 	new_env = NULL;
-	if (arr[1])
+	while (arr[i])
 	{
-		split = ft_split(arr[1], '=');
+		split = ft_split(arr[i], '=');
 		if (split[1])
 		{
 			new_env = set_env(split[0], split[1]);
 			free_split(g_myenv.env);
 			g_myenv.env = new_env;
-			free_split(split);
 			g_myenv.ret_exit = 0;
-			return ;
+			free_split(split);
 		}
+		i++;
 	}
-	else if (ft_strcmp(arr[0], "export") == 0)
+	if (ft_strcmp(arr[0], "export") == 0 && !arr[1])
 		print_env_with_export(g_myenv.env);
-	free_split(split);
 	g_myenv.ret_exit = 0;
 }

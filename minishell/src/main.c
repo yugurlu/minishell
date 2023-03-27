@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 13:01:06 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:45:31 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int	main(int ac, char **av, char **env)
 			{
 				parsed_cmd_managed_list = parsing(input);
 				execution(parsed_cmd_managed_list);
-				free(input);
 				free_parsed_cmd_managed_list(parsed_cmd_managed_list);
 			}
+			free(input);
 		}
 	}
 }
