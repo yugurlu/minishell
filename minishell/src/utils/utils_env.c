@@ -6,35 +6,21 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:37:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 19:26:32 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 12:23:20 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	help_getenv(int *i, int *k, char *temp)
+void	help2(char **new, int *i)
 {
-	while (g_myenv.env[*i][*k] && g_myenv.env[*i][*k] != '=')
-	{
-		temp[*k] = g_myenv.env[*i][*k];
-		(*k)++;
-	}
-	temp[*k] = '\0';
+	*new = ft_itoa(g_myenv.ret_exit);
+	*i += 1;
 }
 
-void is_envv(char *str, int *is_env, int *i)
+void	help3(int *is_env, char *str, int *i, int *len)
 {
-	if(str[*i] == '$')
-	{
-		*i += 1;
-		*is_env = 1;
-	}
-	else
-		*is_env = 0;
-}
-
-void	help2(int *is_env, char *str, int *i, int *len)
-{
+	*len = 0;
 	if (*is_env)
 	{
 		while (str[*i] != '$' && str[*i] != '\0' && str[*i] != '?')
@@ -54,19 +40,25 @@ void	help2(int *is_env, char *str, int *i, int *len)
 	*i -= *len;
 }
 
-void	help_func(char **new, char *str, int *i, int *len, int *is_env)
+void	help(char **new, char *str, int *i, int *len)
 {
 	int	j;
+	int	is_env;
 
 	j = 0;
-	*len = 0;
-	is_envv(str, is_env, i);
-	if (!str[*i] && (*new = ft_strdup("$")))
+	is_env = 0;
+	is_envv(str, &is_env, i);
+	if (!str[*i])
+	{
+		*new = ft_strdup("$");
 		return ;
-	if (str[*i] == '?' && str[*i - 1] == '$'
-		&& ((*new) = ft_itoa(g_myenv.ret_exit)) && (*i += 1))
+	}
+	if (str[*i] == '?' && str[*i - 1] == '$')
+	{
+		help2(new, i);
 		return ;
-	help2(is_env, str, i, len);
+	}
+	help3(&is_env, str, i, len);
 	*new = malloc(*len + 1);
 	while (j < *len)
 	{

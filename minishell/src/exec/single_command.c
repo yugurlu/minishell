@@ -6,13 +6,13 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:59 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:26:28 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:00:27 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	control(t_parsed_cmd_managed_list *parse)
+int	control(t_prsd_mng_l *parse)
 {
 	if (!is_builtin(parse->command->argv[0]))
 		return (0);
@@ -38,7 +38,7 @@ int	is_builtin(char *cmd)
 	return (0);
 }
 
-int	exec_builtin(t_parsed_cmd_managed_list *parse, char *cmd)
+int	exec_builtin(t_prsd_mng_l *parse, char *cmd)
 {
 	if (ft_strcmp(cmd, "echo") == 0)
 		echo(parse->command->argv);
@@ -55,7 +55,7 @@ int	exec_builtin(t_parsed_cmd_managed_list *parse, char *cmd)
 	return (0);
 }
 
-int	managed_redirection(t_parsed_cmd_managed_list *parse)
+int	managed_redirection(t_prsd_mng_l *parse)
 {
 	if (parse->command->in_desc == -1 || parse->command->out_desc == -1)
 		return (0);
@@ -66,7 +66,7 @@ int	managed_redirection(t_parsed_cmd_managed_list *parse)
 	return (1);
 }
 
-int	single_command(t_parsed_cmd_managed_list *parse)
+int	single_command(t_prsd_mng_l *parse)
 {
 	int	in;
 	int	out;

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:36:34 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:26:04 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:01:39 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ char	**create_argv(t_string_list *arguments, int *argc)
 	return (argv);
 }
 
-t_parsed_cmd_managed_list	*append_new_cmd(t_parsed_cmd_managed_list **headle)
+t_prsd_mng_l	*append_new_cmd(t_prsd_mng_l **headle)
 {
-	t_parsed_cmd_managed_list	*new;
-	t_parsed_cmd_managed_list	*temp;
+	t_prsd_mng_l	*new;
+	t_prsd_mng_l	*temp;
 
-	new = malloc(sizeof(t_parsed_cmd_managed_list));
+	new = malloc(sizeof(t_prsd_mng_l));
 	new->next = NULL;
 	new->previous = NULL;
 	new->command = NULL;
@@ -59,13 +59,13 @@ t_parsed_cmd_managed_list	*append_new_cmd(t_parsed_cmd_managed_list **headle)
 	return (new);
 }
 
-t_parsed_cmd_managed_list	*preprocess(t_parsed_cmd_list *command_line)
+t_prsd_mng_l	*preprocess(t_prsd_cmd_l *command_line)
 {
-	int							*fd;
-	t_parsed_cmd				*cmd;
-	t_parsed_cmd_managed_list	*ptr;
-	t_parsed_cmd_managed_list	*prev;
-	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
+	int				*fd;
+	t_parsed_cmd	*cmd;
+	t_prsd_mng_l	*ptr;
+	t_prsd_mng_l	*prev;
+	t_prsd_mng_l	*parsed_cmd_managed_list;
 
 	ptr = NULL;
 	parsed_cmd_managed_list = NULL;

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 18:27:20 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 12:05:56 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,13 @@ char	*get_env_value(char *str)
 	skip_dollar(str, &i);
 	while (str[i])
 	{
-		help_func(&new_str, str, &i, &len, &is_env);
+		envv(str, &is_env, &i);
+		help(&new_str, str, &i, &len);
 		if (is_env == 1)
 		{
 			if (ft_isdigit(new_str[0]))
 				join = ft_strjoin(join, new_str);
-			if (!ft_getenv(new_str))
-				;
-			else
+			if (ft_getenv(new_str))
 				join = ft_strjoin(join, ft_getenv(new_str));
 			free(new_str);
 		}

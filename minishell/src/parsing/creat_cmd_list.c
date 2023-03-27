@@ -6,18 +6,18 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 19:09:58 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:01:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	new_pcl(t_parsed_cmd_list **put_pcl, t_parsed_cmd *parsed_cmd)
+void	new_pcl(t_prsd_cmd_l **put_pcl, t_parsed_cmd *parsed_cmd)
 {
-	t_parsed_cmd_list	*temp;
-	t_parsed_cmd_list	*new_pcl;
+	t_prsd_cmd_l	*temp;
+	t_prsd_cmd_l	*new_pcl;
 
-	new_pcl = (t_parsed_cmd_list *)malloc(sizeof(t_parsed_cmd_list));
+	new_pcl = (t_prsd_cmd_l *)malloc(sizeof(t_prsd_cmd_l));
 	new_pcl->command = parsed_cmd;
 	new_pcl->next = NULL;
 	if (!*put_pcl)
@@ -70,7 +70,7 @@ void	new_redirect(t_redirect_list **put_redir, char *file, int type)
 	temp->next = new_redir;
 }
 
-void	fill_cmd(t_parsed_cmd_list **parsed_cmd_list,
+void	fill_cmd(t_prsd_cmd_l **parsed_cmd_list,
 				t_parsed_cmd *parsed_cmd,
 				t_string_list *start_token,
 				t_string_list *check_token)
@@ -92,11 +92,11 @@ void	fill_cmd(t_parsed_cmd_list **parsed_cmd_list,
 	new_pcl(parsed_cmd_list, parsed_cmd);
 }
 
-t_parsed_cmd_list	*create_parsed_cmd_list(t_string_list *tokens)
+t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens)
 {
-	t_string_list		*start_token;
-	t_parsed_cmd		*parsed_cmd;
-	t_parsed_cmd_list	*parsed_cmd_list;
+	t_string_list	*start_token;
+	t_parsed_cmd	*parsed_cmd;
+	t_prsd_cmd_l	*parsed_cmd_list;
 
 	manage_variable(&start_token, &tokens, &parsed_cmd, &parsed_cmd_list);
 	while (tokens)

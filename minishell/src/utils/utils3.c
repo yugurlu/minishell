@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:31:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:00:55 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	free_redirect_list(t_redirect_list *redirections)
 	}
 }
 
-void	free_parsed_cmd_list(t_parsed_cmd_list *parsed_cmd_list)
+void	free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list)
 {
-	t_parsed_cmd_list	*tmp;
+	t_prsd_cmd_l	*tmp;
 
 	while (parsed_cmd_list)
 	{
@@ -54,9 +54,9 @@ void	free_parsed_cmd_list(t_parsed_cmd_list *parsed_cmd_list)
 	}
 }
 
-void	free_parsed_cmd_managed_list(t_parsed_cmd_managed_list *parse)
+void	free_parsed_cmd_managed_list(t_prsd_mng_l *parse)
 {
-	t_parsed_cmd_managed_list	*tmp;
+	t_prsd_mng_l	*tmp;
 
 	tmp = parse;
 	while (tmp)

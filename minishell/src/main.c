@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 18:27:40 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:01:06 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	init_env(char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	char						*input;
-	t_parsed_cmd_managed_list	*parsed_cmd_managed_list;
+	char			*input;
+	t_prsd_mng_l	*parsed_cmd_managed_list;
 
 	(void)av;
 	if (ac == 1)

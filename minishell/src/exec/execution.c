@@ -6,13 +6,13 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 10:07:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/27 13:01:12 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	pipe_initialize(t_parsed_cmd_managed_list *parse)
+void	pipe_initialize(t_prsd_mng_l *parse)
 {
 	while (parse)
 	{
@@ -21,7 +21,7 @@ void	pipe_initialize(t_parsed_cmd_managed_list *parse)
 	}
 }
 
-void	close_files(t_parsed_cmd_managed_list *parse)
+void	close_files(t_prsd_mng_l *parse)
 {
 	if (parse->command->in_desc != 0)
 		close(parse->command->in_desc);
@@ -33,7 +33,7 @@ void	close_files(t_parsed_cmd_managed_list *parse)
 		close(parse->previous->fd[0]);
 }
 
-void	choose_execution(t_parsed_cmd_managed_list *parse)
+void	choose_execution(t_prsd_mng_l *parse)
 {
 	if (is_builtin(parse->command->argv[0]))
 		exec_builtin(parse, parse->command->argv[0]);
@@ -54,7 +54,7 @@ void	choose_execution(t_parsed_cmd_managed_list *parse)
 	exit(0);
 }
 
-void	child_execution(t_parsed_cmd_managed_list *parse)
+void	child_execution(t_prsd_mng_l *parse)
 {
 	parse->pid = fork();
 	if (parse->pid == 0)
@@ -80,10 +80,10 @@ void	child_execution(t_parsed_cmd_managed_list *parse)
 	close_files(parse);
 }
 
-void	execution(t_parsed_cmd_managed_list *parse)
+void	execution(t_prsd_mng_l *parse)
 {
-	int							status;
-	t_parsed_cmd_managed_list	*previous;
+	int				status;
+	t_prsd_mng_l	*previous;
 
 	previous = parse;
 	if (single_command(parse))

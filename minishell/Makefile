@@ -51,6 +51,7 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/utils/utils_tokens.c \
                           src/utils/utils_list.c \
                           src/utils/utils_env.c \
+                          src/utils/utils_env2.c \
                           src/utils/utils.c \
                           src/utils/utils3.c \
                           src/builtins/exit.c \
