@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 17:11:16 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:06:24 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**set_env(char *env_name, char *value)
 
 void	export(char **arr)
 {
-	int 	i;
+	int		i;
 	char	**split;
 	char	**new_env;
 

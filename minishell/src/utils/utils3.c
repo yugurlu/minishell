@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 13:00:55 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:40:47 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	free_parsed_cmd_managed_list(t_prsd_mng_l *parse)
 void	free_env_list(void)
 {
 	free_split(g_myenv.env);
-	free_split(g_myenv.path);
+	if (g_myenv.path)
+		free_split(g_myenv.path);
 }

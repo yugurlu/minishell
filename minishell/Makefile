@@ -2,7 +2,7 @@
 
 NAME        := minishell
 CC        := gcc
-FLAGS    := -Wall -Wextra -Werror #-g -fsanitize=address
+FLAGS    := -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS        :=      libft/ft_strnstr.c \
                           libft/ft_isdigit.c \
@@ -79,7 +79,7 @@ SRCS        :=      libft/ft_strnstr.c \
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 RM		    := rm -f
 
@@ -87,8 +87,6 @@ ${NAME}:	${OBJS}
 			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -lreadline
 
 all:		${NAME}
-
-bonus:		all
 
 clean:
 			@ ${RM} *.o */*.o */*/*.o
