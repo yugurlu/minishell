@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 21:51:21 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 11:37:30 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/28 13:20:39 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	*spliit(char **str, char const *s, char c)
 			i++;
 			count++;
 		}
-		str[indx] = (char *)malloc(count * sizeof(char) + 1);
+		str[indx] = (char *)malloc(sizeof(char) * (count + 1));
 		if (!str[indx])
 			return (NULL);
 		copy(str[indx], s, i, count);
@@ -83,7 +83,7 @@ char	**ft_split(char const *s, char c)
 
 	if (s)
 	{
-		str = malloc(splitlen(s, c) * (sizeof(char *) + 1));
+		str = malloc((sizeof(char *) * (splitlen(s, c) + 1)));
 		if (!str)
 			return (NULL);
 		spliit(str, s, c);

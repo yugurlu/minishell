@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:24:52 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 11:40:47 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/28 13:57:39 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,20 @@ void	free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list)
 void	free_parsed_cmd_managed_list(t_prsd_mng_l *parse)
 {
 	t_prsd_mng_l	*tmp;
+	t_prsd_mng_l	*start;
 
-	tmp = parse;
-	while (tmp)
+	start = parse;
+	while (start)
 	{
+		tmp = start;
+		start = start->next;
 		free_split(tmp->command->argv);
 		free(tmp->command);
 		free(tmp);
-		tmp = parse->next;
-		parse = parse->next;
 	}
 }
 
 void	free_env_list(void)
 {
 	free_split(g_myenv.env);
-	if (g_myenv.path)
-		free_split(g_myenv.path);
 }
