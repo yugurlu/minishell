@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 12:05:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:39:48 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,20 @@ t_string_list	*dollar_and_env(t_string_list *tokens)
 	start = tokens;
 	while (tokens)
 	{
-		if (ft_strchr(tokens->string, '$') && ft_strlen(tokens->string) > 1)
+		if (tokens->quotes == 2 || tokens->quotes == 0)
 		{
-			if (tokens->string[0] != '$')
-				back = back_dollar(tokens->string);
-			env = get_env_value(tokens->string);
-			free(tokens->string);
-			if (!env)
-				tokens->string = ft_strdup("");
-			else
-				tokens->string = ft_strjoin(back, env);
-			free(env);
+			if (ft_strchr(tokens->string, '$') && ft_strlen(tokens->string) > 1)
+			{
+				if (tokens->string[0] != '$')
+					back = back_dollar(tokens->string);
+				env = get_env_value(tokens->string);
+				free(tokens->string);
+				if (!env)
+					tokens->string = ft_strdup("");
+				else
+					tokens->string = ft_strjoin(back, env);
+				free(env);
+			}
 		}
 		tokens = tokens->next;
 	}

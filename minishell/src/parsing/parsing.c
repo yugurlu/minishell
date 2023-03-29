@@ -6,11 +6,23 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 13:01:34 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 13:01:43 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	printf_tokens(t_string_list *tokens)
+{
+	t_string_list	*tmp;
+
+	tmp = tokens;
+	while (tmp)
+	{
+		printf("[%s] ", tmp->string);
+		tmp = tmp->next;
+	}
+}
 
 t_prsd_mng_l	*parsing(char *input)
 {

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 11:16:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:22:21 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ t_string_list	*create_token(char *input, int token_l)
 	if (is_there_quotes(input))
 	{
 		dest = malloc(no_quote_len(input) + 1);
+		new_token->quotes = 0;
+		if (input[0] == '\'')
+			new_token->quotes = 1;
 		new_token->string = ft_strdup(remove_quotes(input, dest));
 		free(dest);
 		return (new_token);
 	}
+	new_token->quotes = 2;
 	dest = malloc(token_l + 1);
 	new_token->string = ft_strdup(strncopy(dest, input, token_l));
 	free(dest);

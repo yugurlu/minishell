@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:17:15 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 13:59:25 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:32:08 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ctrl_d(char *line)
 		ft_putstr_fd("exit\n", 1);
 		free(line);
 		free_env_list();
-		//system("leaks minishell");
+	//	system("leaks minishell");
 		exit(0);
 	}
 }

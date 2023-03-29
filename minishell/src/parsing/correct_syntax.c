@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 19:01:14 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 13:01:17 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_pipe(t_string_list *tokens, t_parsed_cmd *parsed_cmd)
 {
+	if (tokens->quotes != 2)
+		return (0);
 	if (tokens->string[0] == '|')
 	{
 		if (parsed_cmd)
@@ -31,6 +33,8 @@ int	end_pipe(t_string_list *tokens)
 	while (tokens->string[i])
 		i++;
 	i--;
+	if (tokens->string[i] == '|' && tokens->quotes != 2)
+		return (0);
 	return (tokens->string[i] == '|');
 }
 

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 11:06:24 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 13:22:30 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**set_env(char *env_name, char *value)
 	line = find_line(env_name);
 	if (line != -1)
 	{
-		new_env = malloc(sizeof(char *) * (split_len(g_myenv.env)) + 1);
+		new_env = malloc(sizeof(char *) * (split_len(g_myenv.env) + 1));
 		while (g_myenv.env[++i])
 		{
 			if (i == line)

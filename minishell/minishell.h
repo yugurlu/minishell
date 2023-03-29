@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 10:50:28 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:20:38 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef enum s_direction
 typedef struct s_string_list
 {
 	char								*string;
+	int									quotes;
 	struct s_string_list				*next;
 }										t_string_list;
 

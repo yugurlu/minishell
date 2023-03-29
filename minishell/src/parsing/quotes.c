@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/20 15:50:43 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:13:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,15 @@ char	*remove_quotes(char *file, char *dest)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	while (file[i] && file[i] != '\'' && file[i] != '\"')
-		dest[j++] = file[i++];
+	while (file[i])
+	{
+		if (file[i] != '\'' && file[i] != '\"')
+			dest[j++] = file[i++];
+		else
+			i++;
+	}
 	dest[j] = '\0';
 	return (dest);
 }
@@ -74,7 +79,7 @@ int	quotes(char *s)
 		i++;
 	}
 	if (flag)
-		printf("Unclosed quotes, please try again without it\n");
+		ft_putstr_fd("Unclosed quotes, please try again without it\n", 2);
 	return (flag);
 }
 
@@ -87,7 +92,7 @@ int	empty(char *input)
 		c = input[0];
 		if (input[1] && c == input[1])
 		{
-			printf("bash: : command not found\n");
+			ft_putstr_fd("bash: : command not found\n", 2);
 			return (1);
 		}
 	}
