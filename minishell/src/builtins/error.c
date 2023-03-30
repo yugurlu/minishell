@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 09:57:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:33:34 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	error_command(char *cmd, int err_type)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": command not found\n", 2);
+		g_myenv.ret_exit = 127;
 		free(cmd);
 	}
 }

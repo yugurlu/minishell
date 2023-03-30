@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/29 13:01:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 17:34:04 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	correct_syntax(t_string_list *tokens)
 	if (is_pipe(tokens, NULL) || more_then_1_pipe(tokens))
 	{
 		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
+		g_myenv.ret_exit = 127;
 		return (0);
 	}
 	while (tokens)
@@ -77,7 +78,8 @@ int	correct_syntax(t_string_list *tokens)
 			if (!redirection_control(tokens))
 			{
 				ft_putstr_fd("syntax error near unexpected token `newline'\n",
-					2);
+								2);
+				g_myenv.ret_exit = 127;
 				return (0);
 			}
 		}
