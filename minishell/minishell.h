@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/29 12:20:38 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:49:09 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int				quotes(char *s);
 void			echo(char **arg);
 void			echo(char **args);
 int				is_quote(char *c);
-void			unset(char *args);
+void			unset(char **args);
 void			ctrl_d(char *line);
 void			export(char **arr);
 void			ctrl_d(char *line);

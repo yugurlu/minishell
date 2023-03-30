@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 11:44:59 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 13:00:27 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:35:15 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	exec_builtin(t_prsd_mng_l *parse, char *cmd)
 	else if (ft_strcmp(cmd, "export") == 0)
 		export(parse->command->argv);
 	else if (ft_strcmp(cmd, "unset") == 0)
-		unset(parse->command->argv[1]);
+		unset(parse->command->argv);
 	else if (ft_strcmp(cmd, "env") == 0)
 		env();
 	return (0);

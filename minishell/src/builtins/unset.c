@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:16:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 13:19:10 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 12:27:15 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,24 @@ char	**remove_line(char **arr, int line)
 	return (new_env);
 }
 
-void	unset(char *args)
+void	unset(char **args)
 {
+	int		i;
 	int		line;
 	char	**new_env;
 
-	line = find_line(args);
-	if (line != -1)
+	i = 1;
+	while (args[i])
 	{
-		new_env = remove_line(g_myenv.env, line);
-		free_split(g_myenv.env);
-		g_myenv.env = new_env;
-		g_myenv.ret_exit = 0;
+		line = find_line(args[i]);
+		if (line != -1)
+		{
+			new_env = remove_line(g_myenv.env, line);
+			free_split(g_myenv.env);
+			g_myenv.env = new_env;
+			g_myenv.ret_exit = 0;
+		}
+		i++;
 	}
 	g_myenv.ret_exit = 0;
 }

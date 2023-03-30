@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:06:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:38:00 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:28:11 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ void	env(void)
 
 	i = 0;
 	while (g_myenv.env[i])
-		printf("%s\n", g_myenv.env[i++]);
+		ft_putendl_fd(g_myenv.env[i++], 1);
 	g_myenv.ret_exit = 0;
 }

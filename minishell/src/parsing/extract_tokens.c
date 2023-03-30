@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/29 12:22:21 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/30 11:21:37 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	token_len(char *input)
 		type = redirect_token_type(&input[token_l]);
 		if (type != NO_REDIR)
 			flag = token_l;
+		if (input[token_l + 1] == '|' || input[token_l] == '|')
+		{
+			token_l++;
+			break ;
+		}
 		else if (input[token_l] == '\'' || input[token_l] == '"')
 			token_l += ft_strchr_i(&input[token_l + 1], input[token_l]) + 1;
 		token_l++;
