@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 10:03:45 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 10:04:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 12:40:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ char	*path_finder(char *cmd)
 			if (access(path, F_OK) == 0)
 			{
 				free(cmd);
+				g_myenv.command_not_found = 0;
 				return (path);
 			}
 			free(path);
 			i++;
 		}
 	}
+	g_myenv.command_not_found = 1;
 	error_command(cmd, 1);
 	return (NULL);
 }

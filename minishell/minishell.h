@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/30 11:49:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:23:26 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_myenv
 	char								**env;
 	char								**path;
 	int									ret_exit;
+	int									command_not_found;
 	int									*is_exit;
 	struct stat							*stat;
 }										t_myenv;
@@ -170,5 +171,4 @@ void			manage_variable(t_string_list **start_token,
 					t_string_list **tokens,
 					t_parsed_cmd **parsed_cmd,
 					t_prsd_cmd_l **parsed_cmd_list);
-
 #endif

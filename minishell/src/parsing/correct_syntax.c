@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/30 17:34:04 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 12:15:52 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ int	end_pipe(t_string_list *tokens)
 	int	i;
 
 	i = 0;
-	while (tokens->string[i])
-		i++;
-	i--;
-	if (tokens->string[i] == '|' && tokens->quotes != 2)
-		return (0);
-	return (tokens->string[i] == '|');
+	if (tokens->string[i])
+	{
+		while (tokens->string[i])
+			i++;
+		i--;
+		if (tokens->string[i] == '|' && tokens->quotes != 2)
+			return (0);
+		return (tokens->string[i] == '|');
+	}
+	return (0);
 }
 
 int	more_then_1_pipe(t_string_list *tokens)
@@ -78,7 +82,7 @@ int	correct_syntax(t_string_list *tokens)
 			if (!redirection_control(tokens))
 			{
 				ft_putstr_fd("syntax error near unexpected token `newline'\n",
-								2);
+					2);
 				g_myenv.ret_exit = 127;
 				return (0);
 			}

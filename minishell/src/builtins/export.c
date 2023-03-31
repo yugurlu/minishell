@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/29 13:22:30 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 14:13:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	export(char **arr)
 
 	i = 1;
 	new_env = NULL;
-	while (arr[i])
+	while (arr[i] && arr[i][0])
 	{
 		split = ft_split(arr[i], '=');
 		if (split[1])
@@ -80,7 +80,7 @@ void	export(char **arr)
 		}
 		i++;
 	}
-	if (ft_strcmp(arr[0], "export") == 0 && !arr[1])
+	if (!arr[1])
 		print_env_with_export(g_myenv.env);
 	g_myenv.ret_exit = 0;
 }

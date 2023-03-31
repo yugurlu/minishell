@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/27 16:59:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 15:12:59 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	choose_execution(t_prsd_mng_l *parse)
 		parse = parse->previous;
 	free_env_list();
 	free_parsed_cmd_managed_list(parse);
+	if (g_myenv.command_not_found)
+		exit(127);
 	exit(0);
 }
 
@@ -63,16 +65,7 @@ void	child_execution(t_prsd_mng_l *parse)
 			dup2(parse->fd[1], STDOUT_FILENO);
 		if (parse->previous && parse->command->in_desc == 0)
 			dup2(parse->previous->fd[0], STDIN_FILENO);
-		if (!managed_redirection(parse))
-		{
-			close(parse->fd[0]);
-			close(parse->fd[1]);
-			while (parse->previous)
-				parse = parse->previous;
-			free_env_list();
-			free_parsed_cmd_managed_list(parse);
-			exit(1);
-		}
+		managed_redirection(parse);
 		if (parse->command->argv[0])
 			choose_execution(parse);
 		exit(0);
@@ -94,10 +87,10 @@ void	execution(t_prsd_mng_l *parse)
 		get_path();
 		child_execution(parse);
 		parse = parse->next;
-		if (parse)
-			previous = parse->previous;
 		free_split(g_myenv.path);
 	}
+	while (previous->previous)
+		previous = previous->previous;
 	while (previous)
 	{
 		waitpid(previous->pid, &status, 0);

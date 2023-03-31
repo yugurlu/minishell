@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/30 12:37:51 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/03/31 13:23:11 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	printf_tokens(t_string_list *tokens)
 		printf("[%s] ", tmp->string);
 		tmp = tmp->next;
 	}
+	printf("\n");
 }
 
 t_prsd_mng_l	*parsing(char *input)
