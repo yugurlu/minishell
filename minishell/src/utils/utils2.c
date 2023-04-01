@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:24:40 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 19:00:30 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/04/01 10:52:25 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	isnumeric(char *str)
 			if (!ft_isdigit(str[i]))
 				return (0);
 		}
-		if((str[i] == '-' || str[i] == '+') && !str[i + 1])
+		if ((str[i] == '-' || str[i] == '+') && !str[i + 1])
 			return (0);
 		i++;
 	}
