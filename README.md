@@ -1,2 +1,2 @@
 # minishell
-42 Cursus Project
+42 Cursus Projects
