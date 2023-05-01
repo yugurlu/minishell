@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 13:13:37 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/01 15:45:48 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,7 @@ char	*remove_quotes(char *file, char *dest)
 		if (file[i] != '\'' && file[i] != '\"')
 			dest[j++] = file[i++];
 		else
-		{
-			if ((file[i] == '\'' || file[i] == '\"') && file[i + 1] == ' ')
-				break ;
 			i++;
-		}
 	}
 	dest[j] = '\0';
 	return (dest);
