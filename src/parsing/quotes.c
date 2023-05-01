@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 15:45:48 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/01 23:50:17 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	empty(char *input)
 {
 	char	c;
 
-	if (input[0] && (input[0] == '\'' || input[0] == '\"'))
+	if (input[0] && !input[2] && (input[0] == '\'' || input[0] == '\"'))
 	{
 		c = input[0];
 		if (input[1] && c == input[1])
