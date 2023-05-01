@@ -6,13 +6,13 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 13:23:11 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/01 22:52:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	printf_tokens(t_string_list *tokens)
+void	printf_tokens(t_string_list *tokens) // sil bunu
 {
 	t_string_list	*tmp;
 
