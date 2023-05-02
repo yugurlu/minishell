@@ -1,12 +1,8 @@
 
 
-NAME    = minishell
-CC = gcc
-INC = minishell.h
-CFLAGS = -Wall -Wextra -Werror -I ./lib/readline/include -ggdb
-LDFLAGS = -L ./lib/readline/lib -lreadline
-LIB	= ./lib/.minishell
-RM = rm -rf
+NAME        := minishell
+CC        := gcc
+FLAGS    := -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS        :=      libft/ft_strnstr.c \
                           libft/ft_isdigit.c \
@@ -58,7 +54,6 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/utils/utils_env2.c \
                           src/utils/utils.c \
                           src/utils/utils3.c \
-						  src/utils/utils_quotes.c \
                           src/builtins/exit.c \
                           src/builtins/unset.c \
                           src/builtins/env.c \
@@ -81,36 +76,24 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/parsing/dollar_and_env.c \
                           src/parsing/file.c \
 
-OBJS = $(SRCS:.c=.o)
-Y = "\033[33m"
-R = "\033[31m"
-G = "\033[32m"
-B = "\033[34m"
-X = "\033[0m"
-UP = "\033[A"
-CUT = "\033[K"
+OBJS        := $(SRCS:.c=.o)
 
-all: $(LIB) $(NAME)
+.c.o:
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yugurlu/readline/include
 
-$(NAME): $(OBJS)
-	@$(CC) ${LDFLAGS} $(OBJS) -o $(NAME)
-	@echo $(B)minishell is ready!
+RM		    := rm -f
 
-$(LIB):
-	@make -C ./include
+${NAME}:	${OBJS}
+			@${CC} ${FLAGS} -o ${NAME} ${OBJS} /Users/yugurlu/readline/include /Users/yugurlu/readline/lib -lreadline
 
-%.o: %.c $(INC)
-	@echo $(R)Complining [$<]
-	@${CC} $(CFLAGS) -c $< -o $@ $(CFLAGS)
+all:		${NAME}
 
 clean:
-	@$(RM) $(OBJS)
-	@echo $(R)Removed [$(OBJS)]
+			@ ${RM} *.o */*.o */*/*.o
 
-fclean: clean
-	@$(RM) $(NAME)
-	@echo $(R)Removed [$(NAME)]
+fclean:		clean
+			@ ${RM} ${NAME}
 
-re: fclean all
+re:			fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY:		all clean fclean re
