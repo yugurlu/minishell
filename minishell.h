@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/04/09 17:10:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:00:24 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int				single_command(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
 void			envv(char *str, int *is_env, int *i);
 int				correct_syntax(t_string_list *tokens);
+int				help_quotes(int *i, int *len, char *c);
 t_string_list	*dollar_and_env(t_string_list *tokens);
 int				spaceparse(char *input, char *command);
 char			*remove_quotes(char *file, char *dest);
@@ -162,10 +163,12 @@ void			help_getenv(int *i, int *k, char *temp);
 char			*strncopy(char *dest, char *src, int n);
 int				free_string_list(t_string_list *tokens);
 int				managed_redirection(t_prsd_mng_l *parse);
+void			fuck_norm(int *i, int *j, int *in_quotes);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			free_redirect_list(t_redirect_list *redirections);
 void			free_parsed_cmd_managed_list(t_prsd_mng_l *parse);
 void			free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list);
+int				help_quotes2(int *i, int *j, char *dest, char *input);
 int				*open_input_ouput_files(t_redirect_list *redirections);
 void			manage_variable(t_string_list **start_token,
 					t_string_list **tokens,

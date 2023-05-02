@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 23:50:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:12:50 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int ac, char **av, char **env)
 			signal_control();
 			input = readline("$ ");
 			ctrl_d(input);
+			rl_replace_line("", 0);
 			add(input);
 			if (input && (quotes(input) || empty(input)))
 				continue ;

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 13:20:06 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/24 11:01:56 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:19:17 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	pwd(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		perror("minishell : pwd :");
 		g_myenv.ret_exit = 1;
 		return ;
 	}

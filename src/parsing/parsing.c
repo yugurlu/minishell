@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 23:03:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/02 12:47:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_prsd_mng_l	*parsing(char *input)
 	tokens = extract_tokens(input);
 	if (tokens == NULL)
 		return (NULL);
+	printf_tokens(tokens);
 	dollar_and_env(tokens);
 	if (!correct_syntax(tokens) && free_string_list(tokens))
 		return (NULL);

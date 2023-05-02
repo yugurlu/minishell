@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 23:50:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/02 14:22:32 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	is_there_quotes(char *c)
 {
-	if (c[0] == '\'' || c[0] == '\"')
-		return (1);
+	int	i;
+
+	i = 0;
+	while (c[i] && c[i] != ' ')
+	{
+		if (c[i] == '\'' || c[i] == '"')
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -23,35 +30,52 @@ int	no_quote_len(char *c)
 {
 	int	i;
 	int	len;
+	int	in_quote;
 
 	i = 0;
 	len = 0;
+	in_quote = 0;
 	while (c[i])
 	{
 		if (c[i] == '\'' || c[i] == '\"')
-			i++;
-		else
 		{
-			len++;
-			i++;
+			if (in_quote == 0)
+				in_quote = 1;
+			else if (in_quote == 1)
+				if (help_quotes(&i, &len, c))
+					break ;
 		}
+		else
+			len++;
+		i++;
 	}
 	return (len);
 }
 
-char	*remove_quotes(char *file, char *dest)
+char	*remove_quotes(char *input, char *dest)
 {
 	int	i;
 	int	j;
+	int	in_quotes;
 
-	i = 0;
-	j = 0;
-	while (file[i])
+	fuck_norm(&i, &j, &in_quotes);
+	while (input[i])
 	{
-		if (file[i] != '\'' && file[i] != '\"')
-			dest[j++] = file[i++];
+		if (input[i] != '\'' && input[i] != '\"')
+			dest[j++] = input[i++];
 		else
+		{
+			if (in_quotes == 0)
+				in_quotes = 1;
+			else if (input[(i++) + 1] != ' ')
+			{
+				if (help_quotes2(&i, &j, dest, input))
+					break ;
+			}
+			else
+				break ;
 			i++;
+		}
 	}
 	dest[j] = '\0';
 	return (dest);
@@ -93,6 +117,7 @@ int	empty(char *input)
 		if (input[1] && c == input[1])
 		{
 			ft_putstr_fd("bash: : command not found\n", 2);
+			g_myenv.ret_exit = 127;
 			return (1);
 		}
 	}
