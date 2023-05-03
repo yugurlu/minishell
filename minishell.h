@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/02 17:37:16 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 14:21:49 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/stat.h>
+# include <sys/ioctl.h>
 # include <unistd.h>
 
 typedef enum s_direction
@@ -95,7 +96,7 @@ void			env(void);
 void			pwd(void);
 int				cd(char *arg);
 int				cd(char *args);
-void			get_path(void);
+void			get_path(t_prsd_mng_l *parse);
 int				ispace(char *s);
 int				quotes(char *s);
 void			echo(char **arg);
@@ -111,6 +112,7 @@ void			free_env_list(void);
 int				strisdigit(char *s);
 void			init_env(char **env);
 void			signal_control(void);
+void			help_quotes3(int *i, char *input);
 int				isnumeric(char *str);
 int				find_line(char *str);
 int				is_builtin(char *cmd);

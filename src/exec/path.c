@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 10:03:45 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 12:40:42 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 14:23:54 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	get_path(void)
+void	get_path(t_prsd_mng_l *parse)
 {
 	int	line;
 
@@ -21,6 +21,8 @@ void	get_path(void)
 		g_myenv.path = ft_split(g_myenv.env[line], ':');
 	else
 		g_myenv.path = NULL;
+	if (!ft_strcmp(parse->command->argv[0], "exit"))
+		parse->command->argv[0] = NULL;
 }
 
 char	*path_finder(char *cmd)

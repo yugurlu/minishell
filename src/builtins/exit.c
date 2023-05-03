@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 18:59:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 14:25:00 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	exit_pipe(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '|')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	search_exit(char *input)
 {
@@ -47,7 +61,7 @@ int	inside_the_space(char *input)
 
 int	exit_condition(char *input)
 {
-	if ((ft_strcmp(input, "exit") == 0))
+	if ((ft_strcmp(input, "exit") == 0) && exit_pipe(input))
 		return (1);
 	return (0);
 }

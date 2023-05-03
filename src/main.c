@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/02 18:16:31 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 13:41:41 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 void	add(char *input)
 {
@@ -47,7 +46,6 @@ int	main(int ac, char **av, char **env)
 			signal_control();
 			input = readline("$ ");
 			ctrl_d(input);
-			rl_replace_line("", 0);
 			add(input);
 			if (input && (quotes(input) || empty(input)))
 				continue ;

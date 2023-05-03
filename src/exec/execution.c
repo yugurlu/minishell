@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/04/29 16:02:31 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 14:22:26 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	execution(t_prsd_mng_l *parse)
 	pipe_initialize(parse);
 	while (parse)
 	{
-		get_path();
+		get_path(parse);
 		child_execution(parse);
 		parse = parse->next;
 		free_split(g_myenv.path);

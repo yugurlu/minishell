@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_tokens.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/02 14:20:43 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 13:45:27 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_string_list	*create_token(char *input, int token_l)
 	if (is_there_quotes(input))
 	{
 		dest = malloc(no_quote_len(input) + 1);
-		printf("no quote len = %d\n", no_quote_len(input));
+		//printf("no quote len = %d\n", no_quote_len(input));
 		//printf("no qoute len = %d\n", no_quote_len(input));
 		new_token->quotes = 0;
 		if (input[0] == '\'')

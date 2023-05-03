@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:17:15 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 15:29:44 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 13:42:30 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	ctrl_d(char *line)
 void	ctrl_c(int sig)
 {
 	(void)sig;
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	write(1, "\033[A", 3);
 }

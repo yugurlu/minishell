@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/02 14:00:34 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/03 13:43:09 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,10 @@ int	help_quotes2(int *i, int *j, char *dest, char *input)
 	if (input[*i] == ' ')
 		return (1);
 	return (0);
+}
+
+void	help_quotes3(int *i, char *input)
+{
+	if (input[*i] != 0)
+		*i += 1;
 }

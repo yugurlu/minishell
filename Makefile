@@ -75,16 +75,17 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/parsing/creat_cmd_list.c \
                           src/parsing/dollar_and_env.c \
                           src/parsing/file.c \
+                          src/utils/utils_quotes.c \
 
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yugurlu/readline/include
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/bsamli/readline/include
 
 RM		    := rm -f
 
 ${NAME}:	${OBJS}
-			@${CC} ${FLAGS} -o ${NAME} ${OBJS} /Users/yugurlu/readline/include /Users/yugurlu/readline/lib -lreadline
+			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -I/Users/bsamli/readline/include/ -L/Users/bsamli/readline/lib/ -lreadline
 
 all:		${NAME}
 
