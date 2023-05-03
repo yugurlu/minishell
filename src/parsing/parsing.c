@@ -6,24 +6,11 @@
 /*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 13:45:14 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/03 16:39:05 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-void	printf_tokens(t_string_list *tokens) // sil bunu
-{
-	t_string_list	*tmp;
-
-	tmp = tokens;
-	while (tmp)
-	{
-		printf("[%s] ", tmp->string);
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
 
 t_prsd_mng_l	*parsing(char *input)
 {
@@ -35,11 +22,10 @@ t_prsd_mng_l	*parsing(char *input)
 	tokens = extract_tokens(input);
 	if (tokens == NULL)
 		return (NULL);
-	//printf_tokens(tokens);
 	dollar_and_env(tokens);
 	if (!correct_syntax(tokens) && free_string_list(tokens))
 		return (NULL);
-	if (exit_condition(tokens->string))
+	if (exit_condition(tokens))
 	{
 		ft_exit(tokens->next);
 		free_string_list(tokens);

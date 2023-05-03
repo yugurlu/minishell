@@ -6,7 +6,7 @@
 /*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 14:21:49 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/03 16:38:44 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void			free_split(char **split);
 int				is_there_quotes(char *c);
 int				escape_space(char *input);
 char			*get_env_value(char *env);
-int				exit_condition(char *input);
+int				exit_condition(t_string_list *tokens);
 void			execution(t_prsd_mng_l *cmd);
 t_string_list	*extract_tokens(char *input);
 int				redirect_token_type(char *c);

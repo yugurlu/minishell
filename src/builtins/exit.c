@@ -6,22 +6,26 @@
 /*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 14:25:00 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/03 16:34:14 by bsamli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	exit_pipe(char *input)
+int	exit_pipe(t_string_list *tokens)
 {
 	int	i;
 
-	i = 0;
-	while (input[i])
+	while (tokens)
 	{
-		if (input[i] == '|')
-			return (1);
-		i++;
+		i = 0;
+		while (tokens->string[i])
+		{
+			if (tokens->string[i] == '|')
+				return (1);
+			i++;
+		}
+		tokens = tokens->next;
 	}
 	return (0);
 }
@@ -59,9 +63,9 @@ int	inside_the_space(char *input)
 	return (1);
 }
 
-int	exit_condition(char *input)
+int	exit_condition(t_string_list *tokens)
 {
-	if ((ft_strcmp(input, "exit") == 0) && exit_pipe(input))
+	if ((ft_strcmp(tokens->string, "exit") == 0) && !exit_pipe(tokens))
 		return (1);
 	return (0);
 }
