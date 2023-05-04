@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/04 20:10:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/04 23:02:50 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	fuck_norm(int *i, int *j, int *in_quotes)
 
 int	help_quotes(int *i, int *len, char *c)
 {
-	while ((c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ')/* || ((c[*i] == '\'' && c[*i + 1] != '\'') && (c[0] != '\'' && c[*i] == '\''))*/)
+	if (c[*i] == '"' || c[*i] == '\'')
+		*i += 1;
+	while (c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ')
 	{
 		*i += 1;
 		*len += 1;
@@ -33,15 +35,13 @@ int	help_quotes(int *i, int *len, char *c)
 
 int	help_quotes2(int *i, int *j, char *dest, char *c)
 {
-	if (c[*i] == '"')
+	if (c[*i] == '"' || c[*i] == '\'')
 		*i += 1;
-	while ((c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ') /*|| ((c[*i] == '\'' && c[*i + 1] != '\'') && (c[0] != '\'' && c[*i] == '\''))*/)
+	while (c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ')
 	{
 		dest[*j] = c[*i];
 		*j += 1;
 		*i += 1;
-		if(c[*i] == '"')
-			*i += 1;
 	}
 	if (c[*i] == ' ')
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/04 18:25:03 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/04 22:57:42 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*remove_quotes(char *input, char *dest)
 		{
 			if (in_quotes == 0)
 				in_quotes = 1;
-			else if (input[(i) + 1] != ' ' || input[i + 1] != input[0])
+			else if (input[(i++) + 1] != ' ')
 			{
 				if (help_quotes2(&i, &j, dest, input))
 					break ;
