@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 13:40:53 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/04 18:25:03 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	no_quote_len(char *c)
 	in_quote = 0;
 	while (c[i])
 	{
-		if (c[i] == '\'' || c[i] == '\"')
+		if ((c[i] == '\'' || c[i] == '\"'))
 		{
 			if (in_quote == 0)
 				in_quote = 1;
@@ -47,7 +47,7 @@ int	no_quote_len(char *c)
 		}
 		else
 			len++;
-		i++;
+		help_quotes3(&i, c);
 	}
 	return (len);
 }
@@ -61,13 +61,13 @@ char	*remove_quotes(char *input, char *dest)
 	fuck_norm(&i, &j, &in_quotes);
 	while (input[i])
 	{
-		if (input[i] != '\'' && input[i] != '\"')
+		if ((input[i] != '\'' && input[i] != '\"'))
 			dest[j++] = input[i++];
 		else
 		{
 			if (in_quotes == 0)
 				in_quotes = 1;
-			else if (input[(i++) + 1] != ' ')
+			else if (input[(i) + 1] != ' ' || input[i + 1] != input[0])
 			{
 				if (help_quotes2(&i, &j, dest, input))
 					break ;

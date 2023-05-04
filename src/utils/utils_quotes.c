@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 13:43:09 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/04 20:10:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	fuck_norm(int *i, int *j, int *in_quotes)
 
 int	help_quotes(int *i, int *len, char *c)
 {
-	while (c[*i] && c[*i] != ' ' && c[*i] != '\'' && c[*i] != '\"')
+	while ((c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ')/* || ((c[*i] == '\'' && c[*i + 1] != '\'') && (c[0] != '\'' && c[*i] == '\''))*/)
 	{
 		*i += 1;
 		*len += 1;
@@ -31,22 +31,25 @@ int	help_quotes(int *i, int *len, char *c)
 	return (0);
 }
 
-int	help_quotes2(int *i, int *j, char *dest, char *input)
+int	help_quotes2(int *i, int *j, char *dest, char *c)
 {
-	while (input[*i] && input[*i] != ' ' && input[*i] != '\''
-		&& input[*i] != '\"')
+	if (c[*i] == '"')
+		*i += 1;
+	while ((c[*i] && c[*i] != '\'' && c[*i] != '\"' && c[*i] != ' ') /*|| ((c[*i] == '\'' && c[*i + 1] != '\'') && (c[0] != '\'' && c[*i] == '\''))*/)
 	{
-		dest[*j] = input[*i];
+		dest[*j] = c[*i];
 		*j += 1;
 		*i += 1;
+		if(c[*i] == '"')
+			*i += 1;
 	}
-	if (input[*i] == ' ')
+	if (c[*i] == ' ')
 		return (1);
 	return (0);
 }
 
 void	help_quotes3(int *i, char *input)
 {
-	if (input[*i] != 0)
+	if (input[*i])
 		*i += 1;
 }

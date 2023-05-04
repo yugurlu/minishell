@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:25:20 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/26 08:49:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/04 13:52:54 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	input_file(t_redirect_list *redirections, int *fd)
 		error_redirections(redirections->file, 1);
 }
 
-void	here_doc(t_redirect_list *redirections, int *fd)
+void	heredoc(t_redirect_list *redirections, int *fd)
 {
 	char	*line;
 	int		fd_pipe[2];
@@ -50,7 +50,7 @@ void	here_doc(t_redirect_list *redirections, int *fd)
 	while (1)
 	{
 		line = readline("> ");
-		if (ft_strcmp(line, redirections->file) == 0)
+		if (ft_strcmp(line, redirections->file) == 0 || !line)
 			break ;
 		write(fd_pipe[1], line, ft_strlen(line));
 		write(fd_pipe[1], "\n", 1);
@@ -76,7 +76,7 @@ int	*open_input_ouput_files(t_redirect_list *redirections)
 		if (redirections->direction == INPUT_FILE)
 			input_file(redirections, fd);
 		if (redirections->direction == INPUT_NEXT_LINE)
-			here_doc(redirections, fd);
+			heredoc(redirections, fd);
 		redirections = redirections->next;
 	}
 	return (fd);
