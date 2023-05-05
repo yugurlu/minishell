@@ -6,18 +6,18 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/04 22:57:42 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:43:38 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	is_there_quotes(char *c)
+int	is_there_quotes(char *c, int token_l)
 {
 	int	i;
 
 	i = 0;
-	while (c[i] && c[i] != ' ')
+	while (c[i] && c[i] != ' ' && (token_l > i))
 	{
 		if (c[i] == '\'' || c[i] == '"')
 			return (1);

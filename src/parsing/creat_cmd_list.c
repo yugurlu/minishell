@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 08:52:11 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:30:24 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	fill_cmd(t_prsd_cmd_l **parsed_cmd_list,
 
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens)
 {
-	t_string_list	*start_token;
 	t_parsed_cmd	*parsed_cmd;
+	t_string_list	*start_token;
 	t_prsd_cmd_l	*parsed_cmd_list;
 
 	manage_variable(&start_token, &tokens, &parsed_cmd, &parsed_cmd_list);

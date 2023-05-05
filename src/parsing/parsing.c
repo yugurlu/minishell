@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:56:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 08:35:39 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:48:49 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ t_prsd_mng_l	*parsing(char *input)
 
 	parsed_cmd_managed_list = NULL;
 	tokens = extract_tokens(input);
+	/*while (tokens)
+	{
+		printf("[%s]\n", tokens->string);
+		tokens = tokens->next;
+	}*/
 	if (tokens == NULL)
 		return (NULL);
 	dollar_and_env(tokens);

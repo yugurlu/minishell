@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 09:33:46 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 14:44:34 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int				dollar_counter(char *c);
 int				only_token_len(int flag,
 					t_direction type);
 void			free_split(char **split);
-int				is_there_quotes(char *c);
 int				escape_space(char *input);
 char			*get_env_value(char *env);
 int				exit_condition(t_string_list *tokens);
@@ -151,6 +150,7 @@ void			numeric(char *input, char **split);
 int				single_command(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
 void			envv(char *str, int *is_env, int *i);
+int				is_there_quotes(char *c, int token_l);
 int				correct_syntax(t_string_list *tokens);
 int				help_quotes(int *i, int *len, char *c);
 t_string_list	*dollar_and_env(t_string_list *tokens);
