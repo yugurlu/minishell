@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/04 22:41:10 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:31:19 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_string_list	*create_token(char *input, int token_l)
 	if (is_there_quotes(input))
 	{
 		dest = malloc(no_quote_len(input) + 1);
-		printf("no_qlen = %d\n", no_quote_len(input));
 		new_token->quotes = 0;
 		if (input[0] == '\'')
 			new_token->quotes = 1;
@@ -46,7 +45,7 @@ int	token_len(char *input)
 	token_l = 0;
 	while (input[token_l] && input[token_l] != ' ' && flag == -1)
 	{
-		type = redirect_token_type(&input[token_l]);
+		type = basic_redirect_token_type(&input[token_l]);
 		if (type != NO_REDIR)
 			flag = token_l;
 		if (input[token_l + 1] == '|' || input[token_l] == '|')

@@ -6,11 +6,21 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 16:39:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/28 13:32:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:30:28 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	escape_space(char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i] == ' ')
+		i++;
+	return (i);
+}
 
 int	ispace(char *s)
 {
@@ -63,33 +73,4 @@ void	free_split(char **split)
 			free(split[i++]);
 		free(split);
 	}
-}
-
-int	spaceparse(char *input, char *command)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (input[j] && command[j])
-	{
-		if (input[i] == command[j])
-		{
-			while (input[i] == command[j] && command[j])
-			{
-				j++;
-				i++;
-			}
-			if (ft_strlen(command) == j)
-				return (1);
-			else
-				return (0);
-		}
-		if (input[i] == ' ')
-			i++;
-		else
-			return (0);
-	}
-	return (0);
 }

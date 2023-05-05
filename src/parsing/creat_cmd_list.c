@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 13:14:17 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 08:52:11 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ void	fill_cmd(t_prsd_cmd_l **parsed_cmd_list,
 		start_token = start_token->next;
 	while (start_token)
 	{
-		if (redirect_token_type(start_token->string) == NO_REDIR)
+		if (redirect_token_type(start_token->string, start_token) == NO_REDIR)
 			new_arg(&parsed_cmd->arguments, start_token->string);
 		else
 		{
 			new_redirect(&parsed_cmd->redirections, start_token->next->string,
-				redirect_token_type(start_token->string));
+				redirect_token_type(start_token->string, start_token));
 			start_token = start_token->next;
 		}
 		if (start_token == check_token)

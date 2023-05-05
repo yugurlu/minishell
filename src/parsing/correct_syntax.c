@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/01 22:56:08 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 08:51:41 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	redirection_control(t_string_list *tokens)
 {
 	if (!tokens->next)
 		return (0);
-	if (redirect_token_type(tokens->next->string) != NO_REDIR)
+	if (redirect_token_type(tokens->next->string, tokens->next) != NO_REDIR)
 		return (0);
 	return (1);
 }
@@ -77,7 +77,7 @@ int	correct_syntax(t_string_list *tokens)
 	}
 	while (tokens)
 	{
-		if (redirect_token_type(tokens->string) != NO_REDIR)
+		if (redirect_token_type(tokens->string, tokens) != NO_REDIR)
 		{
 			if (!redirection_control(tokens))
 			{

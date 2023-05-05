@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokens_utils.c                                     :+:      :+:    :+:   */
+/*   utils_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:08 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/25 12:32:16 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:31:01 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ int	dollar_counter(char *c)
 		i++;
 	}
 	return (counter);
-}
-
-int	escape_space(char *input)
-{
-	int	i;
-
-	i = 0;
-	while (input[i] == ' ')
-		i++;
-	return (i);
 }
 
 int	ft_strchr_i(const char *s, int c)
@@ -71,7 +61,7 @@ int	only_token_len(int flag, t_direction type)
 	return (token_l);
 }
 
-int	redirect_token_type(char *c)
+int	basic_redirect_token_type(char *c)
 {
 	if (*c && !*(c + 1))
 	{
@@ -85,6 +75,25 @@ int	redirect_token_type(char *c)
 		if ((*c == '<') && *(c + 1) == '<')
 			return (INPUT_NEXT_LINE);
 		if ((*c == '>') && *(c + 1) == '>')
+			return (OUTPUT_FILE_APPEND);
+	}
+	return (NO_REDIR);
+}
+
+int	redirect_token_type(char *c, t_string_list *token)
+{
+	if (*c && !*(c + 1))
+	{
+		if (*c == '<' && token->quotes == 2)
+			return (INPUT_FILE);
+		if (*c == '>' && token->quotes == 2)
+			return (OUTPUT_FILE_CREATE);
+	}
+	if (*c && *(c + 1))
+	{
+		if ((*c == '<') && *(c + 1) == '<' && token->quotes == 2)
+			return (INPUT_NEXT_LINE);
+		if ((*c == '>') && *(c + 1) == '>' && token->quotes == 2)
 			return (OUTPUT_FILE_APPEND);
 	}
 	return (NO_REDIR);

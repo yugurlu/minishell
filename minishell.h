@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 18:13:53 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/05 09:33:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ char			*get_env_value(char *env);
 int				exit_condition(t_string_list *tokens);
 void			execution(t_prsd_mng_l *cmd);
 t_string_list	*extract_tokens(char *input);
-int				redirect_token_type(char *c);
 t_parsed_cmd	*create_init_parsed_cmd(void);
 int				ft_strcmp(char *s1, char *s2);
 int				is_pipe(t_string_list *tokens,
@@ -147,6 +146,7 @@ void			help(char **new, char *str, int *i,
 					int *len);
 char			*ft_strcpy(char *dest, char *src);
 void			error_cd(char *file, int err_type);
+int				basic_redirect_token_type(char *c);
 void			numeric(char *input, char **split);
 int				single_command(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
@@ -154,7 +154,6 @@ void			envv(char *str, int *is_env, int *i);
 int				correct_syntax(t_string_list *tokens);
 int				help_quotes(int *i, int *len, char *c);
 t_string_list	*dollar_and_env(t_string_list *tokens);
-int				spaceparse(char *input, char *command);
 char			*remove_quotes(char *file, char *dest);
 char			**set_env(char *env_name, char *value);
 void			error_command(char *cmd, int err_type);
@@ -169,6 +168,7 @@ void			fuck_norm(int *i, int *j, int *in_quotes);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			free_redirect_list(t_redirect_list *redirections);
 void			free_parsed_cmd_managed_list(t_prsd_mng_l *parse);
+int				redirect_token_type(char *c, t_string_list *token);
 void			free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list);
 int				help_quotes2(int *i, int *j, char *dest, char *input);
 int				*open_input_ouput_files(t_redirect_list *redirections);
