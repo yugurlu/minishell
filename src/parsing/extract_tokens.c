@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 14:48:43 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/05 16:42:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ t_string_list	*extract_tokens(char *input)
 	if (!*input)
 		return (NULL);
 	token_l = token_len(input, 0, -1);
-	//printf("tokenl = %d\n", token_l);
 	token = create_token(input, token_l);
 	token->next = extract_tokens(input + token_l);
 	return (token);

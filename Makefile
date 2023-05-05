@@ -80,7 +80,7 @@ SRCS        :=      libft/ft_strnstr.c \
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yugurluf/readline/include
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yugurlu/readline/include
 
 RM		    := rm -f
 
