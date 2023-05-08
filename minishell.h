@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 12:31:44 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 18:53:35 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_myenv
 	int									ret_exit;
 	int									command_not_found;
 	int									*is_exit;
+	int									heredoc_signal;
 	struct stat							*stat;
 }										t_myenv;
 

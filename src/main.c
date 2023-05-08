@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 13:41:41 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/08 19:16:03 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	main(int ac, char **av, char **env)
 			ctrl_d(input);
 			add(input);
 			if (input && (quotes(input) || empty(input)))
-				continue ;
+				;
 			else
 			{
 				parsed_cmd_managed_list = parsing(input);
-				if (parsed_cmd_managed_list)
+				if (parsed_cmd_managed_list && g_myenv.heredoc_signal == 0)
 					execution(parsed_cmd_managed_list);
 				free_parsed_cmd_managed_list(parsed_cmd_managed_list);
 			}

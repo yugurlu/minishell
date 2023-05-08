@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 14:13:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 17:19:34 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	export(char **arr)
 			free_split(g_myenv.env);
 			g_myenv.env = new_env;
 			g_myenv.ret_exit = 0;
-			free_split(split);
 		}
+		free_split(split);
 		i++;
 	}
 	if (!arr[1])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creat_cmd_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:04:53 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 14:30:24 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 19:29:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	fill_cmd(t_prsd_cmd_l **parsed_cmd_list,
 				t_string_list *start_token,
 				t_string_list *check_token)
 {
-	if (!start_token->string[0] && !start_token->next)
-		return ;
-	while (!start_token->string[0])
-		start_token = start_token->next;
+	// if (!start_token->string[0] && !start_token->next)
+	// 	return ;
+	// while (!start_token->string[0])
+	// 	start_token = start_token->next;
 	while (start_token)
 	{
 		if (redirect_token_type(start_token->string, start_token) == NO_REDIR)
