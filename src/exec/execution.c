@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 08:09:31 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 15:45:55 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pipe_initialize(t_prsd_mng_l *parse)
 {
-	while (parse)
+	while (parse->next)
 	{
 		pipe(parse->fd);
 		parse = parse->next;
@@ -65,6 +65,7 @@ void	child_execution(t_prsd_mng_l *parse)
 			dup2(parse->fd[1], STDOUT_FILENO);
 		if (parse->previous && parse->command->in_desc == 0)
 			dup2(parse->previous->fd[0], STDIN_FILENO);
+		all_close_file(parse);
 		managed_redirection(parse);
 		if (parse->command->argv[0])
 			choose_execution(parse);
@@ -95,8 +96,6 @@ void	execution(t_prsd_mng_l *parse)
 	{
 		waitpid(previous->pid, &status, 0);
 		g_myenv.ret_exit = WEXITSTATUS(status);
-		close(previous->fd[0]);
-		close(previous->fd[1]);
 		previous = previous->next;
 	}
 }

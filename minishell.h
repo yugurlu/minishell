@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 14:44:34 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 12:31:44 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ char			*ft_strcpy(char *dest, char *src);
 void			error_cd(char *file, int err_type);
 int				basic_redirect_token_type(char *c);
 void			numeric(char *input, char **split);
+void			all_close_file(t_prsd_mng_l *parse);
 int				single_command(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
 void			envv(char *str, int *is_env, int *i);

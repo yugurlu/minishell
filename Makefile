@@ -76,6 +76,7 @@ SRCS        :=      libft/ft_strnstr.c \
                           src/parsing/dollar_and_env.c \
                           src/parsing/file.c \
                           src/utils/utils_quotes.c \
+                          src/utils/utils_exec.c \
 
 OBJS        := $(SRCS:.c=.o)
 

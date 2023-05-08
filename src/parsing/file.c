@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 12:25:20 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 16:41:40 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:24:02 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	heredoc(t_redirect_list *redirections, int *fd)
 	{
 		line = readline("> ");
 		if (ft_strcmp(line, redirections->file) == 0 || !line)
+		{
+			free(line);
 			break ;
+		}
 		write(fd_pipe[1], line, ft_strlen(line));
 		write(fd_pipe[1], "\n", 1);
 		free(line);
