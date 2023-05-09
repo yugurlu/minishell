@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:37:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/03/31 13:22:10 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:33:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	help3(int *is_env, char *str, int *i, int *len)
 			&& str[*i] != '=' && str[*i] != '.' && str[*i] != ','
 			&& str[*i] != '/' && str[*i] != '*' && str[*i] != '-'
 			&& str[*i] != '+' && str[*i] != ':' && str[*i] != '%'
-			&& str[*i] != '#' && str[*i] != '@')
+			&& str[*i] != '#' && str[*i] != '@' && str[*i] != ' ')
 		{
 			*len += 1;
 			*i += 1;

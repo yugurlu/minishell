@@ -6,11 +6,17 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:17:15 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/06 12:24:47 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/09 13:07:04 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	heredoc_signal(int sig)
+{
+	if (sig == SIGINT)
+		g_myenv.heredoc_signal = 1;
+}
 
 void	ctrl_d(char *line)
 {

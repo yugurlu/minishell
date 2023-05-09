@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 18:53:35 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:38:01 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ int				is_builtin(char *cmd);
 int				no_quote_len(char *c);
 int				split_len(char **arr);
 t_prsd_mng_l	*parsing(char *input);
+void			heredoc_signal(int sig);
 char			*path_finder(char *cmd);
 int				dollar_counter(char *c);
 int				only_token_len(int flag,

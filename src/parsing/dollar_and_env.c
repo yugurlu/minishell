@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 19:13:14 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/09 12:34:35 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ char	*get_env_value(char *str)
 				join = ft_strjoin(join, new_str);
 			if (ft_getenv(new_str))
 				join = ft_strjoin(join, ft_getenv(new_str));
-			free(new_str);
 		}
 		else
 			join = ft_strjoin(join, new_str);
+		free(new_str);
 	}
 	return (join);
 }
