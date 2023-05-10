@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsamli <bsamli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/03 18:09:13 by bsamli           ###   ########.fr       */
+/*   Updated: 2023/05/10 13:57:09 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	exit_pipe(t_string_list *tokens)
+int	exit_pipe(t_prsd_mng_l *parsed_cmd_managed_list)
 {
 	int	i;
 
-	while (tokens)
+	while (parsed_cmd_managed_list)
 	{
 		i = 0;
-		while (tokens->string[i])
+		while (parsed_cmd_managed_list->command->argv[0][i])
 		{
-			if (tokens->string[i] == '|')
+			if (parsed_cmd_managed_list->command->argv[0][i] == '|')
 				return (1);
 			i++;
 		}
-		tokens = tokens->next;
+		parsed_cmd_managed_list = parsed_cmd_managed_list->next;
 	}
 	return (0);
 }
@@ -63,27 +63,28 @@ int	inside_the_space(char *input)
 	return (1);
 }
 
-int	exit_condition(t_string_list *tokens)
+int	exit_condition(t_prsd_mng_l *parsed_cmd_managed_list)
 {
-	if ((ft_strcmp(tokens->string, "exit") == 0) && !exit_pipe(tokens))
+	if ((ft_strcmp(parsed_cmd_managed_list->command->argv[0], "exit") == 0)
+		&& !exit_pipe(parsed_cmd_managed_list))
 		return (1);
 	return (0);
 }
 
-void	ft_exit(t_string_list *tokens)
+void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 {
 	int	number;
 
-	if (tokens)
+	if (parsed_cmd_managed_list->command->argv[1])
 	{
-		if (!isnumeric(tokens->string))
-			error_exit(tokens->string, 2);
-		if (tokens->next)
+		if (!isnumeric(parsed_cmd_managed_list->command->argv[1]))
+			error_exit(parsed_cmd_managed_list->command->argv[1], 2);
+		if (parsed_cmd_managed_list->command->argv[1][0])
 		{
 			error_exit(NULL, 1);
 			return ;
 		}
-		number = ft_atoi(tokens->string);
+		number = ft_atoi(parsed_cmd_managed_list->command->argv[0]);
 		if (number > 255)
 			number %= 256;
 		ft_putstr_fd("exit\n", 1);

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 17:19:34 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:07:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,42 @@ char	**set_env(char *env_name, char *value)
 	return (new_env);
 }
 
+void	export_option(char **new_env, char **split, int option)
+{
+	char	*temp;
+
+	if (option == 1)
+	{
+		new_env = set_env(split[0], split[1]);
+		free_split(g_myenv.env);
+		g_myenv.env = new_env;
+	}
+	if (option == 2)
+	{
+		temp = ft_strdup("");
+		new_env = set_env(split[0], temp);
+		free_split(g_myenv.env);
+		g_myenv.env = new_env;
+		free(temp);
+	}
+}
+
 void	export(char **arr)
 {
 	int		i;
 	char	**split;
 	char	**new_env;
 
-	i = 1;
+	i = 0;
 	new_env = NULL;
-	while (arr[i] && arr[i][0])
+	while (arr[++i] && arr[i][0])
 	{
 		split = ft_split(arr[i], '=');
 		if (split[1])
-		{
-			new_env = set_env(split[0], split[1]);
-			free_split(g_myenv.env);
-			g_myenv.env = new_env;
-			g_myenv.ret_exit = 0;
-		}
+			export_option(new_env, split, 1);
+		else if (ft_strchr(arr[1], '='))
+			export_option(new_env, split, 2);
 		free_split(split);
-		i++;
 	}
 	if (!arr[1])
 		print_env_with_export(g_myenv.env);

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 17:06:54 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:02:22 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*remove_quotes(char *input, char *dest)
 	int	j;
 	int	in_quotes;
 
-	fuck_norm(&i, &j, &in_quotes);
+	norm(&i, &j, &in_quotes);
 	while (input[i])
 	{
 		if ((input[i] != '\'' && input[i] != '\"'))

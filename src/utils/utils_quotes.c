@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 08:14:15 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 14:02:22 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	fuck_norm(int *i, int *j, int *in_quotes)
+void	norm(int *i, int *j, int *in_quotes)
 {
 	*i = 0;
 	*j = 0;
