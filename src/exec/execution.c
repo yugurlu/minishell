@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 13:03:37 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 19:03:12 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	choose_execution(t_prsd_mng_l *parse)
 		exec_builtin(parse, parse->command->argv[0]);
 	else
 	{
-		if (access(parse->command->argv[0], F_OK) == 0)
+	/*	if (access(parse->command->argv[0], F_OK) == 0)
 			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
 		else
-		{
+		{*/
 			parse->command->argv[0] = path_finder(parse->command->argv[0]);
 			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
-		}
+		/*}*/
 	}
 	while (parse->previous)
 		parse = parse->previous;

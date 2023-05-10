@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 14:07:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 18:12:37 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	export(char **arr)
 		split = ft_split(arr[i], '=');
 		if (split[1])
 			export_option(new_env, split, 1);
-		else if (ft_strchr(arr[1], '='))
+		else if (ft_strchr(arr[1], '=') && arr[1][0] != '=')
 			export_option(new_env, split, 2);
 		free_split(split);
 	}

@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 13:57:09 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 18:07:05 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 	{
 		if (!isnumeric(parsed_cmd_managed_list->command->argv[1]))
 			error_exit(parsed_cmd_managed_list->command->argv[1], 2);
-		if (parsed_cmd_managed_list->command->argv[1][0])
+		if (parsed_cmd_managed_list->command->argv[2])
 		{
 			error_exit(NULL, 1);
 			return ;
