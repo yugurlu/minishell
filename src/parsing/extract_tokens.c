@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 13:13:31 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 16:33:05 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ int	token_len(char *c, int len, int flag)
 		{
 			if (c[len] == '|')
 				return (len + 1);
-			len++;
-			if (c[len] == '|' && c[len + 1] != '\'' && c[len + 1] != '"')
+			if (c[++len] == '|' && c[len + 1] != '\'' && c[len + 1] != '"')
 				break ;
 		}
 		else if (c[len] == '\'' || c[len] == '"')
+		{
 			len += ft_strchr_i(&c[len + 1], c[len]) + 1;
+			if (c[len + 1] == '|')
+				return (len + 1);
+		}
 		len++;
 	}
 	if (flag != -1)
