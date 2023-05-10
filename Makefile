@@ -81,12 +81,12 @@ SRCS        :=      libft/ft_strnstr.c \
 OBJS        := $(SRCS:.c=.o)
 
 .c.o:
-	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yusufugurlu/readline/include
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I/Users/yugurlu/readline/include
 
 RM		    := rm -f
 
 ${NAME}:	${OBJS}
-			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -I/Users/yusufugurlu/readline/include/ -L/Users/yusufugurlu/readline/lib/ -lreadline
+			@${CC} ${FLAGS} -o ${NAME} ${OBJS} -I/Users/yugurlu/readline/include/ -L/Users/yugurlu/readline/lib/ -lreadline
 
 all:		${NAME}
 
