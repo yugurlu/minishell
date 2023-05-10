@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 10:03:45 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 18:36:57 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 13:08:13 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	get_path(t_prsd_mng_l *parse)
 	else
 		g_myenv.path = NULL;
 	if (!ft_strcmp(parse->command->argv[0], "exit"))
-		parse->command->argv[0] = NULL;
+	{
+		free_split(parse->command->argv);
+		parse->command->argv = NULL;
+	}
 }
 
 char	*path_finder(char *cmd)
