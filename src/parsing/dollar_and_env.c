@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_and_env.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:06:03 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/09 12:34:35 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 08:55:29 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_string_list	*dollar_and_env(t_string_list *tokens)
 	while (tokens)
 	{
 		if (ft_strchr(tokens->string, '$') && ft_strlen(tokens->string) > 1
-			&& (tokens->quotes == 2 || tokens->quotes == 0))
+			&& tokens->quotes != 1)
 		{
 			if (tokens->string[0] != '$')
 				back = back_dollar(tokens->string);

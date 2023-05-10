@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   correct_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/05 08:51:41 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/10 09:00:18 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	correct_syntax(t_string_list *tokens)
 {
 	if (is_pipe(tokens, NULL) || more_then_1_pipe(tokens))
 	{
-		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
+		ft_putstr_fd("$: syntax error near unexpected token '|'\n", 2);
 		g_myenv.ret_exit = 258;
 		return (0);
 	}
@@ -81,7 +81,7 @@ int	correct_syntax(t_string_list *tokens)
 		{
 			if (!redirection_control(tokens))
 			{
-				ft_putstr_fd("syntax error near unexpected token `newline'\n",
+				ft_putstr_fd("$: syntax error near unexpected token 'newline'\n",
 					2);
 				g_myenv.ret_exit = 258;
 				return (0);
