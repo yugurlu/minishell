@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 16:39:41 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/15 17:09:04 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,7 @@ long custom_strtol(const char* str) {
 
 void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 {
-	unsigned long long	number;
-	unsigned long long long_max = 9223372036854775807;
-	unsigned long long long_min = -9223372036854775807;
+ 	long	number;
 
 	if (parsed_cmd_managed_list->command->argv[1])
 	{
@@ -111,10 +109,10 @@ void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 			error_exit(NULL, 1);
 			return ;
 		}
-		number = custom_strtol(parsed_cmd_managed_list->command->argv[1]);
-		if(number < long_min - 1)
+		number = ft_atoi(parsed_cmd_managed_list->command->argv[1]);
+		if(number < LLONG_MIN)
 			error_exit(NULL, 2);
-		else if(number > long_max + 1)
+		else if(number > LLONG_MAX)
 			error_exit(NULL, 2);
 		if (number > 255)
 			number %= 256;
