@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 14:02:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/15 16:54:30 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,54 +28,57 @@ int	is_there_quotes(char *c, int token_l)
 
 int	no_quote_len(char *c)
 {
-	int	i;
-	int	len;
-	int	in_quote;
+	int		i;
+	int		len;
+	char	head;
+	int		in_quote;
 
-	i = 0;
+	i = -1;
 	len = 0;
 	in_quote = 0;
-	while (c[i])
+	while (c[++i])
 	{
 		if ((c[i] == '\'' || c[i] == '\"'))
 		{
 			if (in_quote == 0)
+			{
+				head = c[i];
 				in_quote = 1;
+			}
 			else if (in_quote == 1)
-				if (help_quotes(&i, &len, c))
+				if (help_quotes(&i, &len, c, head))
 					break ;
 		}
 		else
 			len++;
-		help_quotes3(&i, c);
 	}
 	return (len);
 }
 
 char	*remove_quotes(char *input, char *dest)
 {
-	int	i;
-	int	j;
-	int	in_quotes;
+	int		i;
+	int		j;
+	char	head;
+	int		in_quotes;
 
 	norm(&i, &j, &in_quotes);
 	while (input[i])
 	{
-		if ((input[i] != '\'' && input[i] != '\"'))
-			dest[j++] = input[i++];
-		else
+		if (input[i] == '\'' || input[i] == '\"')
 		{
 			if (in_quotes == 0)
-				in_quotes = 1;
-			else if (input[(i++) + 1] != ' ')
 			{
-				if (help_quotes2(&i, &j, dest, input))
-					break ;
+				head = input[i];
+				in_quotes = 1;
 			}
-			else
-				break ;
+			else if (in_quotes == 1)
+				if (help_quotes2(&i, &j, dest, input, head))
+					break ;
 			help_quotes3(&i, input);
 		}
+		else
+			dest[j++] = input[i++];
 	}
 	dest[j] = '\0';
 	return (dest);

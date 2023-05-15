@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 19:03:12 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/15 13:46:42 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	is_file(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] == '/')
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
 
 void	pipe_initialize(t_prsd_mng_l *parse)
 {
@@ -39,21 +56,37 @@ void	choose_execution(t_prsd_mng_l *parse)
 		exec_builtin(parse, parse->command->argv[0]);
 	else
 	{
-	/*	if (access(parse->command->argv[0], F_OK) == 0)
-			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
+		if (is_file(parse->command->argv[0]))
+		{
+			if (access(parse->command->argv[0], F_OK) == 0)
+			{
+				if (stat(parse->command->argv[0], &g_myenv.stat) == 0)
+				{
+					if (S_ISDIR(g_myenv.stat.st_mode))
+						error_command(parse->command->argv[0], 2);
+					else if (g_myenv.stat.st_mode & S_IXUSR)
+					{
+						execve(parse->command->argv[0], parse->command->argv,
+								g_myenv.env);
+					}
+					else
+						error_command(parse->command->argv[0], 3);
+				}
+			}
+			else
+				error_command(parse->command->argv[0], 4);
+		}
 		else
-		{*/
+		{
 			parse->command->argv[0] = path_finder(parse->command->argv[0]);
 			execve(parse->command->argv[0], parse->command->argv, g_myenv.env);
-		/*}*/
+		}
 	}
 	while (parse->previous)
 		parse = parse->previous;
 	free_env_list();
 	free_parsed_cmd_managed_list(parse);
-	if (g_myenv.command_not_found)
-		exit(127);
-	exit(0);
+	exit(g_myenv.ret_exit);
 }
 
 void	child_execution(t_prsd_mng_l *parse)
@@ -66,7 +99,8 @@ void	child_execution(t_prsd_mng_l *parse)
 		if (parse->previous && parse->command->in_desc == 0)
 			dup2(parse->previous->fd[0], STDIN_FILENO);
 		all_close_file(parse);
-		managed_redirection(parse);
+		if(!managed_redirection(parse))
+			exit(1);
 		if (parse->command->argv[0])
 			choose_execution(parse);
 		exit(0);

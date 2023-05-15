@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 18:12:37 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/15 11:48:44 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,14 @@ void	export(char **arr)
 		free_split(split);
 	}
 	if (!arr[1])
+	{
 		print_env_with_export(g_myenv.env);
-	g_myenv.ret_exit = 0;
+		g_myenv.ret_exit = 0;
+		return;
+	}
+	if((arr[1][0] == '=' && ft_strlen(arr[1]) == 1))
+	{
+		ft_putstr_fd("$: export: `=': not a valid identifier\n", 2);
+		g_myenv.ret_exit = 1;
+	}
 }

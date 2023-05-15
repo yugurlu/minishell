@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 18:07:05 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/15 16:39:41 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,36 @@ int	exit_condition(t_prsd_mng_l *parsed_cmd_managed_list)
 	return (0);
 }
 
+long custom_strtol(const char* str) {
+    long result = 0;
+    int sign = 1;
+    int i = 0;
+
+    if (str[0] == '-') {
+        sign = -1;
+        i++;
+    }
+    else if (str[0] == '+') {
+        i++;
+    }
+
+    while (str[i] != '\0') {
+        if (str[i] < '0' || str[i] > '9') {
+            break;
+        }
+
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+
+    return result * sign;
+}
+
 void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 {
-	int	number;
+	unsigned long long	number;
+	unsigned long long long_max = 9223372036854775807;
+	unsigned long long long_min = -9223372036854775807;
 
 	if (parsed_cmd_managed_list->command->argv[1])
 	{
@@ -84,7 +111,11 @@ void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 			error_exit(NULL, 1);
 			return ;
 		}
-		number = ft_atoi(parsed_cmd_managed_list->command->argv[0]);
+		number = custom_strtol(parsed_cmd_managed_list->command->argv[1]);
+		if(number < long_min - 1)
+			error_exit(NULL, 2);
+		else if(number > long_max + 1)
+			error_exit(NULL, 2);
 		if (number > 255)
 			number %= 256;
 		ft_putstr_fd("exit\n", 1);

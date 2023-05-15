@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 14:02:22 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/15 16:57:48 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 # include <sys/stat.h>
 # include <sys/ioctl.h>
+# include <limits.h>
 # include <unistd.h>
 
 typedef enum s_direction
@@ -49,7 +50,7 @@ typedef struct s_myenv
 	int									command_not_found;
 	int									*is_exit;
 	int									heredoc_signal;
-	struct stat							*stat;
+	struct stat							stat;
 }										t_myenv;
 
 t_myenv									g_myenv;
@@ -155,7 +156,6 @@ char			*search_env(char *value, char **env);
 void			envv(char *str, int *is_env, int *i);
 int				is_there_quotes(char *c, int token_l);
 int				correct_syntax(t_string_list *tokens);
-int				help_quotes(int *i, int *len, char *c);
 t_string_list	*dollar_and_env(t_string_list *tokens);
 char			*remove_quotes(char *file, char *dest);
 char			**set_env(char *env_name, char *value);
@@ -170,10 +170,11 @@ int				managed_redirection(t_prsd_mng_l *parse);
 void			norm(int *i, int *j, int *in_quotes);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			free_redirect_list(t_redirect_list *redirections);
+int				help_quotes(int *i, int *len, char *c, char head);
 void			free_parsed_cmd_managed_list(t_prsd_mng_l *parse);
 int				redirect_token_type(char *c, t_string_list *token);
 void			free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list);
-int				help_quotes2(int *i, int *j, char *dest, char *input);
+int				help_quotes2(int *i, int *j, char *dest, char *input, char head);
 int				*open_input_ouput_files(t_redirect_list *redirections);
 void			manage_variable(t_string_list **start_token,
 					t_string_list **tokens,
