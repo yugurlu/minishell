@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 11:48:44 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 16:48:31 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,8 @@ void	export(char **arr)
 	{
 		print_env_with_export(g_myenv.env);
 		g_myenv.ret_exit = 0;
-		return;
 	}
-	if((arr[1][0] == '=' && ft_strlen(arr[1]) == 1))
+	else if ((arr[1][0] == '=' && ft_strlen(arr[1]) == 1))
 	{
 		ft_putstr_fd("$: export: `=': not a valid identifier\n", 2);
 		g_myenv.ret_exit = 1;

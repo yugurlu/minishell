@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 13:46:42 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 16:48:23 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	child_execution(t_prsd_mng_l *parse)
 		if (parse->previous && parse->command->in_desc == 0)
 			dup2(parse->previous->fd[0], STDIN_FILENO);
 		all_close_file(parse);
-		if(!managed_redirection(parse))
+		if (!managed_redirection(parse))
 			exit(1);
 		if (parse->command->argv[0])
 			choose_execution(parse);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:05:27 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/10 13:01:39 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:11:08 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av, char **env)
 		while (1)
 		{
 			signal_control();
-			input = readline("$ ");
+			input = readline("\033[32m$\033[32m \033[0m");
 			ctrl_d(input);
 			add(input);
 			if (input && (quotes(input) || empty(input)))

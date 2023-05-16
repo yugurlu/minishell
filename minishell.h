@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 16:57:48 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 14:23:06 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void			env(void);
 void			pwd(void);
 int				cd(char *arg);
 int				cd(char *args);
-void			get_path(t_prsd_mng_l *parse);
 int				ispace(char *s);
 int				quotes(char *s);
 void			echo(char **arg);
@@ -114,13 +113,13 @@ void			free_env_list(void);
 int				strisdigit(char *s);
 void			init_env(char **env);
 void			signal_control(void);
-void			help_quotes3(int *i, char *input);
 int				isnumeric(char *str);
 int				find_line(char *str);
 int				is_builtin(char *cmd);
 int				no_quote_len(char *c);
 int				split_len(char **arr);
 t_prsd_mng_l	*parsing(char *input);
+int				dollar_true(char *str);
 void			heredoc_signal(int sig);
 char			*path_finder(char *cmd);
 int				dollar_counter(char *c);
@@ -132,6 +131,7 @@ char			*get_env_value(char *env);
 int				exit_condition(t_prsd_mng_l	*parsed_cmd_managed_list);
 void			execution(t_prsd_mng_l *cmd);
 t_string_list	*extract_tokens(char *input);
+void			get_path(t_prsd_mng_l *parse);
 t_parsed_cmd	*create_init_parsed_cmd(void);
 int				ft_strcmp(char *s1, char *s2);
 int				is_pipe(t_string_list *tokens,
@@ -143,6 +143,7 @@ void			error_redirections(char *file,
 char			*rm_extern_quotes(char *input);
 int				exec_builtin(t_prsd_mng_l *parse,
 					char *cmd);
+void			help_quotes3(int *i, char *input);
 int				ft_strchr_i(const char *s, int c);
 void			help(char **new, char *str, int *i,
 					int *len);
@@ -153,6 +154,7 @@ void			numeric(char *input, char **split);
 void			all_close_file(t_prsd_mng_l *parse);
 int				single_command(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
+void			norm(int *i, int *j, int *in_quotes);
 void			envv(char *str, int *is_env, int *i);
 int				is_there_quotes(char *c, int token_l);
 int				correct_syntax(t_string_list *tokens);
@@ -167,7 +169,6 @@ void			help_getenv(int *i, int *k, char *temp);
 char			*strncopy(char *dest, char *src, int n);
 int				free_string_list(t_string_list *tokens);
 int				managed_redirection(t_prsd_mng_l *parse);
-void			norm(int *i, int *j, int *in_quotes);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			free_redirect_list(t_redirect_list *redirections);
 int				help_quotes(int *i, int *len, char *c, char head);

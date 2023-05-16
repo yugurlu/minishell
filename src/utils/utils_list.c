@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:04:30 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 11:21:13 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 16:48:59 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	manage_variable(t_string_list **start_token, t_string_list **tokens,
 	*start_token = *tokens;
 	*parsed_cmd_list = NULL;
 	*parsed_cmd = create_init_parsed_cmd();
-	
 }

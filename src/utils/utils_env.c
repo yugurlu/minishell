@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:37:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/09 12:33:45 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:49:59 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,24 @@ void	help(char **new, char *str, int *i, int *len)
 		*i += 1;
 	}
 	(*new)[j] = '\0';
+}
+
+int	dollar_true(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] == '$')
+			{
+				if (str[i + 1] && str[i + 1] != ' ')
+					return (1);
+			}
+			i++;
+		}
+	}
+	return (0);
 }

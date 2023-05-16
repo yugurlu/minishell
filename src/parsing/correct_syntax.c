@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 11:30:42 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 16:49:39 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	correct_syntax(t_string_list *tokens)
 			if (!redirection_control(tokens))
 			{
 				ft_putstr_fd("$: syntax error near unexpected token 'newline'\n",
-								2);
+					2);
 				g_myenv.ret_exit = 258;
 				return (0);
 			}

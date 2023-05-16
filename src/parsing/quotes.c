@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/15 16:54:30 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/16 16:48:19 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ char	*remove_quotes(char *input, char *dest)
 	norm(&i, &j, &in_quotes);
 	while (input[i])
 	{
-		if (input[i] == '\'' || input[i] == '\"')
+		if ((input[i] == '\'' || input[i] == '\"'))
 		{
+			if (in_quotes == 1 && head != input[i])
+			{
+				dest[j++] = input[i++];
+				continue ;
+			}
 			if (in_quotes == 0)
 			{
 				head = input[i];
