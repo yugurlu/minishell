@@ -6,25 +6,11 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:48:19 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/22 19:29:14 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	is_there_quotes(char *c, int token_l)
-{
-	int	i;
-
-	i = 0;
-	while (c[i] && c[i] != ' ' && (token_l > i))
-	{
-		if (c[i] == '\'' || c[i] == '"')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	no_quote_len(char *c)
 {
@@ -55,7 +41,7 @@ int	no_quote_len(char *c)
 	return (len);
 }
 
-char	*remove_quotes(char *input, char *dest)
+char	*remove_quotes(char *input)
 {
 	int		i;
 	int		j;
@@ -68,25 +54,19 @@ char	*remove_quotes(char *input, char *dest)
 		if ((input[i] == '\'' || input[i] == '\"'))
 		{
 			if (in_quotes == 1 && head != input[i])
-			{
-				dest[j++] = input[i++];
-				continue ;
-			}
-			if (in_quotes == 0)
-			{
+				g_myenv.quotes[j++] = input[i];
+			else if (in_quotes == 0)
 				head = input[i];
-				in_quotes = 1;
-			}
 			else if (in_quotes == 1)
-				if (help_quotes2(&i, &j, dest, input, head))
+				if (help_quotes2(&i, &j, input, head))
 					break ;
+			in_quotes = 1;
 			help_quotes3(&i, input);
 		}
 		else
-			dest[j++] = input[i++];
+			g_myenv.quotes[j++] = input[i++];
 	}
-	dest[j] = '\0';
-	return (dest);
+	return (g_myenv.quotes);
 }
 
 int	quotes(char *s)

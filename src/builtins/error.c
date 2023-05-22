@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:48:36 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/22 16:50:45 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,32 +64,26 @@ void	error_redirections(char *file, int err_type)
 
 void	error_command(char *cmd, int err_type)
 {
+	ft_putstr_fd("$: ", 2);
+	ft_putstr_fd(cmd, 2);
 	if (err_type == 1)
 	{
-		ft_putstr_fd("$: ", 2);
-		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": command not found\n", 2);
 		g_myenv.ret_exit = 127;
 		free(cmd);
 	}
 	if (err_type == 2)
 	{
-		ft_putstr_fd("$: ", 2);
-		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": is a directory\n", 2);
 		g_myenv.ret_exit = 126;
 	}
 	if (err_type == 3)
 	{
-		ft_putstr_fd("$: ", 2);
-		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
 		g_myenv.ret_exit = 126;
 	}
 	if (err_type == 4)
 	{
-		ft_putstr_fd("$: ", 2);
-		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		g_myenv.ret_exit = 127;
 	}

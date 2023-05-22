@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:24:35 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 14:33:52 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/22 16:56:57 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,31 @@ void	all_close_file(t_prsd_mng_l *parse)
 			tmp = tmp->next;
 		}
 		break ;
+	}
+}
+
+int	is_file(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		while (str[i])
+		{
+			if (str[i] == '/')
+				return (1);
+			i++;
+		}
+	}
+	return (0);
+}
+
+void	pipe_initialize(t_prsd_mng_l *parse)
+{
+	while (parse->next)
+	{
+		pipe(parse->fd);
+		parse = parse->next;
 	}
 }

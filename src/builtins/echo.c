@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 11:30:19 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:41:19 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/22 18:19:03 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_option(char *str)
 	int	i;
 
 	i = 1;
-	if (str[0] != '-')
+	if (str[0] != '-' || !str[1])
 		return (0);
 	while (str[i])
 	{
