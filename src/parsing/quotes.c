@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/22 19:29:14 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 13:29:11 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,56 +17,55 @@ int	no_quote_len(char *c)
 	int		i;
 	int		len;
 	char	head;
-	int		in_quote;
 
 	i = -1;
 	len = 0;
-	in_quote = 0;
 	while (c[++i])
 	{
-		if ((c[i] == '\'' || c[i] == '\"'))
+		if (c[i] == '\'' || c[i] == '\"')
 		{
-			if (in_quote == 0)
+			head = c[i++];
+			while (c[i] && head != c[i])
 			{
-				head = c[i];
-				in_quote = 1;
+				i++;
+				len++;
 			}
-			else if (in_quote == 1)
-				if (help_quotes(&i, &len, c, head))
-					break ;
 		}
 		else
 			len++;
+		if (c[i + 1] && c[i + 1] == ' ')
+			break ;
 	}
 	return (len);
 }
 
-char	*remove_quotes(char *input)
+void	remove_quotes(char *input)
 {
 	int		i;
 	int		j;
 	char	head;
-	int		in_quotes;
+	char	*section;
 
-	norm(&i, &j, &in_quotes);
-	while (input[i])
+	norm(&i, &j);
+	while (input[++i])
 	{
-		if ((input[i] == '\'' || input[i] == '\"'))
+		j = 0;
+		section = malloc(1000);
+		if (input[i] == '\'' || input[i] == '\"')
 		{
-			if (in_quotes == 1 && head != input[i])
-				g_myenv.quotes[j++] = input[i];
-			else if (in_quotes == 0)
-				head = input[i];
-			else if (in_quotes == 1)
-				if (help_quotes2(&i, &j, input, head))
-					break ;
-			in_quotes = 1;
-			help_quotes3(&i, input);
+			head = input[i++];
+			while (input[i] && head != input[i])
+				section[j++] = input[i++];
 		}
 		else
-			g_myenv.quotes[j++] = input[i++];
+			while (input[i] != '\'' && input[i] != '\"')
+				section[j++] = input[i++];
+		section[j] = 0;
+		g_myenv.quotes = ft_strjoin(g_myenv.quotes, section);
+		free(section);
+		if (input[i + 1] && input[i + 1] == ' ')
+			break ;
 	}
-	return (g_myenv.quotes);
 }
 
 int	quotes(char *s)

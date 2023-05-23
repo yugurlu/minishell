@@ -6,17 +6,16 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/22 19:10:30 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 13:28:14 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	norm(int *i, int *j, int *in_quotes)
+void	norm(int *i, int *j)
 {
-	*i = 0;
+	*i = -1;
 	*j = 0;
-	*in_quotes = 0;
 }
 
 int	help_quotes(int *i, int *len, char *c, char head)

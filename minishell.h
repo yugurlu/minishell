@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/22 18:38:35 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 13:29:32 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int				is_file(char *str);
 void			free_env_list(void);
 int				strisdigit(char *s);
 void			init_env(char **env);
+void			norm(int *i, int *j);
 void			signal_control(void);
 int				isnumeric(char *str);
 int				find_line(char *str);
@@ -130,6 +131,7 @@ int				only_token_len(int flag,
 void			free_split(char **split);
 int				escape_space(char *input);
 char			*get_env_value(char *env);
+void			remove_quotes(char *input);
 void			execution(t_prsd_mng_l *cmd);
 t_string_list	*extract_tokens(char *input);
 void			get_path(t_prsd_mng_l *parse);
@@ -154,13 +156,11 @@ void			all_close_file(t_prsd_mng_l *parse);
 int				single_command(t_prsd_mng_l *parse);
 void			pipe_initialize(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
-void			norm(int *i, int *j, int *in_quotes);
 void			envv(char *str, int *is_env, int *i);
 int				is_there_quotes(char *c, int token_l);
 int				is_there_quotes(char *c, int token_l);
 int				correct_syntax(t_string_list *tokens);
 t_string_list	*dollar_and_env(t_string_list *tokens);
-char			*remove_quotes(char *input);
 char			**set_env(char *env_name, char *value);
 void			error_command(char *cmd, int err_type);
 void			error_exit(char *string, int err_type);

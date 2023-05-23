@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/22 16:50:45 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 13:57:35 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	error_redirections(char *file, int err_type)
 		ft_putstr_fd("$: ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
+		g_myenv.ret_exit = 1;
 	}
 }
 
