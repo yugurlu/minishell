@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:48:31 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 17:33:59 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,27 @@ void	print_env_with_export(char **env)
 		ft_putstr_fd("\"\n", 1);
 		free_split(split);
 	}
+}
+
+int	valid_identifier(char *variable, char *input)
+{
+	int	i;
+
+	i = 0;
+	while (variable && variable[i])
+	{
+		if (variable[i] == '$' || variable[i] == '\0' || variable[i] == '?'
+			|| variable[i] == '=' || variable[i] == '.' || variable[i] == ','
+			|| variable[i] == '/' || variable[i] == '*' || variable[i] == '-'
+			|| variable[i] == '+' || variable[i] == ':' || variable[i] == '%'
+			|| variable[i] == '#' || variable[i] == '@' || variable[i] == ' '
+			|| only_digit(variable))
+			return (1);
+		i++;
+	}
+	if (input[0] == '=')
+		return (1);
+	return (0);
 }
 
 char	**set_env(char *env_name, char *value)
@@ -59,7 +80,7 @@ char	**set_env(char *env_name, char *value)
 	return (new_env);
 }
 
-void	export_option(char **new_env, char **split, int option)
+void	export_option(char **new_env, char **split, char **arr, int option)
 {
 	char	*temp;
 
@@ -68,6 +89,7 @@ void	export_option(char **new_env, char **split, int option)
 		new_env = set_env(split[0], split[1]);
 		free_split(g_myenv.env);
 		g_myenv.env = new_env;
+		return ;
 	}
 	if (option == 2)
 	{
@@ -76,7 +98,15 @@ void	export_option(char **new_env, char **split, int option)
 		free_split(g_myenv.env);
 		g_myenv.env = new_env;
 		free(temp);
+		return ;
 	}
+	if (!arr[1])
+	{
+		print_env_with_export(g_myenv.env);
+		g_myenv.ret_exit = 0;
+	}
+	else if ((arr[1][0] == '=' && ft_strlen(arr[1]) == 1))
+		error_export();
 }
 
 void	export(char **arr)
@@ -87,23 +117,23 @@ void	export(char **arr)
 
 	i = 0;
 	new_env = NULL;
-	while (arr[++i] && arr[i][0])
+	if (arr[i] && arr[i][0])
 	{
-		split = ft_split(arr[i], '=');
-		if (split[1])
-			export_option(new_env, split, 1);
-		else if (ft_strchr(arr[1], '=') && arr[1][0] != '=')
-			export_option(new_env, split, 2);
-		free_split(split);
+		while (arr[++i] && arr[i][0])
+		{
+			split = ft_split(arr[i], '=');
+			if (!valid_identifier(split[0], arr[i]))
+			{
+				if (split[0] && split[1])
+					export_option(new_env, split, arr, 1);
+				else if (ft_strchr(arr[1], '=') && arr[1][0] != '=')
+					export_option(new_env, split, arr, 2);
+				free_split(split);
+			}
+			else
+				error_export();
+		}
 	}
-	if (!arr[1])
-	{
-		print_env_with_export(g_myenv.env);
-		g_myenv.ret_exit = 0;
-	}
-	else if ((arr[1][0] == '=' && ft_strlen(arr[1]) == 1))
-	{
-		ft_putstr_fd("$: export: `=': not a valid identifier\n", 2);
-		g_myenv.ret_exit = 1;
-	}
+	else
+		export_option(NULL, NULL, arr, 0);
 }

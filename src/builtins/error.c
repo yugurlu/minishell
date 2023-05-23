@@ -6,11 +6,17 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 12:54:37 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 13:57:35 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 17:26:48 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	error_export(void)
+{
+	ft_putstr_fd("$: export: not a valid identifier\n", 2);
+	g_myenv.ret_exit = 1;
+}
 
 void	error_cd(char *file, int err_type)
 {

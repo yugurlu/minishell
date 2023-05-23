@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 15:35:55 by macos            ###   ########.fr       */
+/*   Updated: 2023/05/23 17:25:10 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int				quotes(char *s);
 void			echo(char **arg);
 void			echo(char **args);
 int				is_quote(char *c);
+void			error_export(void);
 void			unset(char **args);
 void			ctrl_d(char *line);
 void			export(char **arr);
@@ -118,6 +119,7 @@ void			norm(int *i, int *j);
 void			signal_control(void);
 int				isnumeric(char *str);
 int				find_line(char *str);
+int				only_digit(char *str);
 int				is_builtin(char *cmd);
 int				no_quote_len(char *c);
 int				split_len(char **arr);
