@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:04:30 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:48:59 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 15:36:05 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ void	manage_variable(t_string_list **start_token, t_string_list **tokens,
 	*start_token = *tokens;
 	*parsed_cmd_list = NULL;
 	*parsed_cmd = create_init_parsed_cmd();
+}
+
+void	llong_check(long number)
+{
+	if (number < LLONG_MIN)
+		error_exit(NULL, 2);
+	else if (number > LLONG_MAX)
+		error_exit(NULL, 2);
+	if (number > 255)
+		number %= 256;
 }
