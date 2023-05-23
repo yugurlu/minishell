@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 13:29:32 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/23 15:35:55 by macos            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ char			*path_finder(char *cmd);
 int				dollar_counter(char *c);
 int				only_token_len(int flag,
 					t_direction type);
+void			llong_check(long number);
 void			free_split(char **split);
 int				escape_space(char *input);
 char			*get_env_value(char *env);
