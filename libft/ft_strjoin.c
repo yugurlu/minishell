@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 20:47:58 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/09 12:30:51 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/25 10:36:34 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strjoin(char *lft_str, char *buff)
 	}
 	if (!buff)
 		return (0);
-	str = malloc(ft_strlen(lft_str) + ft_strlen(buff) + 1);
+	str = malloc(sizeof(char) * ((ft_strlen(lft_str) + ft_strlen(buff)) + 1));
 	if (!str)
 		return (0);
 	i = -1;

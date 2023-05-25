@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 14:03:24 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/25 08:30:51 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ t_string_list	*create_token(char *input, int token_l)
 	t_string_list	*new_token;
 
 	new_token = (t_string_list *)malloc(sizeof(t_string_list));
-	if (is_there_quotes(input, token_l))
+	if (is_there_quotes(new_token, input, token_l))
 	{
-		g_myenv.quotes = malloc(no_quote_len(input) + 1);
-		new_token->quotes = 0;
-		if (input[0] == '\'')
-			new_token->quotes = 1;
+		g_myenv.quotes = NULL;
 		remove_quotes(input);
 		new_token->string = ft_strdup(g_myenv.quotes);
 		free(g_myenv.quotes);

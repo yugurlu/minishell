@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42istanbul.com    +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 11:11:59 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/04 14:08:51 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/25 07:58:09 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ size_t	ft_strlen(const char *str)
 
 	i = 0;
 	if (str)
-	{
 		while (str[i])
 			i++;
-	}
 	return (i);
 }

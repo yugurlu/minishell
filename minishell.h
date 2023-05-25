@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 17:25:10 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/25 10:40:02 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_myenv
 	int									*is_exit;
 	int									heredoc_signal;
 	char								*quotes;
+	char								head;
 	struct stat							stat;
 }										t_myenv;
 
@@ -121,7 +122,6 @@ int				isnumeric(char *str);
 int				find_line(char *str);
 int				only_digit(char *str);
 int				is_builtin(char *cmd);
-int				no_quote_len(char *c);
 int				split_len(char **arr);
 t_prsd_mng_l	*parsing(char *input);
 int				dollar_true(char *str);
@@ -160,30 +160,28 @@ int				single_command(t_prsd_mng_l *parse);
 void			pipe_initialize(t_prsd_mng_l *parse);
 char			*search_env(char *value, char **env);
 void			envv(char *str, int *is_env, int *i);
-int				is_there_quotes(char *c, int token_l);
-int				is_there_quotes(char *c, int token_l);
 int				correct_syntax(t_string_list *tokens);
 t_string_list	*dollar_and_env(t_string_list *tokens);
 char			**set_env(char *env_name, char *value);
 void			error_command(char *cmd, int err_type);
 void			error_exit(char *string, int err_type);
+void			help_quotes(int *i, int *j, char *input);
 void			is_envv(char *str, int *is_env, int *i);
 t_prsd_mng_l	*preprocess(t_prsd_cmd_l *command_line);
 void			help_getenv(int *i, int *k, char *temp);
 char			*strncopy(char *dest, char *src, int n);
 int				free_string_list(t_string_list *tokens);
 int				managed_redirection(t_prsd_mng_l *parse);
-void			help_quotes3(int *i, char *input);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			ft_exit(t_prsd_mng_l	*parsed_cmd_managed_list);
 void			free_redirect_list(t_redirect_list *redirections);
-int				help_quotes(int *i, int *len, char *c, char head);
 void			free_parsed_cmd_managed_list(t_prsd_mng_l *parse);
 int				redirect_token_type(char *c, t_string_list *token);
 void			free_parsed_cmd_list(t_prsd_cmd_l *parsed_cmd_list);
-int				help_quotes2(int *i, int *j, char *input, char head);
 int				exit_condition(t_prsd_mng_l	*parsed_cmd_managed_list);
 int				*open_input_ouput_files(t_redirect_list *redirections);
+int				is_there_quotes(t_string_list *new_token, char *c,
+					int token_l);
 void			manage_variable(t_string_list **start_token,
 					t_string_list **tokens,
 					t_parsed_cmd **parsed_cmd,
