@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:08 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/08 13:13:03 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/05/29 18:25:08 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	only_token_len(int flag, t_direction type)
 	return (token_l);
 }
 
-int	basic_redirect_token_type(char *c)
+int	redirect_type(char *c)
 {
 	if (*c)
 	{

@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/25 10:40:02 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/29 18:25:23 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void			help(char **new, char *str, int *i,
 					int *len);
 char			*ft_strcpy(char *dest, char *src);
 void			error_cd(char *file, int err_type);
-int				basic_redirect_token_type(char *c);
+int				redirect_type(char *c);
 void			numeric(char *input, char **split);
 void			all_close_file(t_prsd_mng_l *parse);
 int				single_command(t_prsd_mng_l *parse);

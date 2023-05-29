@@ -6,7 +6,7 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:30:32 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/25 08:30:51 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/29 18:24:51 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	token_len(char *c, int len, int flag)
 
 	while (c[len] && c[len] != ' ' && flag == -1)
 	{
-		type = basic_redirect_token_type(&c[len]);
+		type = redirect_type(&c[len]);
 		if (type != NO_REDIR)
 			flag = len;
 		if (c[len + 1] == '|' || c[len] == '|')

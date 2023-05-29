@@ -6,38 +6,38 @@
 /*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/25 10:43:22 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/05/29 18:34:35 by yusufugurlu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	remove_quotes(char *str)
+void	remove_quotes(char *s)
 {
 	int		i;
 	int		j;
 	char	*section;
 
 	norm(&i, &j);
-	while (str[i])
+	while (s[i])
 	{
 		section = malloc(1000);
-		if (str[i] == '\'' || str[i] == '\"')
+		if (s[i] == '\'' || s[i] == '\"')
 		{
 			i++;
-			while (str[i] && g_myenv.head != str[i])
-				section[j++] = str[i++];
+			while (s[i] && g_myenv.head != s[i])
+				section[j++] = s[i++];
 		}
 		else
-			while (str[i] && str[i] != '\'' && str[i] != '"' && str[i] != ' '
-				&& str[i] != '|')
-				section[j++] = str[i++];
+			while (s[i] && s[i] != '\'' && s[i] != '"' && s[i] != ' '
+				&& s[i] != '|' && redirect_type(&s[i]) == NO_REDIR)
+				section[j++] = s[i++];
 		section[j] = 0;
 		g_myenv.quotes = ft_strjoin(g_myenv.quotes, section);
-		if (my_free(section) && str[i] && (str[i] == ' ' || str[i] == '|'
-				|| str[i + 1] == ' ' || str[i + 1] == '|'))
+		if (my_free(section) && s[i] && (s[i] == ' ' || s[i] == '|' || s[i + 1]
+				== ' ' || s[i + 1] == '|' || redirect_type(&s[i]) != 4))
 			break ;
-		help_quotes(&i, &j, str);
+		help_quotes(&i, &j, s);
 	}
 }
 
