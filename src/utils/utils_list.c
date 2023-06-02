@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:04:30 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 17:26:57 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 17:30:38 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_parsed_cmd	*create_init_parsed_cmd(void)
 void	manage_variable(t_string_list **start_token, t_string_list **tokens,
 		t_parsed_cmd **parsed_cmd, t_prsd_cmd_l **parsed_cmd_list)
 {
-	while (ft_strlen((*tokens)->string) == 0)
+	while ((*tokens) && (*tokens)->next && (*tokens)->string
+		&& ft_strlen((*tokens)->string) == 0)
 		*tokens = (*tokens)->next;
 	*start_token = *tokens;
 	*parsed_cmd_list = NULL;
