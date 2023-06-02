@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:18:33 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/29 18:34:35 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 14:18:07 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	helper(char *str, int i)
+{
+	int	j;
+
+	i++;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == '"' || str[i] == '\'')
+			j++;
+		i++;
+	}
+	if (j % 2 == 0)
+		return (1);
+	return (0);
+}
+
+int	condition(char *s, int i)
+{
+	if (s[i] && (s[i] == ' ' || s[i] == '|' || (helper(s, i) && s[i + 1] == ' ')
+			|| s[i + 1] == '|' || redirect_type(&s[i]) != 4))
+		return (1);
+	return (0);
+}
 
 void	remove_quotes(char *s)
 {
@@ -34,8 +59,7 @@ void	remove_quotes(char *s)
 				section[j++] = s[i++];
 		section[j] = 0;
 		g_myenv.quotes = ft_strjoin(g_myenv.quotes, section);
-		if (my_free(section) && s[i] && (s[i] == ' ' || s[i] == '|' || s[i + 1]
-				== ' ' || s[i + 1] == '|' || redirect_type(&s[i]) != 4))
+		if (my_free(section) && condition(s, i))
 			break ;
 		help_quotes(&i, &j, s);
 	}
@@ -83,7 +107,8 @@ int	empty(char *input)
 			i++;
 			if (!input[i])
 			{
-				ft_putstr_fd("bash: : command not found\n", 2);
+				ft_putstr_fd("\033[32m$\033[32m \033[0m: : command not found\n",
+					2);
 				g_myenv.ret_exit = 127;
 				return (1);
 			}

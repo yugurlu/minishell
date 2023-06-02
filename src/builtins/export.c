@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 15:34:43 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 17:33:59 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 13:28:46 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	export_option(char **new_env, char **split, char **arr, int option)
 		free(temp);
 		return ;
 	}
-	if (!arr[1])
+	if (option == 0)
 	{
 		print_env_with_export(g_myenv.env);
 		g_myenv.ret_exit = 0;
@@ -128,12 +128,12 @@ void	export(char **arr)
 					export_option(new_env, split, arr, 1);
 				else if (ft_strchr(arr[1], '=') && arr[1][0] != '=')
 					export_option(new_env, split, arr, 2);
-				free_split(split);
 			}
 			else
 				error_export();
+			free_split(split);
 		}
 	}
-	else
+	if (!arr[1])
 		export_option(NULL, NULL, arr, 0);
 }

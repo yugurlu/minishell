@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/29 18:25:23 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 12:49:02 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int				ft_strcmp(char *s1, char *s2);
 int				is_pipe(t_string_list *tokens,
 					t_parsed_cmd *parsed_cmd);
 void			skip_dollar(char *str, int *i);
+int				helper(char *str, int i);
 void			error_redirections(char *file,
 					int err_type);
 char			*rm_extern_quotes(char *input);

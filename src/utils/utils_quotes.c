@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_quotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:02:11 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/25 10:40:48 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 12:48:45 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	norm(int *i, int *j)
 
 void	help_quotes(int *i, int *j, char *input)
 {
-	if (input[*i])
+	if (input[*i] && (input[*i] != '"' || helper(input, *i)))
 		*i += 1;
 	*j = 0;
 }

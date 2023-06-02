@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   correct_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:10 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/16 16:49:39 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/02 13:53:00 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int	correct_syntax(t_string_list *tokens)
 		return (0);
 	if (is_pipe(tokens, NULL) || more_then_1_pipe(tokens))
 	{
-		ft_putstr_fd("$: syntax error near unexpected token '|'\n", 2);
+		ft_putstr_fd("\033[32m$\033[32m \033[0m: syntax error\
+near unexpected token '|'\n", 2);
 		g_myenv.ret_exit = 258;
 		return (0);
 	}
@@ -83,8 +84,8 @@ int	correct_syntax(t_string_list *tokens)
 		{
 			if (!redirection_control(tokens))
 			{
-				ft_putstr_fd("$: syntax error near unexpected token 'newline'\n",
-					2);
+				ft_putstr_fd("\033[32m$\033[32m \033[0m: syntax error near\
+unexpected token 'newline'\n", 2);
 				g_myenv.ret_exit = 258;
 				return (0);
 			}
