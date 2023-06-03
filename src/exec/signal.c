@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:17:15 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/09 13:07:04 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:21:57 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ void	ctrl_d(char *line)
 	}
 }
 
+void	ctrl_backs(int sig)
+{
+	(void)sig;
+	g_myenv.ret_exit = 131;
+	g_myenv.ctrl_signal = 1;
+	if (sig == SIGQUIT)
+	{
+		if (rl_line_buffer && *rl_line_buffer)
+		{
+			ft_putstr_fd("Quit : 3\n", 2);
+			printf("%d\n", g_myenv.ret_exit);
+			if (g_myenv.t_pid == 1)
+				exit(131);
+		}
+	}
+}
+
 void	ctrl_c(int sig)
 {
 	(void)sig;
@@ -42,6 +59,7 @@ void	ctrl_c(int sig)
 
 void	signal_control(void)
 {
+	g_myenv.t_pid = 1;
 	signal(SIGINT, ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, ctrl_backs);
 }

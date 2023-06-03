@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macos <macos@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:11:47 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/23 15:34:42 by macos            ###   ########.fr       */
+/*   Updated: 2023/06/03 11:52:24 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void	ft_exit(t_prsd_mng_l *parsed_cmd_managed_list)
 	else
 	{
 		ft_putstr_fd("exit\n", 1);
-		exit(g_myenv.ret_exit);
+		exit(0);
 	}
 }

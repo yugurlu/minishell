@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yusufugurlu <yusufugurlu@student.42.fr>    +#+  +:+       +#+        */
+/*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 13:27:42 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/05/22 16:56:40 by yusufugurlu      ###   ########.fr       */
+/*   Updated: 2023/06/03 14:24:58 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	choose_execution(t_prsd_mng_l *parse)
 void	child_execution(t_prsd_mng_l *parse)
 {
 	parse->pid = fork();
+	g_myenv.t_pid = 0;
 	if (parse->pid == 0)
 	{
 		if (parse->next && parse->command->out_desc == 0)
@@ -91,6 +92,7 @@ void	execution(t_prsd_mng_l *parse)
 	t_prsd_mng_l	*previous;
 
 	previous = parse;
+	g_myenv.ctrl_signal = 0;
 	if (single_command(parse))
 		return ;
 	pipe_initialize(parse);
@@ -106,7 +108,9 @@ void	execution(t_prsd_mng_l *parse)
 	while (previous)
 	{
 		waitpid(previous->pid, &status, 0);
-		g_myenv.ret_exit = WEXITSTATUS(status);
+		if (!g_myenv.ctrl_signal)
+			g_myenv.ret_exit = WEXITSTATUS(status);
 		previous = previous->next;
 	}
+	g_myenv.t_pid = 1;
 }

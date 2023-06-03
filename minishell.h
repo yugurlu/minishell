@@ -6,7 +6,7 @@
 /*   By: yugurlu <yugurlu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 20:06:22 by yugurlu           #+#    #+#             */
-/*   Updated: 2023/06/02 12:49:02 by yugurlu          ###   ########.fr       */
+/*   Updated: 2023/06/03 14:25:16 by yugurlu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_myenv
 	int									*is_exit;
 	int									heredoc_signal;
 	char								*quotes;
+	int									t_pid;
+	int									ctrl_signal;
 	char								head;
 	struct stat							stat;
 }										t_myenv;
@@ -114,6 +116,7 @@ int				my_free(char *str);
 int				empty(char *input);
 int				is_file(char *str);
 void			free_env_list(void);
+void			ctrl_backs(int sig);
 int				strisdigit(char *s);
 void			init_env(char **env);
 void			norm(int *i, int *j);
@@ -166,13 +169,13 @@ t_string_list	*dollar_and_env(t_string_list *tokens);
 char			**set_env(char *env_name, char *value);
 void			error_command(char *cmd, int err_type);
 void			error_exit(char *string, int err_type);
-void			help_quotes(int *i, int *j, char *input);
 void			is_envv(char *str, int *is_env, int *i);
 t_prsd_mng_l	*preprocess(t_prsd_cmd_l *command_line);
 void			help_getenv(int *i, int *k, char *temp);
 char			*strncopy(char *dest, char *src, int n);
 int				free_string_list(t_string_list *tokens);
 int				managed_redirection(t_prsd_mng_l *parse);
+void			help_quotes(int *i, int *j, char *input);
 t_prsd_cmd_l	*create_parsed_cmd_list(t_string_list *tokens);
 void			ft_exit(t_prsd_mng_l	*parsed_cmd_managed_list);
 void			free_redirect_list(t_redirect_list *redirections);
